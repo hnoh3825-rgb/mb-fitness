@@ -20,25 +20,25 @@ tab_workouts, tab_weight, tab_calories, tab_water = st.tabs([
 with tab_workouts:
     st.header("جدول التمارين اليومي")
     
-    # بيانات التمارين مع الروابط والصور المتحركة (GIFs)
+    # بيانات التمارين بروابط صور ثابتة ومباشرة شغال 100%
     workouts_data = {
         "تمارين الصدر 💪": [
-            {"name": "1. بنش برس مستوي (Bench Press) - 4×10", "gif": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnZ4eHN1MDR2NWN3aG9tczY1YnN2ZjB5NDI1bnRpdmt4enN5YTBveCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKSx186bL0Bsk1y/giphy.gif"},
-            {"name": "2. بنش برس مائل أعلى (Incline Press) - 3×12", "gif": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5M2Z2bnhzeWJ2OXpza2E0bndyNXd0Mmd5dmx3cXhhMDY5NXdrdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0HlCqV35D6p1sL84/giphy.gif"},
-            {"name": "3. تجميع فراشة (Chest Fly) - 3×15", "gif": "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif"}
+            {"name": "1. بنش برس مستوي (Bench Press) - 4×10", "img": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=500&q=80"},
+            {"name": "2. بنش برس مائل أعلى (Incline Press) - 3×12", "img": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=500&q=80"},
+            {"name": "3. تجميع فراشة (Chest Fly) - 3×15", "img": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&q=80"}
         ],
         "تمارين الظهر 🏋️‍♂️": [
-            {"name": "1. سحب عريض علوي (Lat Pulldown) - 4×12", "gif": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDVqbmpxd3RjbjRtZ3UzeDJmdGJ2bndlOWF4Z2IwaWVld3llYXJvaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT1R3x2874fI12iS2I/giphy.gif"},
-            {"name": "2. سحب أرضي (Seated Row) - 4×10", "gif": "https://media.giphy.com/media/l41YkxvU28ehE74sM/giphy.gif"},
-            {"name": "3. قطنية (Deadlift) - 3×8", "gif": "https://media.giphy.com/media/3o7TKP124d77QOqDvy/giphy.gif"}
+            {"name": "1. سحب عريض علوي (Lat Pulldown) - 4×12", "img": "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=500&q=80"},
+            {"name": "2. سحب أرضي (Seated Row) - 4×10", "img": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&q=80"},
+            {"name": "3. قطنية (Deadlift) - 3×8", "img": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&q=80"}
         ],
         "تمارين الأرجل 🦵": [
-            {"name": "1. سكوات (Squat) - 4×10", "gif": "https://media.giphy.com/media/xT1XGzAnABSXy8DPCU/giphy.gif"},
-            {"name": "2. دفع أرجل (Leg Press) - 4×12", "gif": "https://media.giphy.com/media/3o7TKP8e42s2I21d8s/giphy.gif"}
+            {"name": "1. سكوات (Squat) - 4×10", "img": "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=500&q=80"},
+            {"name": "2. دفع أرجل (Leg Press) - 4×12", "img": "https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=500&q=80"}
         ],
         "تمارين الذراعين 🦾": [
-            {"name": "1. بايسبس بالبار (Barbell Curl) - 4×12", "gif": "https://media.giphy.com/media/l0HlTy83q1sL3PqgM/giphy.gif"},
-            {"name": "2. ترايسبس حبل (Pushdown) - 4×12", "gif": "https://media.giphy.com/media/3o7TKRnoS9oI1RmsaA/giphy.gif"}
+            {"name": "1. بايسبس بالبار (Barbell Curl) - 4×12", "img": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=500&q=80"},
+            {"name": "2. ترايسبس حبل (Pushdown) - 4×12", "img": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&q=80"}
         ]
     }
 
@@ -47,7 +47,8 @@ with tab_workouts:
     
     for ex in workouts_data[category]:
         st.subheader(ex["name"])
-        st.image(ex["gif"], use_column_width=True)
+        # استخدام st.image لعرض الصور المباشرة بشكل متوافق
+        st.image(ex["img"], use_container_width=True)
         st.markdown("---")
 
     # مؤقت الراحة بين الجلسات
@@ -93,7 +94,6 @@ with tab_calories:
     ])
 
     if st.button("احسب السعرات 🧮"):
-        # معادلة BMR
         if gender == "ذكر":
             bmr = 10 * weight_c + 6.25 * height - 5 * age + 5
         else:
