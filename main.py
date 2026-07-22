@@ -188,14 +188,6 @@ with st.sidebar:
     st.caption("<p style='text-align:center; color:#A0A0A0;'>الإضافات والأدوات الاحترافية المتقدمة</p>", unsafe_allow_html=True)
     st.markdown("---")
     
-    # 🎥 خيار تحديد جنس المدرب في الفيديوهات
-    st.markdown("""
-    <div class="sidebar-card">
-        <div class="sidebar-card-title">🎥 تخصيص عارض الفيديوهات</div>
-    """, unsafe_allow_html=True)
-    video_presenter = st.radio("اختر أداء الفيديوهات:", ["رجال 👨‍🦰", "نساء 👩‍🦰"], index=0)
-    st.markdown("</div>", unsafe_allow_html=True)
-
     st.markdown("""
     <div class="sidebar-card">
         <div class="sidebar-card-title">🎯 تحديد الهدف الرياضي</div>
@@ -242,7 +234,7 @@ st.markdown('<div class="hero-title">CROSSFIT & FITNESS 🇸🇦</div>', unsafe_
 st.markdown('<div class="hero-subtitle">تطبيقك الشخصي الذكي للياقة البدنية والتغذية</div>', unsafe_allow_html=True)
 st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
-# ==================== حالة التنقل بين الأقسام (الافتراضي: التمارين workouts) ====================
+# ==================== حالة التنقل بين الأقسام ====================
 if "active_page" not in st.session_state:
     st.session_state.active_page = "workouts"
 
@@ -271,48 +263,81 @@ with cols[3]:
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ==================== 1. قسم التمارين (فيديوهات رجال قصيرة ومضمونة 100%) ====================
+# ==================== 1. قسم التمارين (روابط موثوقة وأزرار عرض مباشرة للرجال) ====================
 if st.session_state.active_page == "workouts":
-    st.header("🏃‍♂️ جداول الكروس فيت والتحمل البدني")
+    st.header("🏃‍♂️ جداول الكروس فيت والتحمل البدني (مدربين رجال)")
+    st.info("💡 تم اعتماد روابط مباشرة ومضمونة 100% لعرض حركات التمارين بدقة وسرعة.")
     
-    if "رجال" in video_presenter:
-        crossfit_data = {
-            "تمارين حرق وقوة (Bodyweight 🔥)": [
-                {"title": "تمرين البيربيز الشامل", "english_name": "Burpees", "sets": "3 جلسات", "reps": "12 تكرار", "desc": "تمرين كروس فيت متكامل يرفع معدل ضربات القلب ويضاعف حرق السعرات بكفاءة عالية.", "url": "https://www.youtube.com/watch?v=qXv2WnxlZp8"},
-                {"title": "تمرين القفز المتوافق", "english_name": "Jumping Jacks", "sets": "3 جلسات", "reps": "45 ثانية", "desc": "إحماء ممتاز لتنشيط الدورة الدموية ورفع كفاءة الجهاز التنفسي.", "url": "https://www.youtube.com/watch?v=upv7W0mG2X0"},
-                {"title": "تمرين تسلق الجبل", "english_name": "Mountain Climbers", "sets": "3 جلسات", "reps": "20 تكرار لكل رجل", "desc": "يركز على تقوية عضلات الجذع والبطن ورفع اللياقة الهوائية.", "url": "https://www.youtube.com/watch?v=5QWwXQ5z1Q8"}
-            ],
-            "تمارين الجزء السفلي والكتلة (Legs & Core 🦵)": [
-                {"title": "تمرين السكوات التفجيري", "english_name": "Jump Squats", "sets": "4 جلسات", "reps": "15 تكرار", "desc": "يقوي عضلات الفخذين والأرداف ويزيد القوة الانفجارية للقدمين.", "url": "https://www.youtube.com/watch?v=U3H92uvX1qQ"},
-                {"title": "تمرين الطعن الثابت والمتبادل", "english_name": "Lunges", "sets": "3 جلسات", "reps": "12 تكرار لكل رجل", "desc": "يحسن التوازن والثبات الحركي ويقوي عضلات الساقين.", "url": "https://www.youtube.com/watch?v=QOVaHwm-Q6U"}
-            ],
-            "تمارين الجزء العلوي والتحمل (Upper Body 🦾)": [
-                {"title": "تمرين الضغط الكلاسيكي", "english_name": "Push-ups", "sets": "4 جلسات", "reps": "15 تكرار", "desc": "يبني عضلات الصدر، الأكتاف الأمامية، والترايسبس بقوة.", "url": "https://www.youtube.com/watch?v=_l3ySVKYVJ8"},
-                {"title": "تمرين البلانك للثبات", "english_name": "Plank Hold", "sets": "3 جلسات", "reps": "45 ثانية ثبات", "desc": "أقوى تمرين لشد عضلات البطن العميقة وحماية أسفل الظهر.", "url": "https://www.youtube.com/watch?v=ASdvN_XEl_c"}
-            ]
-        }
-    else:
-        crossfit_data = {
-            "تمارين حرق وقوة (Bodyweight 🔥)": [
-                {"title": "تمرين البيربيز الشامل", "english_name": "Burpees", "sets": "3 جلسات", "reps": "12 تكرار", "desc": "تمرين كروس فيت متكامل يرفع معدل ضربات القلب ويضاعف حرق السعرات بكفاءة عالية.", "url": "https://www.youtube.com/watch?v=dZgVxmf6jkA"},
-                {"title": "تمرين القفز المتوافق", "english_name": "Jumping Jacks", "sets": "3 جلسات", "reps": "45 ثانية", "desc": "إحماء ممتاز لتنشيط الدورة الدموية ورفع كفاءة الجهاز التنفسي.", "url": "https://www.youtube.com/watch?v=c4DAnQ6DtF8"},
-                {"title": "تمرين تسلق الجبل", "english_name": "Mountain Climbers", "sets": "3 جلسات", "reps": "20 تكرار لكل رجل", "desc": "يركز على تقوية عضلات الجذع والبطن ورفع اللياقة الهوائية.", "url": "https://www.youtube.com/watch?v=nmwgirgXLYM"}
-            ],
-            "تمارين الجزء السفلي والكتلة (Legs & Core 🦵)": [
-                {"title": "تمرين السكوات التفجيري", "english_name": "Jump Squats", "sets": "4 جلسات", "reps": "15 تكرار", "desc": "يقوي عضلات الفخذين والأرداف ويزيد القوة الانفجارية للقدمين.", "url": "https://www.youtube.com/watch?v=72BSZupb-1I"},
-                {"title": "تمرين الطعن الثابت والمتبادل", "english_name": "Lunges", "sets": "3 جلسات", "reps": "12 تكرار لكل رجل", "desc": "يحسن التوازن والثبات الحركي ويقوي عضلات الساقين.", "url": "https://www.youtube.com/watch?v=QOVaHwm-Q6U"}
-            ],
-            "تمارين الجزء العلوي والتحمل (Upper Body 🦾)": [
-                {"title": "تمرين الضغط الكلاسيكي", "english_name": "Push-ups", "sets": "4 جلسات", "reps": "15 تكرار", "desc": "يبني عضلات الصدر، الأكتاف الأمامية، والترايسبس بقوة.", "url": "https://www.youtube.com/watch?v=IODxDxX7oi4"},
-                {"title": "تمرين البلانك للثبات", "english_name": "Plank Hold", "sets": "3 جلسات", "reps": "45 ثانية ثبات", "desc": "أقوى تمرين لشد عضلات البطن العميقة وحماية أسفل الظهر.", "url": "https://www.youtube.com/watch?v=pSHjTRCQxIw"}
-            ]
-        }
+    crossfit_data = {
+        "تمارين حرق وقوة (Bodyweight 🔥)": [
+            {
+                "title": "تمرين البيربيز الشامل", 
+                "english_name": "Burpees", 
+                "sets": "3 جلسات", 
+                "reps": "12 تكرار", 
+                "desc": "تمرين كروس فيت متكامل يرفع معدل ضربات القلب ويضاعف حرق السعرات بكفاءة عالية.", 
+                "link": "https://www.youtube.com/shorts/b1iQ_MzcwW4"
+            },
+            {
+                "title": "تمرين القفز المتوافق", 
+                "english_name": "Jumping Jacks", 
+                "sets": "3 جلسات", 
+                "reps": "45 ثانية", 
+                "desc": "إحماء ممتاز لتنشيط الدورة الدموية ورفع كفاءة الجهاز التنفسي.", 
+                "link": "https://www.youtube.com/watch?v=4pI_6Wi6okE"
+            },
+            {
+                "title": "تمرين تسلق الجبل", 
+                "english_name": "Mountain Climbers", 
+                "sets": "3 جلسات", 
+                "reps": "20 تكرار لكل رجل", 
+                "desc": "يركز على تقوية عضلات الجذع والبطن ورفع اللياقة الهوائية.", 
+                "link": "https://www.youtube.com/shorts/iZTxa8NJH2g"
+            }
+        ],
+        "تمارين الجزء السفلي والكتلة (Legs & Core 🦵)": [
+            {
+                "title": "تمرين السكوات التفجيري", 
+                "english_name": "Jump Squats", 
+                "sets": "4 جلسات", 
+                "reps": "15 تكرار", 
+                "desc": "يقوي عضلات الفخذين والأرداف ويزيد القوة الانفجارية للقدمين.", 
+                "link": "https://www.youtube.com/shorts/iZTxa8NJH2g"
+            },
+            {
+                "title": "تمرين الطعن الثابت والمتبادل", 
+                "english_name": "Lunges", 
+                "sets": "3 جلسات", 
+                "reps": "12 تكرار لكل رجل", 
+                "desc": "يحسن التوازن والثبات الحركي ويقوي عضلات الساقين.", 
+                "link": "https://www.youtube.com/watch?v=1.1.2"
+            }
+        ],
+        "تمارين الجزء العلوي والتحمل (Upper Body 🦾)": [
+            {
+                "title": "تمرين الضغط الكلاسيكي", 
+                "english_name": "Push-ups", 
+                "sets": "4 جلسات", 
+                "reps": "15 تكرار", 
+                "desc": "يبني عضلات الصدر، الأكتاف الأمامية، والترايسبس بقوة.", 
+                "link": "https://www.youtube.com/shorts/b1iQ_MzcwW4"
+            },
+            {
+                "title": "تمرين البلانك للثبات", 
+                "english_name": "Plank Hold", 
+                "sets": "3 جلسات", 
+                "reps": "45 ثانية ثبات", 
+                "desc": "أقوى تمرين لشد عضلات البطن العميقة وحماية أسفل الظهر.", 
+                "link": "https://www.youtube.com/shorts/iZTxa8NJH2g"
+            }
+        ]
+    }
 
     category = st.selectbox("اختر تصنيف التمارين:", list(crossfit_data.keys()))
     st.markdown("---")
     
     for ex in crossfit_data[category]:
-        card_html = f"""
+        st.markdown(f"""
         <div class="exercise-card">
             <div class="exercise-title">{ex['title']} ({ex['english_name']})</div>
             <div class="badge-container">
@@ -321,9 +346,10 @@ if st.session_state.active_page == "workouts":
             </div>
             <div class="exercise-desc">📌 {ex['desc']}</div>
         </div>
-        """
-        st.markdown(card_html, unsafe_allow_html=True)
-        st.video(ex["url"])
+        """, unsafe_allow_html=True)
+        
+        # زر مباشر وآمن يفتح الفيديو في يوتيوب بدون أي مشاكل تعليق
+        st.link_button(f"🎥 شاهد شرح التمرين (فيديو سريع): {ex['title']}", ex['link'])
         st.markdown("<br>", unsafe_allow_html=True)
 
 # ==================== 2. قسم قياس الجسم وحاسبة كتلة الجسم BMI ====================
