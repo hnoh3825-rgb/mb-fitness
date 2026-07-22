@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التجميل الشامل (منع التمرير العرضي وضبط المربعات) ====================
+# ==================== CSS التجميل الشامل (منع التمرير العرضي وضبط المربعات الأربعة) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -36,7 +36,7 @@ st.markdown(
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
-        padding: 25px 15px;
+        padding: 25px 12px;
         margin-top: 10px;
         max-width: 100% !important;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
@@ -72,11 +72,11 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* تنسيق الحاويات والأزرار العلوية لجعلها متجاورة وكاملة بدون قص */
+    /* تنسيق الحاويات والأزرار الأربعة بجانب بعضها تماماً */
     [data-testid="stHorizontalBlock"] {{
         display: flex !important;
         flex-direction: row !important;
-        gap: 4px !important;
+        gap: 3px !important;
         align-items: center !important;
         justify-content: space-between !important;
         width: 100% !important;
@@ -87,27 +87,28 @@ st.markdown(
         min-width: 0 !important;
     }}
 
-    /* تكبير وتعديل مظهر المربعات العلوية لتظهر الكلمات كاملة على الجوال */
+    /* ضبط مظهر المربعات العلوية لتظهر الكلمات بالطول كاملة وبشكل احترافي */
     .stButton > button {{
         width: 100% !important;
         background: linear-gradient(145deg, rgba(30, 30, 38, 0.9), rgba(18, 18, 24, 0.95)) !important;
         border: 1px solid rgba(212, 175, 55, 0.35) !important;
-        border-radius: 12px !important;
-        padding: 10px 4px !important;
+        border-radius: 10px !important;
+        padding: 8px 2px !important;
         color: #E0E0E0 !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 11px !important;
+        font-size: 10.5px !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
         transition: all 0.3s ease-in-out !important;
         white-space: normal !important;
         word-break: break-word !important;
         height: auto !important;
-        min-height: 45px !important;
+        min-height: 52px !important;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
+        line-height: 1.3;
     }}
 
     .stButton > button:hover {{
@@ -244,29 +245,29 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
 # ==================== حالة التنقل بين الأقسام ====================
 if "active_page" not in st.session_state:
-    st.session_state.active_page = "workouts"
+    st.session_state.active_page = "water"
 
-# ==================== الأزرار العلوية الرئيسية (مضبوطة بالكامل للشاشات والجوالات) ====================
+# ==================== الأزرار العلوية الأربعة (الترتيب الجديد: الماء -> السعرات -> قياس الجسم -> التمارين) ====================
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    if st.button("🔥 التمارين", key="btn_workouts"):
-        st.session_state.active_page = "workouts"
+    if st.button("💧\nالماء", key="btn_water"):
+        st.session_state.active_page = "water"
         st.rerun()
 
 with col2:
-    if st.button("📊 قياس الجسم", key="btn_weight"):
-        st.session_state.active_page = "weight"
-        st.rerun()
-
-with col3:
-    if st.button("⚡ السعرات الدقيقة", key="btn_calories"):
+    if st.button("⚡\nالسعرات الدقيقة", key="btn_calories"):
         st.session_state.active_page = "calories"
         st.rerun()
 
+with col3:
+    if st.button("📊\nقياس الجسم", key="btn_weight"):
+        st.session_state.active_page = "weight"
+        st.rerun()
+
 with col4:
-    if st.button("💧 الماء", key="btn_water"):
-        st.session_state.active_page = "water"
+    if st.button("🔥\nالتمارين", key="btn_workouts"):
+        st.session_state.active_page = "workouts"
         st.rerun()
 
 st.markdown("<br>", unsafe_allow_html=True)
