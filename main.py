@@ -6,11 +6,10 @@ import time
 st.set_page_config(
     page_title="CROSSFIT & FITNESS", 
     page_icon="🏋️‍♂️", 
-    layout="centered",
-    initial_sidebar_state="collapsed"
+    layout="centered"
 )
 
-# ==================== CSS التجميل الشامل للتبويبات والواجهة ====================
+# ==================== CSS التجميل الشامل والحديث ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -18,38 +17,38 @@ st.markdown(
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Tajawal:wght@400;700;900&display=swap');
 
-    /* خلفية التطبيق الداكنة والاحترافية */
+    /* خلفية التطبيق */
     .stApp {{
-        background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.93)), url("{bg_img_url}") no-repeat center center fixed;
+        background: linear-gradient(rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.94)), url("{bg_img_url}") no-repeat center center fixed;
         background-size: cover !important;
         font-family: 'Tajawal', sans-serif;
     }}
     
     /* حاوية المحتوى الرئيسية */
     .main .block-container {{
-        background-color: rgba(18, 18, 18, 0.85) !important;
-        backdrop-filter: blur(16px);
+        background-color: rgba(16, 16, 20, 0.85) !important;
+        backdrop-filter: blur(18px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
-        padding: 30px 22px;
+        padding: 28px 20px;
         margin-top: 10px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
         color: #ffffff;
     }}
 
-    /* العنوان الرئيسي بصيغة مودرن */
+    /* العنوان الرئيسي */
     .hero-title {{
         text-align: center;
         font-family: 'Montserrat', sans-serif;
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 900;
         letter-spacing: 2px;
         white-space: nowrap;
         background: linear-gradient(135deg, #FFFFFF 0%, #D4AF37 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-top: 5px;
-        margin-bottom: 6px;
+        margin-top: 2px;
+        margin-bottom: 4px;
     }}
 
     /* الوصف الفرعي */
@@ -69,11 +68,42 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* ==================== إعادة تصميم الأزرار العلوية بالكامل (التمارين، الوزن، السعرات، الماء) ==================== */
+    /* ==================== زر القائمة العلوي الجديد والتصميم المستقبلي ==================== */
+    div[data-testid="stPopover"] > button {{
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(30, 30, 30, 0.9) 100%) !important;
+        border: 1px solid rgba(212, 175, 55, 0.6) !important;
+        border-radius: 12px !important;
+        color: #D4AF37 !important;
+        font-family: 'Tajawal', sans-serif !important;
+        font-weight: 800 !important;
+        font-size: 14px !important;
+        padding: 8px 16px !important;
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.2) !important;
+        transition: all 0.3s ease-in-out !important;
+    }}
+
+    div[data-testid="stPopover"] > button:hover {{
+        background: linear-gradient(135deg, #D4AF37 0%, #AA820A 100%) !important;
+        color: #000000 !important;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.6) !important;
+        transform: scale(1.03);
+    }}
+
+    /* تصميم النافذة المنبثقة من الزر */
+    div[data-testid="stPopoverBody"] {{
+        background-color: rgba(15, 15, 20, 0.96) !important;
+        backdrop-filter: blur(25px) !important;
+        border: 1px solid rgba(212, 175, 55, 0.4) !important;
+        border-radius: 20px !important;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9) !important;
+        padding: 15px !important;
+    }}
+
+    /* ==================== تصميم الأزرار العلوية الرئيسية (التمارين، الوزن،...) ==================== */
     div[data-testid="stTabs"] [data-baseweb="tab-list"] {{
         display: grid !important;
         grid-template-columns: repeat(4, 1fr) !important;
-        gap: 12px !important;
+        gap: 10px !important;
         background: transparent !important;
         padding: 5px 0 !important;
         border: none !important;
@@ -83,22 +113,14 @@ st.markdown(
         background: linear-gradient(145deg, rgba(30, 30, 35, 0.9), rgba(15, 15, 20, 0.95)) !important;
         border: 1px solid rgba(212, 175, 55, 0.25) !important;
         border-radius: 16px !important;
-        padding: 14px 8px !important;
+        padding: 12px 6px !important;
         color: #D0D0D0 !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 15px !important;
+        font-size: 14px !important;
         text-align: center !important;
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5) !important;
         transition: all 0.3s ease-in-out !important;
-        height: auto !important;
-    }}
-
-    /* عند التمرير بالماوس أو تحديد التبويب (Hover & Active) */
-    div[data-testid="stTabs"] [data-baseweb="tab-list"] button:hover {{
-        border-color: #D4AF37 !important;
-        transform: translateY(-3px) !important;
-        box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2) !important;
     }}
 
     div[data-testid="stTabs"] [data-baseweb="tab-list"] button[aria-selected="true"] {{
@@ -106,16 +128,14 @@ st.markdown(
         color: #000000 !important;
         font-weight: 900 !important;
         border: 1px solid #FFE885 !important;
-        box-shadow: 0 0 20px rgba(212, 175, 55, 0.6) !important;
-        transform: translateY(-2px) !important;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.5) !important;
     }}
 
-    /* إخفاء الخط السفلي المزعج الافتراضي في streamlit */
     div[data-testid="stTabs"] [data-baseweb="tab-highlight-title"] {{
         display: none !important;
     }}
 
-    /* تصميم بطاقة التمرين */
+    /* تصميم بطاقات التمارين */
     .exercise-card {{
         background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.8));
         border: 1px solid rgba(255, 255, 255, 0.05);
@@ -156,71 +176,62 @@ st.markdown(
         color: #C0C0C0;
         line-height: 1.6;
     }}
-
-    /* القائمة الجانبية (Sidebar) */
-    [data-testid="stSidebar"] {{
-        background-color: rgba(12, 12, 12, 0.96) !important;
-        backdrop-filter: blur(20px);
-        border-left: 1px solid rgba(212, 175, 55, 0.3);
-    }}
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# ==================== القائمة الجانبية (Side Panel) ====================
-with st.sidebar:
-    st.markdown("<h2 style='color: #D4AF37; text-align: center;'>⚙️ أدوات القوة والتحكم</h2>", unsafe_allow_html=True)
-    st.caption("مركز الخيارات المتقدمة والأدوات المساعدة")
-    st.markdown("---")
-    
-    # 1. هدف التدريب
-    st.subheader("🎯 تحديد الهدف")
-    user_goal = st.radio("حدد هدفك الحالي:", ["🔥 تنشيف وحرق دهون", "💪 بناء ضخامة وقوة", "⚡ زيادة لياقة وتحمل"], index=0)
-    
-    st.markdown("---")
-    
-    # 2. حاسبة الماكروز
-    st.subheader("🍽️ توزيع الماكروز اليومي")
-    target_cals = st.number_input("السعرات المستهدفة:", value=2000, step=100)
-    prot = int((target_cals * 0.3) / 4)
-    carbs = int((target_cals * 0.4) / 4)
-    fats = int((target_cals * 0.3) / 9)
-    st.caption(f"🥩 بروتين: **{prot}g** | 🍞 كربوهيدرات: **{carbs}g** | 🥑 دهون: **{fats}g**")
-    
-    st.markdown("---")
-    
-    # 3. قائمة التحدي اليومي
-    st.subheader("📋 قائمة الالتزام اليومي")
-    st.checkbox("أكملت تمرين الكروس فيت")
-    st.checkbox("شربت 3 لتر ماء")
-    st.checkbox("حققت هدف البروتين")
-    st.checkbox("نوم كافٍ (7-8 ساعات)")
-    
-    st.markdown("---")
-    
-    # 4. مؤقت التاباتا
-    st.subheader("⏱️ مؤقت التاباتا (Tabata)")
-    if st.button("بدء مؤقت التاباتا السريع 🚀"):
-        with st.empty():
-            st.warning("🔥 **WORK! (تمرين 20 ثانية)**")
-            time.sleep(2)
-            st.success("💧 **REST! (راحة 10 ثواني)**")
-            time.sleep(1)
-            st.balloons()
+# ==================== الشريط العلوي وزر الخيارات المتطور ====================
+top_col1, top_col2 = st.columns([4, 1.2])
 
-    st.markdown("---")
-    
-    # 5. دفتر الملاحظات
-    st.subheader("📝 ملاحظاتك الخاصة")
-    st.text_area("سجل إنجازاتك اليوم:", placeholder="اكتب هنا ملاحظاتك...")
+with top_col1:
+    st.markdown('<div class="hero-title">CROSSFIT & FITNESS</div>', unsafe_allow_html=True)
 
-# ==================== الهيدر والعنوان الرئيسي ====================
-st.markdown('<div class="hero-title">CROSSFIT & FITNESS</div>', unsafe_allow_html=True)
+with top_col2:
+    # زر الخيارات التقني العصري
+    with st.popover("⚡ الخيارات", help="نافذة الأدوات والتحكم الذكي"):
+        st.markdown("<h3 style='color:#D4AF37; text-align:center; margin-bottom: 5px;'>🎛️ لوحة الأوامر</h3>", unsafe_allow_html=True)
+        st.caption("<p style='text-align:center; font-size:12px; color:#AAA;'>تخصيص الخطة والتحكم اليومي</p>", unsafe_allow_html=True)
+        st.markdown("---")
+        
+        # 1. تحديد الهدف
+        st.markdown("#### 🎯 هدفك اليومي")
+        user_goal = st.selectbox("حدد نمط التدريب:", ["🔥 حرق دهون وتنشيف", "💪 بناء ضخامة وقوة", "⚡ زيادة لياقة وتحمل"], index=0)
+        
+        st.markdown("---")
+        
+        # 2. مؤقت التاباتا
+        st.markdown("#### ⏱️ مؤقت التاباتا (Tabata)")
+        if st.button("بدء جولة تفجيرية 🚀", use_container_width=True):
+            with st.empty():
+                st.warning("🔥 **WORK! (تمرين 20 ثانية)**")
+                time.sleep(2)
+                st.success("💧 **REST! (راحة 10 ثواني)**")
+                time.sleep(1)
+                st.balloons()
+                
+        st.markdown("---")
+        
+        # 3. جدول الماكروز
+        st.markdown("#### 🍽️ الماكروز المقترح")
+        target_cals = st.number_input("السعرات اليومية:", value=2000, step=100)
+        prot = int((target_cals * 0.3) / 4)
+        carbs = int((target_cals * 0.4) / 4)
+        fats = int((target_cals * 0.3) / 9)
+        st.info(f"🥩 بروتين: **{prot}g** | 🍞 كربوهيدرات: **{carbs}g** | 🥑 دهون: **{fats}g**")
+
+        st.markdown("---")
+
+        # 4. قائمة الانضباط Daily Checklist
+        st.markdown("#### 📋 تحدي الانضباط اليومي")
+        st.checkbox("تمرين الكروس فيت")
+        st.checkbox("شرب 3 لتر ماء")
+        st.checkbox("تحقيق هدف البروتين")
+
 st.markdown('<div class="hero-subtitle">دليلك اليومي لبناء القوة، اللياقة، والالتزام</div>', unsafe_allow_html=True)
 st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
-# ==================== الأزرار العلوية بالأشكال والتنسيقات الفخمة الجديدة ====================
+# ==================== الأزرار العلوية المتطورة ====================
 tab_workouts, tab_weight, tab_calories, tab_water = st.tabs([
     "🔥 التمارين", 
     "⚖️ الوزن", 
