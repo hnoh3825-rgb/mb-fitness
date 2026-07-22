@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التصميم الشامل (توسيع مربع الماء يميناً بدقة) ====================
+# ==================== CSS التصميم الشامل (مطابقة حجم مربع الماء لمربع التمارين) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -71,10 +71,10 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* ==================== تخصيص Grid مع توسيع إضافي لمربع الماء يميناً ==================== */
+    /* ==================== تخصيص Grid بمقاسات متساوية لمربع الماء والتمارين ==================== */
     [data-testid="stHorizontalBlock"] {{
         display: grid !important;
-        grid-template-columns: 1.35fr 0.9fr 0.95fr 1.05fr !important; /* توسيع حجم عمود الماء الأول ليتمدد يميناً */
+        grid-template-columns: 1.1fr 0.95fr 0.95fr 1.1fr !important; /* مساحة متطابقة للطرفين الأول والأخير (الماء والتمارين) */
         gap: 12px !important;
         width: 100% !important;
         margin-bottom: 15px !important;
@@ -85,21 +85,6 @@ st.markdown(
         width: 100% !important;
         max-width: 100% !important;
         flex: none !important;
-    }}
-
-    /* سحب إضافي لمربع الماء جهة اليمين لتأكيد التمدد المطلوب */
-    [data-testid="stHorizontalBlock"] > div:nth-child(1) {{
-        transform: translateX(4px); 
-    }}
-
-    /* سحب مربع السعرات يساراً */
-    [data-testid="stHorizontalBlock"] > div:nth-child(2) {{
-        transform: translateX(-3px); 
-    }}
-
-    /* سحب وتوسيع مربع التمارين من الزاوية اليمنى */
-    [data-testid="stHorizontalBlock"] > div:nth-child(4) {{
-        transform: translateX(3px); 
     }}
 
     /* تصميم الأزرار الموحدة */
