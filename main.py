@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التجميل الشامل (التوزيع المتساوي والمثالي للأزرار الأربعة للشاشة الرئيسية) ====================
+# ==================== CSS التجميل الشامل (تصميم مربعات أصلية متساوية، واسعة، ومنحنية الزوايا) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -18,7 +18,7 @@ st.markdown(
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Tajawal:wght@400;700;900&display=swap');
 
-    /* منع التمرير العرضي يمين ويسار نهائياً وثبات الشاشة كأنه تطبيق جوال */
+    /* منع التمرير العرضي وثبات الشاشة كأنه تطبيق جوال حقيقي */
     html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {{
         max-width: 100% !important;
         overflow-x: hidden !important;
@@ -36,7 +36,7 @@ st.markdown(
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
-        padding: 25px 10px;
+        padding: 25px 12px;
         margin-top: 10px;
         max-width: 100% !important;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
@@ -72,51 +72,49 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* فرض توزيع متساوي 100% ومسافات متطابقة للأعمدة الأربعة في الجوال */
+    /* تحويل حاوية الأزرار إلى نظام شبكي (Grid) بمسافات وفراغات واسعة ومتوازنة تماماً */
     [data-testid="stHorizontalBlock"] {{
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 6px !important;
-        align-items: stretch !important;
-        justify-content: space-between !important;
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 12px !important;
         width: 100% !important;
+        margin-bottom: 15px !important;
     }}
 
     [data-testid="stHorizontalBlock"] > div {{
-        flex: 1 !important;
-        min-width: 0 !important;
-        max-width: 25% !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }}
 
-    /* تصميم الأزرار ليظهر النص بشكل عمودي كامل ومنسق ومريح جداً للعين */
+    /* تصميم الأزرار على شكل مربعات كبيرة، زوايا منحنية واضحة، ومساحات مريحة */
     .stButton > button {{
         width: 100% !important;
-        background: linear-gradient(145deg, rgba(30, 30, 38, 0.9), rgba(18, 18, 24, 0.95)) !important;
-        border: 1px solid rgba(212, 175, 55, 0.35) !important;
-        border-radius: 12px !important;
-        padding: 8px 2px !important;
-        color: #E0E0E0 !important;
+        aspect-ratio: 1 / 1 !important; /* ضمان أن يكون الزر مربعاً متساوي الأبعاد تماماً */
+        background: linear-gradient(145deg, rgba(28, 28, 36, 0.95), rgba(16, 16, 22, 0.98)) !important;
+        border: 1.5px solid rgba(212, 175, 55, 0.4) !important;
+        border-radius: 18px !important; /* انحناء زوايا أنيق ومميز */
+        padding: 8px !important;
+        color: #FFFFFF !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 11px !important;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+        font-size: 12px !important;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6) !important;
         transition: all 0.3s ease-in-out !important;
-        white-space: pre-line !important; /* لدعم النزول للسطر بشكل صحيح */
+        white-space: pre-line !important;
         word-break: break-word !important;
-        height: 65px !important; /* تثبيت الارتفاع لجميع الأزرار بالتساوي تماماً */
         display: flex !important;
+        flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        line-height: 1.25 !important;
+        line-height: 1.4 !important;
     }}
 
     .stButton > button:hover {{
         border-color: #D4AF37 !important;
-        color: #FFFFFF !important;
-        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(30, 30, 38, 0.95) 100%) !important;
-        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35) !important;
-        transform: translateY(-2px) !important;
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(28, 28, 36, 0.98) 100%) !important;
+        box-shadow: 0 8px 22px rgba(212, 175, 55, 0.4) !important;
+        transform: translateY(-3px) !important;
     }}
 
     [data-testid="stSidebar"] {{
@@ -246,7 +244,7 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "water"
 
-# ==================== الأزرار الأربعة العلوية (متساوية تماماً ومضبوطة عمودياً) ====================
+# ==================== المربعات الأربعة الرئيسية (موزعة بمساحات واسعة وبشكل مربع وبزوايا منحنية) ====================
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
