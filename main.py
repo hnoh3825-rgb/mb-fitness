@@ -3,63 +3,87 @@ import pandas as pd
 import time
 
 # إعدادات الصفحة
-st.set_page_config(page_title="تطبيق MB للتمارين", page_icon="🏋️‍♂️", layout="centered")
+st.set_page_config(page_title="تطبيق MB للتمارين", page_icon="⚡", layout="centered")
 
-st.title("🏋️‍♂️ MB FITNESS")
-st.write("تطبيقك الشخصي الشامل للتمارين والمتابعة اليومية")
+st.title("⚡ MB CROSSFIT & FITNESS")
+st.write("تمارين لياقة وحرق للجسم كامل (CrossFit) + متابعة يومية")
 
-# إنشاء Tabs (تبويبات) للتنقل داخل التطبيق
+# إنشاء التبويبات
 tab_workouts, tab_weight, tab_calories, tab_water = st.tabs([
-    "🏋️‍♂️ التمارين", 
+    "🔥 تمارين الكروس فيت", 
     "⚖️ سجل الوزن", 
-    "🔥 السعرات", 
+    "📊 السعرات", 
     "💧 شرب الماء"
 ])
 
-# ==================== 1. تبويب التمارين ====================
+# ==================== 1. تبويب تمارين الكروس فيت ====================
 with tab_workouts:
-    st.header("جدول التمارين اليومي")
+    st.header("🏃‍♂️ جداول الكروس فيت (جسم كامل)")
     
-    # بيانات التمارين بروابط صور ثابتة ومباشرة شغال 100%
-    workouts_data = {
-        "تمارين الصدر 💪": [
-            {"name": "1. بنش برس مستوي (Bench Press) - 4×10", "img": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=500&q=80"},
-            {"name": "2. بنش برس مائل أعلى (Incline Press) - 3×12", "img": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=500&q=80"},
-            {"name": "3. تجميع فراشة (Chest Fly) - 3×15", "img": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&q=80"}
+    # تمارين كروس فيت بوزن الجسم مع صور متحركة حقيقية (GIFs)
+    crossfit_data = {
+        "تمارين حرق وقوة (Bodyweight 🔥)": [
+            {
+                "name": "1. بيربيز (Burpees) - 3 جلسات × 12 تكرار",
+                "desc": "تمرين كروس فيت شامل يحرك كامل عضلات الجسم ويرفع اللياقة فوراً.",
+                "gif": "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif"
+            },
+            {
+                "name": "2. نط الحبل الوهمي / العادي (Jumping Jacks) - 3 جلسات × 45 ثانية",
+                "desc": "ممتاز لرفع ضغط الدم وضخ الأكسجين للجسم كامل.",
+                "gif": "https://media.giphy.com/media/l2JnkWa6KlsfqX8q4/giphy.gif"
+            },
+            {
+                "name": "3. تسلق الجبل (Mountain Climbers) - 3 جلسات × 20 تكرار لكل رجل",
+                "desc": "يقوي عضلات البطن، الأكتاف، والأرجل بسرعة عالية.",
+                "gif": "https://media.giphy.com/media/l41YkFIhIYvyYdI64/giphy.gif"
+            }
         ],
-        "تمارين الظهر 🏋️‍♂️": [
-            {"name": "1. سحب عريض علوي (Lat Pulldown) - 4×12", "img": "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=500&q=80"},
-            {"name": "2. سحب أرضي (Seated Row) - 4×10", "img": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&q=80"},
-            {"name": "3. قطنية (Deadlift) - 3×8", "img": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&q=80"}
+        "تمارين الجزء السفلي والكتلة (Legs & Core 🦵)": [
+            {
+                "name": "1. سكوات قفز (Jump Squats) - 4 جلسات × 15 تكرار",
+                "desc": "تمرين تفجيري للأرجل والأسفل لزيادة اللياقة والقوة.",
+                "gif": "https://media.giphy.com/media/3o7TKxOzA3f84E1c76/giphy.gif"
+            },
+            {
+                "name": "2. الطعن المتحرك (Lunges) - 3 جلسات × 12 تكرار لكل رجل",
+                "desc": "لتقوية عضلات الفخذ والاتزان.",
+                "gif": "https://media.giphy.com/media/l41YvxI1u2x1fU436/giphy.gif"
+            }
         ],
-        "تمارين الأرجل 🦵": [
-            {"name": "1. سكوات (Squat) - 4×10", "img": "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=500&q=80"},
-            {"name": "2. دفع أرجل (Leg Press) - 4×12", "img": "https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=500&q=80"}
-        ],
-        "تمارين الذراعين 🦾": [
-            {"name": "1. بايسبس بالبار (Barbell Curl) - 4×12", "img": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=500&q=80"},
-            {"name": "2. ترايسبس حبل (Pushdown) - 4×12", "img": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&q=80"}
+        "تمارين الجزء العلوي والتحمل (Upper Body 🦾)": [
+            {
+                "name": "1. بوش أب كلاسيكي (Push-ups) - 4 جلسات × 15 تكرار",
+                "desc": "الأساسي للصدر، الأكتاف، والترايسبس.",
+                "gif": "https://media.giphy.com/media/3o7TKRnoS9oI1RmsaA/giphy.gif"
+            },
+            {
+                "name": "2. بلانك مع لمس الأكتاف (Plank Shoulder Taps) - 3 جلسات × 30 ثانية",
+                "desc": "تمرين ثبات قوي جداً للبطن والجذع كامل.",
+                "gif": "https://media.giphy.com/media/xT1R3x2874fI12iS2I/giphy.gif"
+            }
         ]
     }
 
-    category = st.selectbox("اختر العضلة:", list(workouts_data.keys()))
+    category = st.selectbox("اختر نوع الجلسة:", list(crossfit_data.keys()))
     st.markdown("---")
     
-    for ex in workouts_data[category]:
+    for ex in crossfit_data[category]:
         st.subheader(ex["name"])
-        # استخدام st.image لعرض الصور المباشرة بشكل متوافق
-        st.image(ex["img"], use_container_width=True)
+        st.caption(ex["desc"])
+        # عرض الصور المتحركة بصيغة HTML لضمان عمل الـ GIF بدون مشاكل
+        st.markdown(f'<img src="{ex["gif"]}" width="100%" style="border-radius:10px;">', unsafe_allow_html=True)
         st.markdown("---")
 
-    # مؤقت الراحة بين الجلسات
-    st.subheader("⏱️ مؤقت الراحة بين الجلسات")
-    seconds = st.number_input("اختر وقت الراحة بالثواني:", min_value=10, max_value=180, value=60, step=10)
-    if st.button("تفعيل المؤقت 🔔"):
+    # مؤقت راحة الجولات (WOD Rest Timer)
+    st.subheader("⏱️ مؤقت جولات الكروس فيت")
+    seconds = st.number_input("وقت الراحة بين الجولات (ثانية):", min_value=10, max_value=120, value=45, step=5)
+    if st.button("تفعيل مؤقت الجولة 🔔"):
         with st.empty():
             for i in range(seconds, 0, -1):
-                st.write(f"⏳ المتبقي: **{i}** ثانية")
+                st.write(f"⏳ المتبقي للجولة القادمة: **{i}** ثانية")
                 time.sleep(1)
-            st.success("🎉 انتهى وقت الراحة! ابدأ الجلسة التالية.")
+            st.success("🔥 انطلقت الجولة التالية! GO!")
 
 # ==================== 2. تبويب سجل الوزن ====================
 with tab_weight:
@@ -81,34 +105,28 @@ with tab_weight:
 
 # ==================== 3. تبويب السعرات ====================
 with tab_calories:
-    st.header("🔥 حاسبة الاحتياج اليومي من السعرات")
+    st.header("🔥 حاسبة احتياج الطاقة للكروس فيت")
     
     height = st.number_input("الطول (سم):", value=170)
     weight_c = st.number_input("الوزن (كجم):", value=70)
     age = st.number_input("العمر:", value=25)
     gender = st.radio("النوع:", ["ذكر", "أنثى"])
-    activity = st.selectbox("مستوى النشاط:", [
-        "قليل النشاط (مكتبي)",
-        "نشاط متوسط (3-5 أيام تمرين)",
-        "نشاط عالي (6-7 أيام تمرين)"
-    ])
 
-    if st.button("احسب السعرات 🧮"):
+    if st.button("حساب الاحتياج اليومي 🧮"):
         if gender == "ذكر":
             bmr = 10 * weight_c + 6.25 * height - 5 * age + 5
         else:
             bmr = 10 * weight_c + 6.25 * height - 5 * age - 161
 
-        mult = 1.2 if "قليل" in activity else (1.55 if "متوسط" in activity else 1.725)
-        tdee = int(bmr * mult)
+        # للكروس فيت يتم ضرب المعامل في نشاط عالي (1.6)
+        tdee = int(bmr * 1.6)
 
-        st.metric("احتياجك اليومي للمحافظة على الوزن", f"{tdee} سعرة")
-        st.write(f"📉 للتنشيف (تنزيل الوزن): **{tdee - 500}** سعرة")
-        st.write(f"📈 للتضخيم (زيادة الوزن): **{tdee + 300}** سعرة")
+        st.metric("احتياجك اليومي مع تمارين الكروس فيت", f"{tdee} سعرة")
+        st.write(f"📉 للتنشيف والنزول السريع: **{tdee - 400}** سعرة")
 
 # ==================== 4. تبويب الماء ====================
 with tab_water:
-    st.header("💧 متابعة استهلاك الماء اليومي")
+    st.header("💧 متابعة استهلاك الماء")
     
     if "water_cups" not in st.session_state:
         st.session_state.water_cups = 0
@@ -121,6 +139,6 @@ with tab_water:
             st.session_state.water_cups += 1
             st.rerun()
     with col2:
-        if st.button("تصفير العداد 🔄"):
+        if st.button("تصفير 🔄"):
             st.session_state.water_cups = 0
             st.rerun()
