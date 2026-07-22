@@ -9,7 +9,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# ==================== CSS التجميل الشامل والحديث ====================
+# ==================== CSS التجميل الشامل للواجهة والأزرار التقنية ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -26,8 +26,8 @@ st.markdown(
     
     /* حاوية المحتوى الرئيسية */
     .main .block-container {{
-        background-color: rgba(16, 16, 20, 0.85) !important;
-        backdrop-filter: blur(18px);
+        background-color: rgba(16, 16, 20, 0.88) !important;
+        backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
         padding: 28px 20px;
@@ -40,7 +40,7 @@ st.markdown(
     .hero-title {{
         text-align: center;
         font-family: 'Montserrat', sans-serif;
-        font-size: 26px;
+        font-size: 28px;
         font-weight: 900;
         letter-spacing: 2px;
         white-space: nowrap;
@@ -68,7 +68,30 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* ==================== زر القائمة العلوي الجديد والتصميم المستقبلي ==================== */
+    /* ==================== إعادة تصميم أزرار الملاحة الرئيسية بالكامل (Cards UI) ==================== */
+    .stButton > button {{
+        width: 100% !important;
+        background: linear-gradient(145deg, rgba(30, 30, 38, 0.9), rgba(18, 18, 24, 0.95)) !important;
+        border: 1px solid rgba(212, 175, 55, 0.3) !important;
+        border-radius: 16px !important;
+        padding: 14px 6px !important;
+        color: #E0E0E0 !important;
+        font-family: 'Tajawal', sans-serif !important;
+        font-weight: 800 !important;
+        font-size: 15px !important;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6) !important;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    }}
+
+    .stButton > button:hover {{
+        border-color: #D4AF37 !important;
+        color: #FFFFFF !important;
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(30, 30, 38, 0.95) 100%) !important;
+        box-shadow: 0 8px 22px rgba(212, 175, 55, 0.3) !important;
+        transform: translateY(-3px) !important;
+    }}
+
+    /* زر القائمة المنبثقة العلوي */
     div[data-testid="stPopover"] > button {{
         background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(30, 30, 30, 0.9) 100%) !important;
         border: 1px solid rgba(212, 175, 55, 0.6) !important;
@@ -79,60 +102,6 @@ st.markdown(
         font-size: 14px !important;
         padding: 8px 16px !important;
         box-shadow: 0 0 12px rgba(212, 175, 55, 0.2) !important;
-        transition: all 0.3s ease-in-out !important;
-    }}
-
-    div[data-testid="stPopover"] > button:hover {{
-        background: linear-gradient(135deg, #D4AF37 0%, #AA820A 100%) !important;
-        color: #000000 !important;
-        box-shadow: 0 0 20px rgba(212, 175, 55, 0.6) !important;
-        transform: scale(1.03);
-    }}
-
-    /* تصميم النافذة المنبثقة من الزر */
-    div[data-testid="stPopoverBody"] {{
-        background-color: rgba(15, 15, 20, 0.96) !important;
-        backdrop-filter: blur(25px) !important;
-        border: 1px solid rgba(212, 175, 55, 0.4) !important;
-        border-radius: 20px !important;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9) !important;
-        padding: 15px !important;
-    }}
-
-    /* ==================== تصميم الأزرار العلوية الرئيسية (التمارين، الوزن،...) ==================== */
-    div[data-testid="stTabs"] [data-baseweb="tab-list"] {{
-        display: grid !important;
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 10px !important;
-        background: transparent !important;
-        padding: 5px 0 !important;
-        border: none !important;
-    }}
-
-    div[data-testid="stTabs"] [data-baseweb="tab-list"] button {{
-        background: linear-gradient(145deg, rgba(30, 30, 35, 0.9), rgba(15, 15, 20, 0.95)) !important;
-        border: 1px solid rgba(212, 175, 55, 0.25) !important;
-        border-radius: 16px !important;
-        padding: 12px 6px !important;
-        color: #D0D0D0 !important;
-        font-family: 'Tajawal', sans-serif !important;
-        font-weight: 800 !important;
-        font-size: 14px !important;
-        text-align: center !important;
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5) !important;
-        transition: all 0.3s ease-in-out !important;
-    }}
-
-    div[data-testid="stTabs"] [data-baseweb="tab-list"] button[aria-selected="true"] {{
-        background: linear-gradient(135deg, #D4AF37 0%, #AA820A 100%) !important;
-        color: #000000 !important;
-        font-weight: 900 !important;
-        border: 1px solid #FFE885 !important;
-        box-shadow: 0 0 20px rgba(212, 175, 55, 0.5) !important;
-    }}
-
-    div[data-testid="stTabs"] [data-baseweb="tab-highlight-title"] {{
-        display: none !important;
     }}
 
     /* تصميم بطاقات التمارين */
@@ -181,66 +150,65 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ==================== الشريط العلوي وزر الخيارات المتطور ====================
+# ==================== الشريط العلوي وزر الخيارات ====================
 top_col1, top_col2 = st.columns([4, 1.2])
 
 with top_col1:
     st.markdown('<div class="hero-title">CROSSFIT & FITNESS</div>', unsafe_allow_html=True)
 
 with top_col2:
-    # زر الخيارات التقني العصري
     with st.popover("⚡ الخيارات", help="نافذة الأدوات والتحكم الذكي"):
-        st.markdown("<h3 style='color:#D4AF37; text-align:center; margin-bottom: 5px;'>🎛️ لوحة الأوامر</h3>", unsafe_allow_html=True)
-        st.caption("<p style='text-align:center; font-size:12px; color:#AAA;'>تخصيص الخطة والتحكم اليومي</p>", unsafe_allow_html=True)
+        st.markdown("<h3 style='color:#D4AF37; text-align:center;'>🎛️ لوحة الأوامر</h3>", unsafe_allow_html=True)
         st.markdown("---")
         
-        # 1. تحديد الهدف
         st.markdown("#### 🎯 هدفك اليومي")
         user_goal = st.selectbox("حدد نمط التدريب:", ["🔥 حرق دهون وتنشيف", "💪 بناء ضخامة وقوة", "⚡ زيادة لياقة وتحمل"], index=0)
         
         st.markdown("---")
         
-        # 2. مؤقت التاباتا
         st.markdown("#### ⏱️ مؤقت التاباتا (Tabata)")
-        if st.button("بدء جولة تفجيرية 🚀", use_container_width=True):
+        if st.button("بدء جولة تفجيرية 🚀", key="pop_tabata"):
             with st.empty():
                 st.warning("🔥 **WORK! (تمرين 20 ثانية)**")
                 time.sleep(2)
                 st.success("💧 **REST! (راحة 10 ثواني)**")
                 time.sleep(1)
                 st.balloons()
-                
-        st.markdown("---")
-        
-        # 3. جدول الماكروز
-        st.markdown("#### 🍽️ الماكروز المقترح")
-        target_cals = st.number_input("السعرات اليومية:", value=2000, step=100)
-        prot = int((target_cals * 0.3) / 4)
-        carbs = int((target_cals * 0.4) / 4)
-        fats = int((target_cals * 0.3) / 9)
-        st.info(f"🥩 بروتين: **{prot}g** | 🍞 كربوهيدرات: **{carbs}g** | 🥑 دهون: **{fats}g**")
-
-        st.markdown("---")
-
-        # 4. قائمة الانضباط Daily Checklist
-        st.markdown("#### 📋 تحدي الانضباط اليومي")
-        st.checkbox("تمرين الكروس فيت")
-        st.checkbox("شرب 3 لتر ماء")
-        st.checkbox("تحقيق هدف البروتين")
 
 st.markdown('<div class="hero-subtitle">دليلك اليومي لبناء القوة، اللياقة، والالتزام</div>', unsafe_allow_html=True)
 st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
-# ==================== الأزرار العلوية المتطورة ====================
-tab_workouts, tab_weight, tab_calories, tab_water = st.tabs([
-    "🔥 التمارين", 
-    "⚖️ الوزن", 
-    "📊 السعرات", 
-    "💧 الماء"
-])
+# ==================== إدارة حالة التنقل بواسطة Session State ====================
+if "active_page" not in st.session_state:
+    st.session_state.active_page = "workouts"
 
-# ==================== 1. تبويب تمارين الكروس فيت ====================
-with tab_workouts:
+# ==================== الشريط التفاعلي الجديد كلياً (بديل السطر القديم) ====================
+nav_col1, nav_col2, nav_col3, nav_col4 = st.columns(4)
+
+with nav_col1:
+    if st.button("🔥\nالتمارين", key="btn_workouts"):
+        st.session_state.active_page = "workouts"
+        st.rerun()
+
+with nav_col2:
+    if st.button("⚖️\nالوزن", key="btn_weight"):
+        st.session_state.active_page = "weight"
+        st.rerun()
+
+with nav_col3:
+    if st.button("📊\nالسعرات", key="btn_calories"):
+        st.session_state.active_page = "calories"
+        st.rerun()
+
+with nav_col4:
+    if st.button("💧\nالماء", key="btn_water"):
+        st.session_state.active_page = "water"
+        st.rerun()
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+# ==================== 1. قسم التمارين ====================
+if st.session_state.active_page == "workouts":
     st.header("🏃‍♂️ جداول الكروس فيت (جسم كامل)")
     
     crossfit_data = {
@@ -326,25 +294,24 @@ with tab_workouts:
         st.video(ex["url"])
         st.markdown("<br>", unsafe_allow_html=True)
 
-    # مؤقت راحة الجولات
     st.subheader("⏱️ مؤقت راحة الجولات")
     seconds = st.number_input("وقت الراحة بين الجولات (ثانية):", min_value=10, max_value=120, value=45, step=5)
-    if st.button("تفعيل مؤقت الجولة 🔔"):
+    if st.button("تفعيل مؤقت الجولة 🔔", key="btn_timer"):
         with st.empty():
             for i in range(seconds, 0, -1):
                 st.write(f"⏳ المتبقي للجولة القادمة: **{i}** ثانية")
                 time.sleep(1)
             st.success("🔥 انطلقت الجولة التالية! GO!")
 
-# ==================== 2. تبويب سجل الوزن ====================
-with tab_weight:
+# ==================== 2. قسم سجل الوزن ====================
+elif st.session_state.active_page == "weight":
     st.header("⚖️ متابعة الوزن اليومي")
     
     if "weight_data" not in st.session_state:
         st.session_state.weight_data = []
 
     new_weight = st.number_input("أدخل وزنك اليوم (كجم):", min_value=30.0, max_value=200.0, value=75.0, step=0.1)
-    if st.button("حفظ الوزن 💾"):
+    if st.button("حفظ الوزن 💾", key="save_w"):
         today = time.strftime("%Y-%m-%d")
         st.session_state.weight_data.append({"التاريخ": today, "الوزن (كجم)": new_weight})
         st.success(f"تم حفظ الوزن ({new_weight} كجم).")
@@ -354,8 +321,8 @@ with tab_weight:
         st.dataframe(df)
         st.line_chart(df.set_index("التاريخ"))
 
-# ==================== 3. تبويب السعرات ====================
-with tab_calories:
+# ==================== 3. قسم السعرات ====================
+elif st.session_state.active_page == "calories":
     st.header("🔥 حاسبة احتياج الطاقة للكروس فيت")
     
     height = st.number_input("الطول (سم):", value=170)
@@ -363,7 +330,7 @@ with tab_calories:
     age = st.number_input("العمر:", value=25)
     gender = st.radio("النوع:", ["ذكر", "أنثى"])
 
-    if st.button("حساب الاحتياج اليومي 🧮"):
+    if st.button("حساب الاحتياج اليومي 🧮", key="calc_c"):
         if gender == "ذكر":
             bmr = 10 * weight_c + 6.25 * height - 5 * age + 5
         else:
@@ -374,8 +341,8 @@ with tab_calories:
         st.metric("احتياجك اليومي للمحافظة على الوزن", f"{tdee} سعرة")
         st.write(f"📉 للتنشيف ونزول الوزن: **{tdee - 400}** سعرة")
 
-# ==================== 4. تبويب الماء ====================
-with tab_water:
+# ==================== 4. قسم الماء ====================
+elif st.session_state.active_page == "water":
     st.header("💧 متابعة استهلاك الماء")
     
     if "water_cups" not in st.session_state:
@@ -385,10 +352,10 @@ with tab_water:
     
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("إضافة كاس ماء ➕"):
+        if st.button("إضافة كاس ماء ➕", key="add_w"):
             st.session_state.water_cups += 1
             st.rerun()
     with col2:
-        if st.button("تصفير 🔄"):
+        if st.button("تصفير 🔄", key="rst_w"):
             st.session_state.water_cups = 0
             st.rerun()
