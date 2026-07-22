@@ -5,8 +5,9 @@ import time
 # إعدادات الصفحة
 st.set_page_config(page_title="تطبيق MB للتمارين", page_icon="⚡", layout="centered")
 
+# عنوان التطبيق
 st.title("⚡ MB CROSSFIT & FITNESS")
-st.write("تمارين لياقة وحرق للجسم كامل (CrossFit) + متابعة يومية")
+st.write("تمارين لياقة وحرق للجسم كامل (CrossFit) - نسخة الجوال المضمونة")
 
 # إنشاء التبويبات
 tab_workouts, tab_weight, tab_calories, tab_water = st.tabs([
@@ -18,49 +19,49 @@ tab_workouts, tab_weight, tab_calories, tab_water = st.tabs([
 
 # ==================== 1. تبويب تمارين الكروس فيت ====================
 with tab_workouts:
-    st.header("🏃‍♂️ جداول الكروس فيت (جسم كامل)")
+    st.header("🏃‍♂️ جداول الكروس فيت المعتمدة")
     
-    # تمارين كروس فيت بوزن الجسم مع صور متحركة حقيقية (GIFs)
+    # روابط GIF مباشرة ومستقرة جداً لضمان العمل على الجوال
     crossfit_data = {
         "تمارين حرق وقوة (Bodyweight 🔥)": [
             {
                 "name": "1. بيربيز (Burpees) - 3 جلسات × 12 تكرار",
-                "desc": "تمرين كروس فيت شامل يحرك كامل عضلات الجسم ويرفع اللياقة فوراً.",
-                "gif": "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif"
+                "desc": "تمرين شامل يرفع اللياقة فوراً.",
+                "gif_url": "https://i.imgur.com/vHq8S7l.gif"
             },
             {
-                "name": "2. نط الحبل الوهمي / العادي (Jumping Jacks) - 3 جلسات × 45 ثانية",
-                "desc": "ممتاز لرفع ضغط الدم وضخ الأكسجين للجسم كامل.",
-                "gif": "https://media.giphy.com/media/l2JnkWa6KlsfqX8q4/giphy.gif"
+                "name": "2. نط الحبل (Jumping Jacks) - 3 جلسات × 45 ثانية",
+                "desc": "ممتاز لتحمية وضخ الدم للجسم.",
+                "gif_url": "https://i.imgur.com/D4A9T99.gif"
             },
             {
-                "name": "3. تسلق الجبل (Mountain Climbers) - 3 جلسات × 20 تكرار لكل رجل",
-                "desc": "يقوي عضلات البطن، الأكتاف، والأرجل بسرعة عالية.",
-                "gif": "https://media.giphy.com/media/l41YkFIhIYvyYdI64/giphy.gif"
+                "name": "3. تسلق الجبل (Mountain Climbers) - 3×20 تكرار",
+                "desc": "يقوي البطن، الأكتاف، والأرجل.",
+                "gif_url": "https://i.imgur.com/kS9Z0Xb.gif"
             }
         ],
         "تمارين الجزء السفلي والكتلة (Legs & Core 🦵)": [
             {
-                "name": "1. سكوات قفز (Jump Squats) - 4 جلسات × 15 تكرار",
-                "desc": "تمرين تفجيري للأرجل والأسفل لزيادة اللياقة والقوة.",
-                "gif": "https://media.giphy.com/media/3o7TKxOzA3f84E1c76/giphy.gif"
+                "name": "1. سكوات (Bodyweight Squat) - 4 جلسات × 15",
+                "desc": "الأساسي لقوة الأرجل والتحمل.",
+                "gif_url": "https://i.imgur.com/YIu0v7x.gif"
             },
             {
-                "name": "2. الطعن المتحرك (Lunges) - 3 جلسات × 12 تكرار لكل رجل",
-                "desc": "لتقوية عضلات الفخذ والاتزان.",
-                "gif": "https://media.giphy.com/media/l41YvxI1u2x1fU436/giphy.gif"
+                "name": "2. سكوات قفز (Jump Squats) - 3 جلسات × 12",
+                "desc": "تمرين تفجيري للأرجل ورفع الحرق.",
+                "gif_url": "https://i.imgur.com/A6E75xV.gif"
             }
         ],
         "تمارين الجزء العلوي والتحمل (Upper Body 🦾)": [
             {
-                "name": "1. بوش أب كلاسيكي (Push-ups) - 4 جلسات × 15 تكرار",
+                "name": "1. بوش أب (Push-ups) - 4 جلسات × 15 تكرار",
                 "desc": "الأساسي للصدر، الأكتاف، والترايسبس.",
-                "gif": "https://media.giphy.com/media/3o7TKRnoS9oI1RmsaA/giphy.gif"
+                "gif_url": "https://i.imgur.com/2Y44bFp.gif"
             },
             {
-                "name": "2. بلانك مع لمس الأكتاف (Plank Shoulder Taps) - 3 جلسات × 30 ثانية",
-                "desc": "تمرين ثبات قوي جداً للبطن والجذع كامل.",
-                "gif": "https://media.giphy.com/media/xT1R3x2874fI12iS2I/giphy.gif"
+                "name": "2. بلانك (Plank) - 3 جلسات × 45 ثانية ثبات",
+                "desc": "تمرين ثبات قوي جداً للبطن والجذع.",
+                "gif_url": "https://i.imgur.com/Ue5Vp9r.gif"
             }
         ]
     }
@@ -71,11 +72,13 @@ with tab_workouts:
     for ex in crossfit_data[category]:
         st.subheader(ex["name"])
         st.caption(ex["desc"])
-        # عرض الصور المتحركة بصيغة HTML لضمان عمل الـ GIF بدون مشاكل
-        st.markdown(f'<img src="{ex["gif"]}" width="100%" style="border-radius:10px;">', unsafe_allow_html=True)
+        
+        # الطريقة البرمجية المضمونة لعرض الـ GIF على الجوال:
+        # نقوم بعرض الصورة مباشرة باستخدام رابطها مع خاصية العرض الكامل
+        st.image(ex["gif_url"], use_container_width=True)
         st.markdown("---")
 
-    # مؤقت راحة الجولات (WOD Rest Timer)
+    # مؤقت راحة الجولات
     st.subheader("⏱️ مؤقت جولات الكروس فيت")
     seconds = st.number_input("وقت الراحة بين الجولات (ثانية):", min_value=10, max_value=120, value=45, step=5)
     if st.button("تفعيل مؤقت الجولة 🔔"):
@@ -95,10 +98,12 @@ with tab_weight:
     new_weight = st.number_input("أدخل وزنك اليوم (كجم):", min_value=30.0, max_value=200.0, value=75.0, step=0.1)
     if st.button("حفظ الوزن 💾"):
         today = time.strftime("%Y-%m-%d")
+        # حفظ تاريخ اليوم مع الوزن
         st.session_state.weight_data.append({"التاريخ": today, "الوزن (كجم)": new_weight})
-        st.success("تم حفظ الوزن بنجاح!")
+        st.success(f"تم حفظ الوزن ({new_weight} كجم) بتاريخ اليوم.")
 
     if st.session_state.weight_data:
+        # عرض البيانات في جدول ورسم بياني
         df = pd.DataFrame(st.session_state.weight_data)
         st.dataframe(df)
         st.line_chart(df.set_index("التاريخ"))
@@ -113,16 +118,17 @@ with tab_calories:
     gender = st.radio("النوع:", ["ذكر", "أنثى"])
 
     if st.button("حساب الاحتياج اليومي 🧮"):
+        # معادلة ميفلين سانت جوير لحساب الـ BMR
         if gender == "ذكر":
             bmr = 10 * weight_c + 6.25 * height - 5 * age + 5
         else:
             bmr = 10 * weight_c + 6.25 * height - 5 * age - 161
 
-        # للكروس فيت يتم ضرب المعامل في نشاط عالي (1.6)
+        # للكروس فيت نعتمد معامل نشاط عالي جداً (1.6)
         tdee = int(bmr * 1.6)
 
-        st.metric("احتياجك اليومي مع تمارين الكروس فيت", f"{tdee} سعرة")
-        st.write(f"📉 للتنشيف والنزول السريع: **{tdee - 400}** سعرة")
+        st.metric("احتياجك اليومي للمحافظة على الوزن", f"{tdee} سعرة")
+        st.write(f"📉 للتنشيف ونزول الوزن: **{tdee - 400}** سعرة")
 
 # ==================== 4. تبويب الماء ====================
 with tab_water:
