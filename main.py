@@ -263,11 +263,10 @@ with cols[3]:
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ==================== 1. قسم التمارين (فيديوهات رجال مباشرة وقصيرة داخل التطبيق) ====================
+# ==================== 1. قسم التمارين (فيديوهات رجال مباشرة بدون مشاكل يوتيوب) ====================
 if st.session_state.active_page == "workouts":
     st.header("🏃‍♂️ جداول الكروس فيت والتحمل البدني (مدربين رجال)")
     
-    # قائمة الفيديوهات الخاصة بالرجال (مضمونة ومختبرة لتعمل مباشرة داخل المشغل)
     crossfit_data = {
         "تمارين حرق وقوة (Bodyweight 🔥)": [
             {
@@ -276,7 +275,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "12 تكرار", 
                 "desc": "تمرين كروس فيت متكامل يرفع معدل ضربات القلب ويضاعف حرق السعرات بكفاءة عالية.", 
-                "url": "https://www.youtube.com/watch?v=auo0x_T6k1U"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-doing-push-ups-in-a-gym-42999-large.mp4"
             },
             {
                 "title": "تمرين القفز المتوافق", 
@@ -284,7 +283,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "45 ثانية", 
                 "desc": "إحماء ممتاز لتنشيط الدورة الدموية ورفع كفاءة الجهاز التنفسي.", 
-                "url": "https://www.youtube.com/watch?v=iFFkZAv29f8"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-athletic-man-stretching-in-a-gym-43006-large.mp4"
             },
             {
                 "title": "تمرين تسلق الجبل", 
@@ -292,7 +291,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "20 تكرار لكل رجل", 
                 "desc": "يركز على تقوية عضلات الجذع والبطن ورفع اللياقة الهوائية.", 
-                "url": "https://www.youtube.com/watch?v=cnyTQDSEcf8"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-exercising-with-ropes-in-a-gym-43003-large.mp4"
             }
         ],
         "تمارين الجزء السفلي والكتلة (Legs & Core 🦵)": [
@@ -302,7 +301,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "4 جلسات", 
                 "reps": "15 تكرار", 
                 "desc": "يقوي عضلات الفخذين والأرداف ويزيد القوة الانفجارية للقدمين.", 
-                "url": "https://www.youtube.com/watch?v=CVaEhXotLcs"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-lifting-weights-in-a-gym-43001-large.mp4"
             },
             {
                 "title": "تمرين الطعن الثابت والمتبادل", 
@@ -310,7 +309,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "12 تكرار لكل رجل", 
                 "desc": "يحسن التوازن والثبات الحركي ويقوي عضلات الساقين.", 
-                "url": "https://www.youtube.com/watch?v=QOVaHwm-Q6U"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-doing-push-ups-in-a-gym-42999-large.mp4"
             }
         ],
         "تمارين الجزء العلوي والتحمل (Upper Body 🦾)": [
@@ -320,7 +319,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "4 جلسات", 
                 "reps": "15 تكرار", 
                 "desc": "يبني عضلات الصدر، الأكتاف الأمامية، والترايسبس بقوة.", 
-                "url": "https://www.youtube.com/watch?v=IODxDxX7oi4"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-doing-push-ups-in-a-gym-42999-large.mp4"
             },
             {
                 "title": "تمرين البلانك للثبات", 
@@ -328,7 +327,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "45 ثانية ثبات", 
                 "desc": "أقوى تمرين لشد عضلات البطن العميقة وحماية أسفل الظهر.", 
-                "url": "https://www.youtube.com/watch?v=ASdvN_XEl_c"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-athletic-man-stretching-in-a-gym-43006-large.mp4"
             }
         ]
     }
@@ -348,8 +347,8 @@ if st.session_state.active_page == "workouts":
         </div>
         """, unsafe_allow_html=True)
         
-        # تشغيل الفيديو مباشرة داخل التطبيق
-        st.video(ex["url"])
+        # مشغل فيديو HTML5 مباشر وثابت (بدون يوتيوب لتجنب خطأ unavailable)
+        st.video(ex["video_url"])
         st.markdown("<br>", unsafe_allow_html=True)
 
 # ==================== 2. قسم قياس الجسم وحاسبة كتلة الجسم BMI ====================
