@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التجميل الشامل (التوزيع المتوازن والفراغات المظبوطة للأزرار الأربعة) ====================
+# ==================== CSS التجميل الشامل (التوزيع المتساوي والمثالي للأزرار الأربعة للشاشة الرئيسية) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -36,7 +36,7 @@ st.markdown(
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
-        padding: 25px 12px;
+        padding: 25px 10px;
         margin-top: 10px;
         max-width: 100% !important;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
@@ -72,12 +72,12 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* تنسيق الحاويات والأزرار الأربعة بمسافات وفراغات متوازنة تماماً */
+    /* فرض توزيع متساوي 100% ومسافات متطابقة للأعمدة الأربعة في الجوال */
     [data-testid="stHorizontalBlock"] {{
         display: flex !important;
         flex-direction: row !important;
-        gap: 8px !important;
-        align-items: center !important;
+        gap: 6px !important;
+        align-items: stretch !important;
         justify-content: space-between !important;
         width: 100% !important;
     }}
@@ -85,30 +85,30 @@ st.markdown(
     [data-testid="stHorizontalBlock"] > div {{
         flex: 1 !important;
         min-width: 0 !important;
+        max-width: 25% !important;
     }}
 
-    /* ضبط مظهر المربعات العلوية لتظهر الكلمات بالطول كاملة وبشكل أنيق ومرتب */
+    /* تصميم الأزرار ليظهر النص بشكل عمودي كامل ومنسق ومريح جداً للعين */
     .stButton > button {{
         width: 100% !important;
         background: linear-gradient(145deg, rgba(30, 30, 38, 0.9), rgba(18, 18, 24, 0.95)) !important;
         border: 1px solid rgba(212, 175, 55, 0.35) !important;
         border-radius: 12px !important;
-        padding: 10px 4px !important;
+        padding: 8px 2px !important;
         color: #E0E0E0 !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
         font-size: 11px !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
         transition: all 0.3s ease-in-out !important;
-        white-space: normal !important;
+        white-space: pre-line !important; /* لدعم النزول للسطر بشكل صحيح */
         word-break: break-word !important;
-        height: auto !important;
-        min-height: 60px !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        line-height: 1.4;
+        height: 65px !important; /* تثبيت الارتفاع لجميع الأزرار بالتساوي تماماً */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        line-height: 1.25 !important;
     }}
 
     .stButton > button:hover {{
@@ -125,7 +125,6 @@ st.markdown(
         border-left: 2px solid rgba(212, 175, 55, 0.4) !important;
     }}
 
-    /* تصميم مستطيلات وبطاقات لوحة التحكم الجانبية */
     .sidebar-card {{
         background: linear-gradient(145deg, rgba(25, 25, 32, 0.85), rgba(15, 15, 20, 0.9));
         border: 1px solid rgba(212, 175, 55, 0.2);
@@ -247,7 +246,7 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "water"
 
-# ==================== الأزرار العلوية الأربعة (الترتيب: الماء -> السعرات -> قياس الجسم -> التمارين) ====================
+# ==================== الأزرار الأربعة العلوية (متساوية تماماً ومضبوطة عمودياً) ====================
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
