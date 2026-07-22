@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 import time
 
-# إعدادات الصفحة
+# إعدادات الصفحة وتغيير الأيقونة اللي تطلع برة في المتصفح (غيرناها هنا إلى ذراع قوية أو تقدر تحط أي إيموجي)
 st.set_page_config(
     page_title="CROSSFIT & FITNESS", 
-    page_icon="🏋️‍♂️", 
+    page_icon="🦾", 
     layout="centered",
     initial_sidebar_state="expanded"
 )
@@ -336,7 +336,6 @@ elif st.session_state.active_page == "weight":
         pr_lift = st.number_input("أقصى وزن رفعته (PR كجم):", min_value=0.0, max_value=300.0, value=100.0, step=2.5)
 
     if st.button("حفظ الوزن والسجل الأسبوعي 💾", key="save_w"):
-        # حساب الفارق مقارنة بآخر أسبوع مسجل
         diff_text = "الوزن الأولي (بداية المتابعة)"
         if st.session_state.weight_data:
             last_weight = st.session_state.weight_data[-1]["الوزن الفعلي (كجم)"]
@@ -359,7 +358,6 @@ elif st.session_state.active_page == "weight":
     if st.session_state.weight_data:
         df = pd.DataFrame(st.session_state.weight_data)
         
-        # حساب إجمالي الفارق منذ أول أسبوع تم تسجيله
         if len(df) > 1:
             first_w = df.iloc[0]["الوزن الفعلي (كجم)"]
             current_w = df.iloc[-1]["الوزن الفعلي (كجم)"]
