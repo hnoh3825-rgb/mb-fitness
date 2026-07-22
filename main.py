@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التجميل الشامل (منع التمرير العرضي وضبط المربعات الأربعة) ====================
+# ==================== CSS التجميل الشامل (التوزيع المتوازن والفراغات المظبوطة للأزرار الأربعة) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -72,11 +72,11 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* تنسيق الحاويات والأزرار الأربعة بجانب بعضها تماماً */
+    /* تنسيق الحاويات والأزرار الأربعة بمسافات وفراغات متوازنة تماماً */
     [data-testid="stHorizontalBlock"] {{
         display: flex !important;
         flex-direction: row !important;
-        gap: 3px !important;
+        gap: 8px !important;
         align-items: center !important;
         justify-content: space-between !important;
         width: 100% !important;
@@ -87,28 +87,28 @@ st.markdown(
         min-width: 0 !important;
     }}
 
-    /* ضبط مظهر المربعات العلوية لتظهر الكلمات بالطول كاملة وبشكل احترافي */
+    /* ضبط مظهر المربعات العلوية لتظهر الكلمات بالطول كاملة وبشكل أنيق ومرتب */
     .stButton > button {{
         width: 100% !important;
         background: linear-gradient(145deg, rgba(30, 30, 38, 0.9), rgba(18, 18, 24, 0.95)) !important;
         border: 1px solid rgba(212, 175, 55, 0.35) !important;
-        border-radius: 10px !important;
-        padding: 8px 2px !important;
+        border-radius: 12px !important;
+        padding: 10px 4px !important;
         color: #E0E0E0 !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 10.5px !important;
+        font-size: 11px !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
         transition: all 0.3s ease-in-out !important;
         white-space: normal !important;
         word-break: break-word !important;
         height: auto !important;
-        min-height: 52px !important;
+        min-height: 60px !important;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        line-height: 1.3;
+        line-height: 1.4;
     }}
 
     .stButton > button:hover {{
@@ -256,12 +256,12 @@ with col1:
         st.rerun()
 
 with col2:
-    if st.button("⚡\nالسعرات الدقيقة", key="btn_calories"):
+    if st.button("⚡\nالسعرات\nالدقيقة", key="btn_calories"):
         st.session_state.active_page = "calories"
         st.rerun()
 
 with col3:
-    if st.button("📊\nقياس الجسم", key="btn_weight"):
+    if st.button("📊\nقياس\nالجسم", key="btn_weight"):
         st.session_state.active_page = "weight"
         st.rerun()
 
