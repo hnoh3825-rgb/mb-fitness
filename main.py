@@ -18,14 +18,12 @@ st.markdown(
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Tajawal:wght@400;700;900&display=swap');
 
-    /* خلفية التطبيق */
     .stApp {{
         background: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.95)), url("{bg_img_url}") no-repeat center center fixed;
         background-size: cover !important;
         font-family: 'Tajawal', sans-serif;
     }}
     
-    /* حاوية المحتوى الرئيسية */
     .main .block-container {{
         background-color: rgba(16, 16, 20, 0.88) !important;
         backdrop-filter: blur(20px);
@@ -37,7 +35,6 @@ st.markdown(
         color: #ffffff;
     }}
 
-    /* العنوان الرئيسي */
     .hero-title {{
         text-align: center;
         font-family: 'Montserrat', sans-serif;
@@ -52,7 +49,6 @@ st.markdown(
         margin-bottom: 4px;
     }}
 
-    /* الوصف الفرعي */
     .hero-subtitle {{
         text-align: center;
         font-family: 'Tajawal', sans-serif;
@@ -62,14 +58,12 @@ st.markdown(
         font-weight: 500;
     }}
 
-    /* خط الفاصل */
     .custom-divider {{
         height: 1px;
         background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(212,175,55,0.4) 50%, rgba(255,255,255,0) 100%);
         margin: 15px 0 25px 0;
     }}
 
-    /* ضمان اصطفاف الأعمدة والأزرار بجانب بعضها تماماً */
     [data-testid="stHorizontalBlock"] {{
         display: flex !important;
         flex-direction: row !important;
@@ -83,17 +77,16 @@ st.markdown(
         min-width: 0 !important;
     }}
 
-    /* تنسيق أزرار التنقل الأفقية */
     .stButton > button {{
         width: 100% !important;
         background: linear-gradient(145deg, rgba(30, 30, 38, 0.9), rgba(18, 18, 24, 0.95)) !important;
         border: 1px solid rgba(212, 175, 55, 0.3) !important;
         border-radius: 12px !important;
-        padding: 10px 4px !important;
+        padding: 10px 2px !important;
         color: #E0E0E0 !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 14px !important;
+        font-size: 13px !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
         transition: all 0.3s ease-in-out !important;
         white-space: nowrap !important;
@@ -107,14 +100,12 @@ st.markdown(
         transform: translateY(-2px) !important;
     }}
 
-    /* القائمة الجانبية من اليمين */
     [data-testid="stSidebar"] {{
         background-color: rgba(12, 12, 16, 0.97) !important;
         backdrop-filter: blur(25px);
         border-left: 2px solid rgba(212, 175, 55, 0.4) !important;
     }}
 
-    /* بطاقات التمارين */
     .exercise-card {{
         background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.8));
         border: 1px solid rgba(255, 255, 255, 0.05);
@@ -160,7 +151,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ==================== القائمة الجانبية (Sidebar من اليمين - تحتوي على الإضافات) ====================
+# ==================== القائمة الجانبية (Sidebar) ====================
 with st.sidebar:
     st.markdown("<h2 style='color: #D4AF37; text-align: center; margin-bottom: 0;'>⚙️ لوحة التحكم PRO</h2>", unsafe_allow_html=True)
     st.caption("<p style='text-align:center; color:#A0A0A0;'>الإضافات والأدوات المتقدمة</p>", unsafe_allow_html=True)
@@ -173,7 +164,7 @@ with st.sidebar:
     
     st.markdown("### ⏱️ غرفة المؤقتات المتقدمة")
     timer_mode = st.selectbox("اختر نوع المؤقت:", ["Tabata (20ث/10ث)", "EMOM (دقيقة لكل جولة)", "AMRAP (أقصى جولات)"])
-    if st.button("بدء المؤقت المختختار 🚀", key="side_timer_pro"):
+    if st.button("بدء المؤقت المختار 🚀", key="side_timer_pro"):
         with st.empty():
             st.warning(f"⚡ تشغيل: {timer_mode}")
             time.sleep(2)
@@ -206,7 +197,7 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "workouts"
 
-# ==================== الأزرار العلوية (جنب بعضها تماماً بشكل أفقي) ====================
+# ==================== الأزرار العلوية المنسقة بالكامل ====================
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
@@ -343,7 +334,7 @@ elif st.session_state.active_page == "weight":
     if st.button("حفظ الوزن والسجل 💾", key="save_w"):
         today = time.strftime("%Y-%m-%d")
         st.session_state.weight_data.append({"التاريخ": today, "الوزن (كجم)": new_weight, "الرقم القياسي PR": pr_lift})
-        st.success(f"تم حفظ البيانات بنجاح.")
+        st.success("تم حفظ البيانات بنجاح.")
 
     if st.session_state.weight_data:
         df = pd.DataFrame(st.session_state.weight_data)
