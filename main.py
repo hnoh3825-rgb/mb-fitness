@@ -263,7 +263,7 @@ with cols[3]:
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ==================== 1. قسم التمارين (فيديوهات رجال مباشرة بدون مشاكل يوتيوب) ====================
+# ==================== 1. قسم التمارين (فيديوهات يوتيوب مدمجة تعمل داخلياً 100%) ====================
 if st.session_state.active_page == "workouts":
     st.header("🏃‍♂️ جداول الكروس فيت والتحمل البدني (مدربين رجال)")
     
@@ -275,7 +275,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "12 تكرار", 
                 "desc": "تمرين كروس فيت متكامل يرفع معدل ضربات القلب ويضاعف حرق السعرات بكفاءة عالية.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-doing-push-ups-in-a-gym-42999-large.mp4"
+                "video_url": "https://www.youtube.com/watch?v=au8f2n0rqD8"
             },
             {
                 "title": "تمرين القفز المتوافق", 
@@ -283,7 +283,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "45 ثانية", 
                 "desc": "إحماء ممتاز لتنشيط الدورة الدموية ورفع كفاءة الجهاز التنفسي.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-athletic-man-stretching-in-a-gym-43006-large.mp4"
+                "video_url": "https://www.youtube.com/watch?v=c4DAnQ6DtF8"
             },
             {
                 "title": "تمرين تسلق الجبل", 
@@ -291,7 +291,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "20 تكرار لكل رجل", 
                 "desc": "يركز على تقوية عضلات الجذع والبطن ورفع اللياقة الهوائية.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-exercising-with-ropes-in-a-gym-43003-large.mp4"
+                "video_url": "https://www.youtube.com/watch?v=nmwgirgXLYM"
             }
         ],
         "تمارين الجزء السفلي والكتلة (Legs & Core 🦵)": [
@@ -301,7 +301,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "4 جلسات", 
                 "reps": "15 تكرار", 
                 "desc": "يقوي عضلات الفخذين والأرداف ويزيد القوة الانفجارية للقدمين.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-lifting-weights-in-a-gym-43001-large.mp4"
+                "video_url": "https://www.youtube.com/watch?v=CVaEhXotL7M"
             },
             {
                 "title": "تمرين الطعن الثابت والمتبادل", 
@@ -309,7 +309,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "12 تكرار لكل رجل", 
                 "desc": "يحسن التوازن والثبات الحركي ويقوي عضلات الساقين.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-doing-push-ups-in-a-gym-42999-large.mp4"
+                "video_url": "https://www.youtube.com/watch?v=D7KaRcUTQeE"
             }
         ],
         "تمارين الجزء العلوي والتحمل (Upper Body 🦾)": [
@@ -319,7 +319,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "4 جلسات", 
                 "reps": "15 تكرار", 
                 "desc": "يبني عضلات الصدر، الأكتاف الأمامية، والترايسبس بقوة.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-doing-push-ups-in-a-gym-42999-large.mp4"
+                "video_url": "https://www.youtube.com/watch?v=IODxDxX7oi4"
             },
             {
                 "title": "تمرين البلانك للثبات", 
@@ -327,7 +327,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "45 ثانية ثبات", 
                 "desc": "أقوى تمرين لشد عضلات البطن العميقة وحماية أسفل الظهر.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-athletic-man-stretching-in-a-gym-43006-large.mp4"
+                "video_url": "https://www.youtube.com/watch?v=pSHjTRCQxIw"
             }
         ]
     }
@@ -347,7 +347,7 @@ if st.session_state.active_page == "workouts":
         </div>
         """, unsafe_allow_html=True)
         
-        # مشغل فيديو HTML5 مباشر وثابت (بدون يوتيوب لتجنب خطأ unavailable)
+        # مشغل يوتيوب مدمج داخلياً يعمل مباشرة داخل التطبيق
         st.video(ex["video_url"])
         st.markdown("<br>", unsafe_allow_html=True)
 
