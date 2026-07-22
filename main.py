@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التصميم الشامل (ضبط أبعاد ومقاسات المستطيلات والبطاقات) ====================
+# ==================== CSS التصميم الشامل (ضبط مستطيلات الأزرار العلوية لتكون متطابقة 100%) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -71,42 +71,42 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* توزيع الأزرار العلوية الأربعة */
+    /* ==================== تعديل الأزرار العلوية لضمان تساؤها المباشر 100% ==================== */
     [data-testid="stHorizontalBlock"] {{
-        display: grid !important;
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 12px !important;
-        width: 100% !important;
-        margin-bottom: 15px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
         align-items: center !important;
+        width: 100% !important;
+        gap: 10px !important;
+        margin-bottom: 15px !important;
     }}
 
     [data-testid="stHorizontalBlock"] > div {{
+        flex: 1 1 0% !important;
         width: 100% !important;
-        max-width: 100% !important;
-        flex: none !important;
+        min-width: 0 !important;
     }}
 
-    /* تصميم الأزرار الموحدة */
+    /* تصميم وحجم جميع الأزرار (الماء، السعرات، القياس، التمارين) بنفس العرض والارتفاع */
     .stButton > button {{
         width: 100% !important;
         height: 65px !important;
         background: linear-gradient(145deg, rgba(28, 28, 36, 0.95), rgba(16, 16, 22, 0.98)) !important;
         border: 1.5px solid rgba(212, 175, 55, 0.4) !important;
         border-radius: 16px !important;
-        padding: 4px 6px !important;
+        padding: 0px 4px !important;
         color: #FFFFFF !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 13px !important;
+        font-size: 14px !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
         transition: all 0.3s ease-in-out !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        white-space: normal !important;
-        word-break: break-word !important;
+        box-sizing: border-box !important;
     }}
 
     .stButton > button:hover {{
@@ -138,7 +138,7 @@ st.markdown(
         margin-bottom: 8px;
     }}
 
-    /* البطاقات الموحدة (التمارين، الماء، السعرات) بنفس الحجم والارتفاع بالتمام والكمال */
+    /* تصميم البطاقات الداخلية */
     .exercise-card, .diet-card, .info-card, .water-main-card {{
         background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.8)) !important;
         border: 1px solid rgba(255, 255, 255, 0.05) !important;
@@ -241,11 +241,11 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "water"
 
-# ==================== الأزرار الأربعة الرئيسية ====================
+# ==================== الأزرار الأربعة الرئيسية (تم توحيد النص للماء لإعطاء توازن بصرى ممتاز) ====================
 cols = st.columns(4)
 
 with cols[0]:
-    if st.button("💧 الماء", key="btn_water"):
+    if st.button("💧 شرب الماء", key="btn_water"):
         st.session_state.active_page = "water"
         st.rerun()
 
@@ -390,7 +390,7 @@ elif st.session_state.active_page == "weight":
             color_badge = "#e74c3c"
         else:
             status = "سمنة مفرطة"
-            advice = "يوصى بشدة تنظيم الوجبات والالنزام بالتمارين بجدية للوصول لنتائج أفضل."
+            advice = "يوصى بشدة تنظيم الوجبات والالتزام بالتمارين بجدية للوصول لنتائج أفضل."
             color_badge = "#8e44ad"
 
         st.markdown(f"""
@@ -497,7 +497,7 @@ elif st.session_state.active_page == "calories":
             </div>
             """, unsafe_allow_html=True)
 
-# ==================== 4. قسم الماء (بالمستطيل العريض المطابق تماماً لبطاقات التمارين) ====================
+# ==================== 4. قسم الماء ====================
 elif st.session_state.active_page == "water":
     st.header("💧 متابعة استهلاك الماء اليومي")
     st.write("سجل كميات الماء التي تشربها يومياً لدعم أدائك الرياضي وطاقتك.")
@@ -505,7 +505,6 @@ elif st.session_state.active_page == "water":
     if "water_cups" not in st.session_state:
         st.session_state.water_cups = 0
 
-    # استخدام الكلاس الموحد water-main-card ليأخذ نفس شكل وعرض وارتفاع مربعات التمارين بالمللي
     water_content = f"""
     <div class="water-main-card">
         <div class="exercise-title" style="margin-bottom: 15px;">📊 سجل الترطيب اليومي للماء</div>
