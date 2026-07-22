@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التصميم الشامل (توزيع CSS Grid المتساوي والدقيق 100%) ====================
+# ==================== CSS التصميم الشامل (تعديل دقيق لأحجام ومواقع المربعات) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -71,13 +71,14 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* ==================== توزيع CSS Grid العلمي للأزرار الأربعة بنفس المقاس والفراغات ==================== */
+    /* ==================== تخصيص Grid للأزرار مع التعديلات الفردية المطلوبة ==================== */
     [data-testid="stHorizontalBlock"] {{
         display: grid !important;
-        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-columns: 1.15fr 0.95fr 1fr 1.1fr !important; /* تعديل النسب الدقيقة لعرض كل خانة بناءً على طلبك */
         gap: 12px !important;
         width: 100% !important;
         margin-bottom: 15px !important;
+        align-items: center !important;
     }}
 
     [data-testid="stHorizontalBlock"] > div {{
@@ -86,14 +87,24 @@ st.markdown(
         flex: none !important;
     }}
 
-    /* تصميم الأزرار الموحدة تماماً وبدون أي تفاوت */
+    /* تعديل إزاحة وتوسيع مربع السعرات والثاني ليسار الراد */
+    [data-testid="stHorizontalBlock"] > div:nth-child(2) {{
+        transform: translateX(-3px); /* سحب مربع السعرات يساراً قليلاً */
+    }}
+
+    /* تعديل وسحب مربع التمارين من الزاوية اليمنى وتكبريه */
+    [data-testid="stHorizontalBlock"] > div:nth-child(4) {{
+        transform: translateX(3px); /* توسيع وتمديد من الجهة اليمنى */
+    }}
+
+    /* تصميم الأزرار الموحدة مع الحفاظ على وضوح النص الداخلي */
     .stButton > button {{
         width: 100% !important;
         height: 65px !important;
         background: linear-gradient(145deg, rgba(28, 28, 36, 0.95), rgba(16, 16, 22, 0.98)) !important;
         border: 1.5px solid rgba(212, 175, 55, 0.4) !important;
         border-radius: 16px !important;
-        padding: 4px 2px !important;
+        padding: 4px 6px !important;
         color: #FFFFFF !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
@@ -238,7 +249,7 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "water"
 
-# ==================== الأزرار الأربعة (مقاسات متساوية وفراغات منضبطة 100%) ====================
+# ==================== الأزرار الأربعة بالتعديلات الجديدة ====================
 cols = st.columns(4)
 
 with cols[0]:
