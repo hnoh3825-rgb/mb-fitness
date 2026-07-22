@@ -67,7 +67,7 @@ st.markdown(
     [data-testid="stHorizontalBlock"] {{
         display: flex !important;
         flex-direction: row !important;
-        gap: 8px !important;
+        gap: 6px !important;
         align-items: center !important;
         justify-content: space-between !important;
     }}
@@ -86,10 +86,12 @@ st.markdown(
         color: #E0E0E0 !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 13px !important;
+        font-size: 12px !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
         transition: all 0.3s ease-in-out !important;
         white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }}
 
     .stButton > button:hover {{
@@ -206,12 +208,12 @@ with col1:
         st.rerun()
 
 with col2:
-    if st.button("⚖️ الوزن والـ PR", key="btn_weight"):
+    if st.button("📊 الأرقام", key="btn_weight"):
         st.session_state.active_page = "weight"
         st.rerun()
 
 with col3:
-    if st.button("📊 السعرات", key="btn_calories"):
+    if st.button("⚡ السعرات", key="btn_calories"):
         st.session_state.active_page = "calories"
         st.rerun()
 
