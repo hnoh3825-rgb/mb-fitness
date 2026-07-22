@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التصميم الشامل (أزرار عريضة ومنحنية بجانب بعضها تماماً) ====================
+# ==================== CSS التصميم الشامل (الأزرار الأربعة في سطر واحد أفقي تماماً) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -71,33 +71,44 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* إجبار أعمدة ستريمليت على البقاء جنباً إلى جنب بمسافات مريحة وواسعة */
+    /* ==================== إجبار الأزرار الأربعة لتكون في سطر واحد (خط أفقي واحد) ==================== */
+    div.row-widget.stHorizontal {{
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        gap: 8px !important;
+    }}
+
     [data-testid="stHorizontalBlock"] {{
         display: flex !important;
         flex-direction: row !important;
-        gap: 15px !important;
+        flex-wrap: nowrap !important;
         width: 100% !important;
-        margin-bottom: 12px !important;
+        gap: 8px !important;
+        margin-bottom: 15px !important;
     }}
 
     [data-testid="stHorizontalBlock"] > div {{
-        flex: 1 !important;
+        flex: 1 1 0% !important;
         min-width: 0 !important;
+        width: auto !important;
     }}
 
-    /* تصميم الأزرار كبطاقات عريضة ومنحنية الزوايا تماماً لتطابق طلبك */
+    /* تصميم الأزرار العريضة والمنحنية */
     .stButton > button {{
         width: 100% !important;
-        height: 75px !important;
+        height: 65px !important;
         background: linear-gradient(145deg, rgba(28, 28, 36, 0.95), rgba(16, 16, 22, 0.98)) !important;
         border: 1.5px solid rgba(212, 175, 55, 0.4) !important;
-        border-radius: 20px !important;
-        padding: 10px 15px !important;
+        border-radius: 16px !important;
+        padding: 5px 8px !important;
         color: #FFFFFF !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 14px !important;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6) !important;
+        font-size: 13px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
         transition: all 0.3s ease-in-out !important;
         display: flex !important;
         align-items: center !important;
@@ -109,7 +120,7 @@ st.markdown(
     .stButton > button:hover {{
         border-color: #D4AF37 !important;
         background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(28, 28, 36, 0.98) 100%) !important;
-        box-shadow: 0 8px 22px rgba(212, 175, 55, 0.4) !important;
+        box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4) !important;
         transform: translateY(-2px) !important;
     }}
 
@@ -186,7 +197,6 @@ with st.sidebar:
     st.caption("<p style='text-align:center; color:#A0A0A0;'>الإضافات والأدوات الاحترافية المتقدمة</p>", unsafe_allow_html=True)
     st.markdown("---")
     
-    # بطاقة 1: الهدف الأساسي
     st.markdown("""
     <div class="sidebar-card">
         <div class="sidebar-card-title">🎯 تحديد الهدف الرياضي</div>
@@ -194,7 +204,6 @@ with st.sidebar:
     user_goal = st.radio("اختر هدفك:", ["🔥 حرق الدهون والتنشيف", "💪 بناء الكتلة العضلية (ضخامة)", "⚖️ المحافظة على الوزن والثبات"], index=0, label_visibility="collapsed")
     st.markdown("</div>", unsafe_allow_html=True)
     
-    # بطاقة 2: غرفة المؤقتات المتقدمة
     st.markdown("""
     <div class="sidebar-card">
         <div class="sidebar-card-title">⏱️ غرفة المؤقتات الرياضية</div>
@@ -208,7 +217,6 @@ with st.sidebar:
             st.balloons()
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # بطاقة 3: حاسبة الماكروز السريعة
     st.markdown("""
     <div class="sidebar-card">
         <div class="sidebar-card-title">🍽️ حاسبة الماكروز السريعة</div>
@@ -220,7 +228,6 @@ with st.sidebar:
     st.info(f"🥩 بروتين: **{prot}g** | 🍞 كارب: **{carbs}g** | 🥑 دهون: **{fats}g**")
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # بطاقة 4: قائمة الانضباط والعادات اليومية
     st.markdown("""
     <div class="sidebar-card">
         <div class="sidebar-card-title">📋 قائمة الانضباط اليومي</div>
@@ -240,28 +247,26 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "water"
 
-# ==================== الأزرار الرئيسية (جنب بعض في صفين عريضين ومنحنيين) ====================
-r1_c1, r1_c2 = st.columns(2)
+# ==================== الأزرار الأربعة (في سطر أفقي واحد تماماً بجانب بعضها) ====================
+cols = st.columns(4)
 
-with r1_c1:
-    if st.button("💧 متابعة الماء", key="btn_water"):
+with cols[0]:
+    if st.button("💧 الماء", key="btn_water"):
         st.session_state.active_page = "water"
         st.rerun()
 
-with r1_c2:
-    if st.button("⚡ السعرات الدقيقة", key="btn_calories"):
+with cols[1]:
+    if st.button("⚡ السعرات", key="btn_calories"):
         st.session_state.active_page = "calories"
         st.rerun()
 
-r2_c1, r2_c2 = st.columns(2)
-
-with r2_c1:
+with cols[2]:
     if st.button("📊 قياس الجسم", key="btn_weight"):
         st.session_state.active_page = "weight"
         st.rerun()
 
-with r2_c2:
-    if st.button("🔥 جداول التمارين", key="btn_workouts"):
+with cols[3]:
+    if st.button("🔥 التمارين", key="btn_workouts"):
         st.session_state.active_page = "workouts"
         st.rerun()
 
