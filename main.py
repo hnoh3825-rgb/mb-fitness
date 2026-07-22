@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التجميل الشامل (تصميم أفقي أنيق ومودرن) ====================
+# ==================== CSS التجميل الشامل ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -18,7 +18,7 @@ st.markdown(
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Tajawal:wght@400;700;900&display=swap');
 
-    /* خلفية التطبيق الداكنة الاحترافية */
+    /* خلفية التطبيق */
     .stApp {{
         background: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.95)), url("{bg_img_url}") no-repeat center center fixed;
         background-size: cover !important;
@@ -69,25 +69,34 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* ==================== تنسيق الأزرار العلوية بشكل أفقي (عرضي) ومتناسق ==================== */
-    div.row-widget.stHorizontal {{
+    /* ضمان اصطفاف الأعمدة والأزرار بجانب بعضها تماماً */
+    [data-testid="stHorizontalBlock"] {{
         display: flex !important;
         flex-direction: row !important;
-        gap: 10px !important;
+        gap: 8px !important;
+        align-items: center !important;
+        justify-content: space-between !important;
     }}
 
+    [data-testid="stHorizontalBlock"] > div {{
+        flex: 1 !important;
+        min-width: 0 !important;
+    }}
+
+    /* تنسيق أزرار التنقل الأفقية */
     .stButton > button {{
         width: 100% !important;
         background: linear-gradient(145deg, rgba(30, 30, 38, 0.9), rgba(18, 18, 24, 0.95)) !important;
         border: 1px solid rgba(212, 175, 55, 0.3) !important;
-        border-radius: 14px !important;
-        padding: 12px 8px !important;
+        border-radius: 12px !important;
+        padding: 10px 4px !important;
         color: #E0E0E0 !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 15px !important;
+        font-size: 14px !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
         transition: all 0.3s ease-in-out !important;
+        white-space: nowrap !important;
     }}
 
     .stButton > button:hover {{
@@ -98,14 +107,14 @@ st.markdown(
         transform: translateY(-2px) !important;
     }}
 
-    /* تنسيق القائمة الجانبية المنسدلة من اليمين */
+    /* القائمة الجانبية من اليمين */
     [data-testid="stSidebar"] {{
         background-color: rgba(12, 12, 16, 0.97) !important;
         backdrop-filter: blur(25px);
         border-left: 2px solid rgba(212, 175, 55, 0.4) !important;
     }}
 
-    /* تصميم بطاقات التمارين */
+    /* بطاقات التمارين */
     .exercise-card {{
         background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.8));
         border: 1px solid rgba(255, 255, 255, 0.05);
@@ -157,13 +166,11 @@ with st.sidebar:
     st.caption("<p style='text-align:center; color:#A0A0A0;'>الخيارات والأدوات المتقدمة</p>", unsafe_allow_html=True)
     st.markdown("---")
     
-    # 1. هدف التدريب
     st.markdown("### 🎯 تحديد الهدف")
     user_goal = st.radio("حدد هدفك الرياضي:", ["🔥 حرق دهون وتنشيف", "💪 بناء ضخامة وقوة", "⚡ زيادة لياقة وتحمل"], index=0)
     
     st.markdown("---")
     
-    # 2. مؤقت التاباتا
     st.markdown("### ⏱️ مؤقت التاباتا (Tabata)")
     if st.button("بدء مؤقت التاباتا 🚀", key="side_tabata"):
         with st.empty():
@@ -175,7 +182,6 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # 3. جدول الماكروز
     st.markdown("### 🍽️ حاسبة الماكروز")
     target_cals = st.number_input("السعرات اليومية:", value=2000, step=100)
     prot = int((target_cals * 0.3) / 4)
@@ -185,7 +191,6 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # 4. قائمة الالتزام
     st.markdown("### 📋 قائمة الانضباط")
     st.checkbox("تمرين الكروس فيت")
     st.checkbox("شرب 3 لتر ماء")
@@ -200,7 +205,7 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "workouts"
 
-# ==================== الأزرار العلوية الأفقية (بالعرض جنب بعض) ====================
+# ==================== الأزرار العلوية (جنب بعضها تماماً بشكل أفقي) ====================
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
