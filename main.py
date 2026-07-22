@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التصميم الشامل (بطاقات أفقية عريضة بنفس شكل المربع المنحني) ====================
+# ==================== CSS التصميم الشامل (أزرار جنب بعض بتصميم المربع المنحني العريض والمريح) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -35,7 +35,7 @@ st.markdown(
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
-        padding: 25px 15px;
+        padding: 25px 12px;
         margin-top: 10px;
         max-width: 100% !important;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
@@ -71,25 +71,39 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* تصميم أزرار التطبيق لتطابق تماماً شكل المربع المنحني العريض المرفق بالعرض كامل */
+    /* ضمان بقاء أعمدة الأزرار جنباً إلى جنب بمسافات وفراغات متساوية ومرتاحة تماماً */
+    [data-testid="stHorizontalBlock"] {{
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 10px !important;
+        width: 100% !important;
+        margin-bottom: 10px !important;
+    }}
+
+    [data-testid="stHorizontalBlock"] > div {{
+        flex: 1 !important;
+        min-width: 0 !important;
+    }}
+
+    /* تصميم الأزرار لتطابق تماماً شكل المربع المنحني العريض والمريح للكلمات */
     .stButton > button {{
         width: 100% !important;
-        height: 75px !important; /* ارتفاع مريح جداً لتغطية الكلمات بشكل كامل وواضح */
+        height: 70px !important; /* ارتفاع ممتاز ليظهر النص بالكامل وبراحة تامة */
         background: linear-gradient(145deg, rgba(28, 28, 36, 0.95), rgba(16, 16, 22, 0.98)) !important;
         border: 1.5px solid rgba(212, 175, 55, 0.4) !important;
-        border-radius: 22px !important; /* انحناء زوايا مطابق للصورة تماماً */
-        padding: 10px 20px !important;
+        border-radius: 20px !important; /* انحناء زوايا مطابق للصورة المرفقة تماماً */
+        padding: 5px 8px !important;
         color: #FFFFFF !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 15px !important;
+        font-size: 13px !important;
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6) !important;
         transition: all 0.3s ease-in-out !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        gap: 12px !important;
+        white-space: nowrap !important; /* منع نزول الكلمات فوق بعضها وابقائها في سطر واحد داخل المربع */
     }}
 
     .stButton > button:hover {{
@@ -226,28 +240,28 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "water"
 
-# ==================== الأزرار الرئيسية (بطاقات عريضة بتصميم المربع المنحني بكامل العرض) ====================
-row1_col1, row1_col2 = st.columns(2)
+# ==================== الأزرار الرئيسية (4 أزرار موزعة في سطرين، في كل سطر زرين جنباً إلى جنب) ====================
+r1_c1, r1_c2 = st.columns(2)
 
-with row1_col1:
-    if st.button("💧 متابعة الماء", key="btn_water"):
+with r1_c1:
+    if st.button("💧 الماء", key="btn_water"):
         st.session_state.active_page = "water"
         st.rerun()
 
-with row1_col2:
+with r1_c2:
     if st.button("⚡ السعرات الدقيقة", key="btn_calories"):
         st.session_state.active_page = "calories"
         st.rerun()
 
-row2_col1, row2_col2 = st.columns(2)
+r2_c1, r2_c2 = st.columns(2)
 
-with row2_col1:
+with r2_c1:
     if st.button("📊 قياس الجسم", key="btn_weight"):
         st.session_state.active_page = "weight"
         st.rerun()
 
-with row2_col2:
-    if st.button("🔥 جدول التمارين", key="btn_workouts"):
+with r2_c2:
+    if st.button("🔥 التمارين", key="btn_workouts"):
         st.session_state.active_page = "workouts"
         st.rerun()
 
