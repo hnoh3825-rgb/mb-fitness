@@ -5,7 +5,7 @@ import time
 # إعدادات الصفحة
 st.set_page_config(page_title="CROSSFIT & FITNESS", page_icon="🏋️‍♂️", layout="centered")
 
-# ==================== خلفية داكنة فخمة وتنسيق الخطوط والعناوين ====================
+# ==================== CSS وتنسيق العرض والبطاقات ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -15,56 +15,91 @@ st.markdown(
 
     /* خلفية التطبيق */
     .stApp {{
-        background: linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.88)), url("{bg_img_url}") no-repeat center center fixed;
+        background: linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.90)), url("{bg_img_url}") no-repeat center center fixed;
         background-size: cover !important;
         font-family: 'Tajawal', sans-serif;
     }}
     
     /* حاوية المحتوى الرئيسية */
     .main .block-container {{
-        background-color: rgba(15, 15, 15, 0.75) !important;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: rgba(15, 15, 15, 0.80) !important;
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 20px;
         padding: 30px 25px;
-        margin-top: 20px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+        margin-top: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
         color: #ffffff;
     }}
 
-    /* العنوان الرئيسي - سطر واحد متناسق بدون كسور */
+    /* العنوان الرئيسي */
     .hero-title {{
         text-align: center;
         font-family: 'Montserrat', sans-serif;
         font-size: 28px;
         font-weight: 900;
         letter-spacing: 2px;
-        white-space: nowrap; /* إجبار النص على سطر واحد */
+        white-space: nowrap;
         background: linear-gradient(135deg, #FFFFFF 0%, #D4AF37 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 5px;
+        margin-bottom: 8px;
     }}
 
-    /* الوصف الفرعي الجديد */
+    /* الوصف الفرعي */
     .hero-subtitle {{
         text-align: center;
         font-family: 'Tajawal', sans-serif;
-        font-size: 16px;
-        color: #CCCCCC;
-        margin-bottom: 25px;
+        font-size: 15px;
+        color: #B0B0B0;
+        margin-bottom: 20px;
         font-weight: 500;
     }}
 
-    /* خط الفاصل الأنيق */
+    /* خط الفاصل */
     .custom-divider {{
         height: 1px;
         background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(212,175,55,0.5) 50%, rgba(255,255,255,0) 100%);
-        margin: 20px 0 30px 0;
+        margin: 15px 0 25px 0;
     }}
 
-    /* تحسين ألوان التبويبات */
+    /* بطاقة التمرين الأنيقة */
+    .exercise-card {{
+        background: rgba(30, 30, 30, 0.6);
+        border-right: 4px solid #D4AF37;
+        border-radius: 12px;
+        padding: 15px 18px;
+        margin-top: 15px;
+        margin-bottom: 12px;
+    }}
+
+    .exercise-title {{
+        font-size: 20px;
+        font-weight: 800;
+        color: #FFFFFF;
+        margin-bottom: 8px;
+    }}
+
+    .badge-sets {{
+        background-color: rgba(212, 175, 55, 0.2);
+        color: #D4AF37;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 8px;
+    }}
+
+    .exercise-desc {{
+        font-size: 14px;
+        color: #D0D0D0;
+        line-height: 1.6;
+    }}
+
+    /* ألوان التبويبات */
     .stTabs [data-baseweb="tab-list"] button {{
         color: #CCCCCC !important;
         font-family: 'Tajawal', sans-serif;
@@ -80,8 +115,47 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ==================== الواجهة العلوية المعدلة ====================
-st.markdown('<div class="hero-title">CROSSFIT & FITNESS</div>', unsafe_allow_html=True)
+# ==================== الشريط العلوي الخيارات الإضافية (ثلاث نقاط) ====================
+top_col1, top_col2 = st.columns([5, 1])
+
+with top_col1:
+    st.markdown('<div class="hero-title">CROSSFIT & FITNESS</div>', unsafe_allow_html=True)
+
+with top_col2:
+    # قائمة خيارات إضافية تفاعلية بأسلوب الثلاث نقاط
+    with st.popover("⋮ الخيارات", help="اضغط للخيارات الإضافية والإعدادات"):
+        st.markdown("### ⚙️ خيارات إضافية")
+        st.markdown("---")
+        
+        # خيار 1: اختيار هدف التمرين
+        st.subheader("🎯 هدفك التدريبي")
+        user_goal = st.radio("حدد هدفك لتخصيص النصائح:", ["🔥 حرق دهون وتنشيف", "💪 بناء قوة وعضلات", "⚡ زيادة لياقة وتحمل"], index=0)
+        
+        st.markdown("---")
+        
+        # خيار 2: نصائح التعافي الذكي
+        st.subheader("💡 نصائح سريعة للتعافي")
+        if "حرق" in user_goal:
+            st.info("💡 **نصيحة التنشيف**: حافظ على عجز سعرات 400-500 سعرة، واشرب 3 لتر ماء يومياً.")
+        elif "بناء" in user_goal:
+            st.info("💡 **نصيحة البناء**: احرص على تناول 1.6 - 2 جرام بروتين لكل كجم من وزنك.")
+        else:
+            st.info("💡 **نصيحة اللياقة**: التركيز على تنظيم التنفس أثناء جولات الكروس فيت وزيادة السرعة تدريجياً.")
+            
+        st.markdown("---")
+        
+        # خيار 3: مؤقت التاباتا الكروس فيت السريع
+        st.subheader("⏱️ مؤقت تاباتا (Tabata Timer)")
+        st.caption("20 ثانية تمرين مكثف / 10 ثواني راحة")
+        if st.button("بدء جولة تاباتا 🚀"):
+            with st.empty():
+                st.warning("🔥 **تمرين مكثف (WORK)!** 20 ثانية")
+                time.sleep(2)  # محاكاة سريعة
+                st.success("💧 **راحة (REST)!** 10 ثواني")
+                time.sleep(1)
+                st.balloons()
+                st.write("أحسنت! أكمل باقي الجولات.")
+
 st.markdown('<div class="hero-subtitle">دليلك اليومي لبناء القوة، اللياقة، والالتزام</div>', unsafe_allow_html=True)
 st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
@@ -100,42 +174,56 @@ with tab_workouts:
     crossfit_data = {
         "تمارين حرق وقوة (Bodyweight 🔥)": [
             {
-                "name": "1. بيربيز (Burpees) - 3 جلسات × 12 تكرار",
-                "desc": "تمرين كروس فيت شامل يرفع اللياقة ويحرق الدهون بسرعة.",
+                "title": "تمرين البيربيز الشامل",
+                "english_name": "Burpees",
+                "sets_reps": "3 جلسات × 12 تكرار",
+                "desc": "تمرين كروس فيت متكامل يشارك فيه كامل الجسم، يرفع معدل ضربات القلب ويضاعف حرق الدهون.",
                 "url": "https://www.youtube.com/watch?v=dZgVxmf6jkA"
             },
             {
-                "name": "2. نط الحبل / القفز (Jumping Jacks) - 3 جلسات × 45 ثانية",
-                "desc": "ممتاز لرفع ضغط الدم وضخ الأكسجين للجسم.",
+                "title": "تمرين نط الحبل والقفز",
+                "english_name": "Jumping Jacks",
+                "sets_reps": "3 جلسات × 45 ثانية",
+                "desc": "تمرين إحماء وتوافق حركي ممتازة لضخ الأكسجين وتحفيز الدورة الدموية.",
                 "url": "https://www.youtube.com/watch?v=c4DAnQ6DtF8"
             },
             {
-                "name": "3. تسلق الجبل (Mountain Climbers) - 3 جلسات × 20 لكل رجل",
-                "desc": "يقوي عضلات البطن، الأكتاف، والأرجل.",
+                "title": "تمرين تسلق الجبل",
+                "english_name": "Mountain Climbers",
+                "sets_reps": "3 جلسات × 20 لكل رجل",
+                "desc": "يقوي عضلات البطن والجذع والأكتاف مع رفع اللياقة البدنية والتحمل.",
                 "url": "https://www.youtube.com/watch?v=nmwgirgXLYM"
             }
         ],
         "تمارين الجزء السفلي والكتلة (Legs & Core 🦵)": [
             {
-                "name": "1. سكوات قفز (Jump Squats) - 4 جلسات × 15 تكرار",
-                "desc": "تمرين تفجيري للأرجل لزيادة اللياقة والقوة.",
+                "title": "تمرين سكوات القفز التفجيري",
+                "english_name": "Jump Squats",
+                "sets_reps": "4 جلسات × 15 تكرار",
+                "desc": "تمرين تفجيري قوي يستهدف عضلات الفخذين والمقعدة لزيادة القوة والسرعة.",
                 "url": "https://www.youtube.com/watch?v=72BSZupb-1I"
             },
             {
-                "name": "2. الطعن (Lunges) - 3 جلسات × 12 تكرار لكل رجل",
-                "desc": "لتقوية عضلات الفخذين والاتزان.",
+                "title": "تمرين الطعن المتبادل",
+                "english_name": "Lunges",
+                "sets_reps": "3 جلسات × 12 تكرار لكل رجل",
+                "desc": "ممتاز جداً لتقوية عضلات الأرجل وتحسين التوازن وثبات الركبتين.",
                 "url": "https://www.youtube.com/watch?v=QOVaHwm-Q6U"
             }
         ],
         "تمارين الجزء العلوي والتحمل (Upper Body 🦾)": [
             {
-                "name": "1. بوش أب (Push-ups) - 4 جلسات × 15 تكرار",
-                "desc": "الأساسي للصدر، الأكتاف، والترايسبس.",
+                "title": "تمرين الضغط الكلاسيكي",
+                "english_name": "Push-ups",
+                "sets_reps": "4 جلسات × 15 تكرار",
+                "desc": "التمرين الأساسي لتقوية عضلات الصدر، الأكتاف الأمامية، والترايسبس.",
                 "url": "https://www.youtube.com/watch?v=IODxDxX7oi4"
             },
             {
-                "name": "2. بلانك ثبات (Plank Hold) - 3 جلسات × 45 ثانية",
-                "desc": "تمرين ثبات قوي جداً لشد البطن والجذع بالكامل.",
+                "title": "تمرين البلانك للثبات",
+                "english_name": "Plank Hold",
+                "sets_reps": "3 جلسات × 45 ثانية",
+                "desc": "تمرين ثبات هائل يقوي الجذع والبطن بالكامل ويحمي أسفل الظهر من الإصابات.",
                 "url": "https://www.youtube.com/watch?v=pSHjTRCQxIw"
             }
         ]
@@ -145,13 +233,20 @@ with tab_workouts:
     st.markdown("---")
     
     for ex in crossfit_data[category]:
-        st.subheader(ex["name"])
-        st.caption(ex["desc"])
+        # بطاقة المعلمات والوصف بالتنسيق الجديد الجميل
+        card_html = f"""
+        <div class="exercise-card">
+            <div class="exercise-title">{ex['title']} ({ex['english_name']})</div>
+            <span class="badge-sets">🎯 {ex['sets_reps']}</span>
+            <div class="exercise-desc">📌 {ex['desc']}</div>
+        </div>
+        """
+        st.markdown(card_html, unsafe_allow_html=True)
         st.video(ex["url"])
-        st.markdown("---")
+        st.markdown("<br>", unsafe_allow_html=True)
 
     # مؤقت راحة الجولات
-    st.subheader("⏱️ مؤقت جولات الكروس فيت")
+    st.subheader("⏱️ مؤقت راحة الجولات")
     seconds = st.number_input("وقت الراحة بين الجولات (ثانية):", min_value=10, max_value=120, value=45, step=5)
     if st.button("تفعيل مؤقت الجولة 🔔"):
         with st.empty():
