@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التصميم الشامل (مطابقة حجم مربع الماء لمربع التمارين) ====================
+# ==================== CSS التصميم الشامل (تكبير مربع قسم الماء ليطابق مقاس قسم التمارين) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -71,10 +71,10 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* ==================== تخصيص Grid بمقاسات متساوية لمربع الماء والتمارين ==================== */
+    /* توزيع الأزرار العلوية */
     [data-testid="stHorizontalBlock"] {{
         display: grid !important;
-        grid-template-columns: 1.1fr 0.95fr 0.95fr 1.1fr !important; /* مساحة متطابقة للطرفين الأول والأخير (الماء والتمارين) */
+        grid-template-columns: repeat(4, 1fr) !important;
         gap: 12px !important;
         width: 100% !important;
         margin-bottom: 15px !important;
@@ -138,12 +138,13 @@ st.markdown(
         margin-bottom: 8px;
     }}
 
-    .exercise-card, .diet-card, .info-card {{
+    /* تصميم موحد لكل المربعات والبطاقات الكبيرة (التمارين، الماء، السعرات) لضمان نفس المقاس والحجم */
+    .exercise-card, .diet-card, .info-card, .water-main-card {{
         background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.8));
         border: 1px solid rgba(255, 255, 255, 0.05);
         border-right: 4px solid #D4AF37;
         border-radius: 16px;
-        padding: 18px;
+        padding: 24px;
         margin-top: 15px;
         margin-bottom: 12px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.4);
@@ -239,7 +240,7 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "water"
 
-# ==================== الأزرار الأربعة بالتعديل الجديد ====================
+# ==================== الأزرار الأربعة الرئيسية ====================
 cols = st.columns(4)
 
 with cols[0]:
@@ -495,7 +496,7 @@ elif st.session_state.active_page == "calories":
             </div>
             """, unsafe_allow_html=True)
 
-# ==================== 4. قسم الماء ====================
+# ==================== 4. قسم الماء (بالمربع الكبير المطابق لمقاس التمارين) ====================
 elif st.session_state.active_page == "water":
     st.header("💧 متابعة استهلاك الماء اليومي")
     st.write("سجل كميات الماء التي تشربها يومياً لدعم أدائك الرياضي وطاقتك.")
@@ -503,7 +504,20 @@ elif st.session_state.active_page == "water":
     if "water_cups" not in st.session_state:
         st.session_state.water_cups = 0
 
-    st.subheader(f"إجمالي ما شربته اليوم: {st.session_state.water_cups} كاسات (تقريباً {round(st.session_state.water_cups * 0.25, 2)} لتر)")
+    # تم وضع المحتوى داخل الـ water-main-card ليصبح المربع بنفس حجم ومقاس بطاقات التمارين تماماً
+    water_content = f"""
+    <div class="water-main-card">
+        <div class="exercise-title" style="margin-bottom: 15px;">📊 سجل الترطيب اليومي</div>
+        <div class="badge-container" style="margin-bottom: 15px;">
+            <span class="badge-item">💧 إجمالي الكاسات: {st.session_state.water_cups} كاسات</span>
+            <span class="badge-item">⚡ إجمالي الكمية: {round(st.session_state.water_cups * 0.25, 2)} لتر</span>
+        </div>
+        <div class="exercise-desc">📌 احرص على توزيع شرب الماء بانتظام طوال اليوم لضمان أفضل أداء عضلي وتجنب الجفاف أثناء تمارين الكروس فيت الشاقة.</div>
+    </div>
+    """
+    st.markdown(water_content, unsafe_allow_html=True)
+
+    st.subheader(f"التقدم اليومي المستهدف:")
     st.progress(min(st.session_state.water_cups / 12.0, 1.0))
     
     col1, col2 = st.columns(2)
