@@ -6,11 +6,11 @@ import time
 st.set_page_config(
     page_title="CROSSFIT & FITNESS", 
     page_icon="🏋️‍♂️", 
-    layout="wide",
+    layout="centered",
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التجميل الشامل للواجهة الأفقى والتصميم التقني ====================
+# ==================== CSS التجميل الشامل (تصميم أفقي أنيق ومودرن) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -18,7 +18,7 @@ st.markdown(
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Tajawal:wght@400;700;900&display=swap');
 
-    /* خلفية التطبيق الداكنة */
+    /* خلفية التطبيق الداكنة الاحترافية */
     .stApp {{
         background: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.95)), url("{bg_img_url}") no-repeat center center fixed;
         background-size: cover !important;
@@ -31,11 +31,8 @@ st.markdown(
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
-        padding: 30px 25px;
+        padding: 30px 20px;
         margin-top: 10px;
-        max-width: 1000px;
-        margin-left: auto;
-        margin-right: auto;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
         color: #ffffff;
     }}
@@ -44,7 +41,7 @@ st.markdown(
     .hero-title {{
         text-align: center;
         font-family: 'Montserrat', sans-serif;
-        font-size: 32px;
+        font-size: 28px;
         font-weight: 900;
         letter-spacing: 2px;
         white-space: nowrap;
@@ -59,7 +56,7 @@ st.markdown(
     .hero-subtitle {{
         text-align: center;
         font-family: 'Tajawal', sans-serif;
-        font-size: 15px;
+        font-size: 14px;
         color: #A0A0A0;
         margin-bottom: 20px;
         font-weight: 500;
@@ -72,45 +69,40 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* ==================== تنسيق القائمة الجانبية لتنسحب وتفتح من اليمين ==================== */
-    [data-testid="stSidebar"] {{
-        background-color: rgba(12, 12, 16, 0.97) !important;
-        backdrop-filter: blur(25px);
-        border-left: 2px solid rgba(212, 175, 55, 0.4) !important;
-    }}
-
-    /* ==================== أزرار القائمة العلوية الأفقية بالكامل (بالعرض) ==================== */
-    div[data-testid="stHorizontalBlock"] {{
-        gap: 12px !important;
+    /* ==================== تنسيق الأزرار العلوية بشكل أفقي (عرضي) ومتناسق ==================== */
+    div.row-widget.stHorizontal {{
         display: flex !important;
         flex-direction: row !important;
-        justify-content: center !important;
-        align-items: center !important;
+        gap: 10px !important;
     }}
 
     .stButton > button {{
         width: 100% !important;
-        height: 52px !important;
-        background: linear-gradient(145deg, rgba(32, 32, 40, 0.9), rgba(18, 18, 24, 0.95)) !important;
+        background: linear-gradient(145deg, rgba(30, 30, 38, 0.9), rgba(18, 18, 24, 0.95)) !important;
         border: 1px solid rgba(212, 175, 55, 0.3) !important;
         border-radius: 14px !important;
+        padding: 12px 8px !important;
         color: #E0E0E0 !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 16px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+        font-size: 15px !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
-        transition: all 0.25s ease-in-out !important;
+        transition: all 0.3s ease-in-out !important;
     }}
 
     .stButton > button:hover {{
         border-color: #D4AF37 !important;
         color: #FFFFFF !important;
-        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(35, 35, 45, 0.95) 100%) !important;
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(30, 30, 38, 0.95) 100%) !important;
         box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35) !important;
         transform: translateY(-2px) !important;
+    }}
+
+    /* تنسيق القائمة الجانبية المنسدلة من اليمين */
+    [data-testid="stSidebar"] {{
+        background-color: rgba(12, 12, 16, 0.97) !important;
+        backdrop-filter: blur(25px);
+        border-left: 2px solid rgba(212, 175, 55, 0.4) !important;
     }}
 
     /* تصميم بطاقات التمارين */
@@ -159,7 +151,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ==================== القائمة الجانبية التي تنجر وتفتح من اليمين ====================
+# ==================== القائمة الجانبية (Sidebar من اليمين) ====================
 with st.sidebar:
     st.markdown("<h2 style='color: #D4AF37; text-align: center; margin-bottom: 0;'>⚙️ لوحة التحكم</h2>", unsafe_allow_html=True)
     st.caption("<p style='text-align:center; color:#A0A0A0;'>الخيارات والأدوات المتقدمة</p>", unsafe_allow_html=True)
@@ -189,7 +181,7 @@ with st.sidebar:
     prot = int((target_cals * 0.3) / 4)
     carbs = int((target_cals * 0.4) / 4)
     fats = int((target_cals * 0.3) / 9)
-    st.info(f"🥩 بروتين: **{prot}g**\n\n🍞 كربوهيدرات: **{carbs}g**\n\n🥑 دهون: **{fats}g**")
+    st.info(f"🥩 بروتين: **{prot}g** | 🍞 كربوهيدرات: **{carbs}g** | 🥑 دهون: **{fats}g**")
 
     st.markdown("---")
 
@@ -199,34 +191,34 @@ with st.sidebar:
     st.checkbox("شرب 3 لتر ماء")
     st.checkbox("أخذ كفايتك من النوم")
 
-# ==================== الهيدر والعنوان الرئيسي ====================
+# ==================== العنوان الرئيسي ====================
 st.markdown('<div class="hero-title">CROSSFIT & FITNESS</div>', unsafe_allow_html=True)
 st.markdown('<div class="hero-subtitle">دليلك اليومي لبناء القوة، اللياقة، والالتزام</div>', unsafe_allow_html=True)
 st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
-# ==================== إدارة حالة التنقل بواسطة Session State ====================
+# ==================== حالة التنقل بين الأقسام ====================
 if "active_page" not in st.session_state:
     st.session_state.active_page = "workouts"
 
-# ==================== الخيارات الأفقية العلوية بالكامل (بالعرض جنب بعض) ====================
-nav_col1, nav_col2, nav_col3, nav_col4 = st.columns(4)
+# ==================== الأزرار العلوية الأفقية (بالعرض جنب بعض) ====================
+col1, col2, col3, col4 = st.columns(4)
 
-with nav_col1:
+with col1:
     if st.button("🔥 التمارين", key="btn_workouts"):
         st.session_state.active_page = "workouts"
         st.rerun()
 
-with nav_col2:
+with col2:
     if st.button("⚖️ الوزن", key="btn_weight"):
         st.session_state.active_page = "weight"
         st.rerun()
 
-with nav_col3:
+with col3:
     if st.button("📊 السعرات", key="btn_calories"):
         st.session_state.active_page = "calories"
         st.rerun()
 
-with nav_col4:
+with col4:
     if st.button("💧 الماء", key="btn_water"):
         st.session_state.active_page = "water"
         st.rerun()
