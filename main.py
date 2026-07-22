@@ -5,46 +5,46 @@ import time
 # إعدادات الصفحة
 st.set_page_config(page_title="تطبيق MB للتمارين", page_icon="⚡", layout="centered")
 
-# ==================== دمج خلفية NO EXCUSES عبر كود صورة مباشر ====================
-# رابط صورة NO EXCUSES المباشر عبر سيرفر صور سريع ومتوافق مع Streamlit
-bg_img_url = "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1000&auto=format&fit=crop"
+# ==================== خلفية مظلمة جداً (Dark Aesthetics - Abs/Six Pack) ====================
+# صورة رياضية مظلمة لشخص بسيكس باك وإضاءة خافتة شديدة التظليل
+bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
     f"""
     <style>
-    /* خلفية التطبيق بالكامل بالصورة الرياضية */
+    /* خلفية التطبيق بالكامل مع صورة السيكس باك المظلمة */
     .stApp {{
-        background: url("{bg_img_url}") no-repeat center center fixed;
+        background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url("{bg_img_url}") no-repeat center center fixed;
         background-size: cover !important;
     }}
     
-    /* جعل الحاوية الرئيسية شفافة جزئياً لكي تظهر الصورة خلف النصوص بوضوح */
+    /* حاوية المحتوى شاشتها متناسقة وشفافة لإبراز الخلفية المظلمة */
     .main .block-container {{
-        background-color: rgba(0, 0, 0, 0.78) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15);
+        background-color: rgba(10, 10, 10, 0.80) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 18px;
         padding: 25px;
         margin-top: 15px;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
         color: white;
     }}
 
-    /* نص تحفيزي بارز باللون الأبيض والرمادي */
-    .no-excuses-header {{
+    /* هيدر عريض وفخم لعبارة NO EXCUSES */
+    .no-excuses-banner {{
         text-align: center;
         font-family: 'Impact', 'Arial Black', sans-serif;
-        font-size: 38px;
-        letter-spacing: 6px;
-        color: #FFFFFF;
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-        border-bottom: 2px solid #ffffff;
-        padding-bottom: 8px;
-        margin-bottom: 20px;
+        font-size: 42px;
+        letter-spacing: 8px;
+        color: #ffffff;
+        text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3), 3px 3px 10px rgba(0,0,0,0.9);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 10px;
+        margin-bottom: 25px;
     }}
 
-    /* تحسين لون التبويبات بالحرص على الوضوح */
+    /* تحسين ألوان التبويبات لتناسب المود الداكن */
     .stTabs [data-baseweb="tab-list"] button {{
-        color: #FFFFFF !important;
+        color: #e0e0e0 !important;
         font-weight: bold;
         font-size: 16px;
     }}
@@ -53,8 +53,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# عرض الشعار التحفيزي
-st.markdown('<div class="no-excuses-header">NO EXCUSES 🏋️‍♂️</div>', unsafe_allow_html=True)
+# عرض العبارة التحفيزية الفخمة
+st.markdown('<div class="no-excuses-banner">NO EXCUSES ⚡</div>', unsafe_allow_html=True)
 
 st.title("⚡ MB CROSSFIT & FITNESS")
 st.write("تمارين كروس فيت وفيديوهات توضيحية مباشرة تحت كل تمرين")
