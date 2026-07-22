@@ -6,10 +6,11 @@ import time
 st.set_page_config(
     page_title="CROSSFIT & FITNESS", 
     page_icon="🏋️‍♂️", 
-    layout="centered"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التجميل الشامل للواجهة والأزرار التقنية ====================
+# ==================== CSS التجميل الشامل للواجهة الأفقى والتصميم التقني ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -17,9 +18,9 @@ st.markdown(
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Tajawal:wght@400;700;900&display=swap');
 
-    /* خلفية التطبيق */
+    /* خلفية التطبيق الداكنة */
     .stApp {{
-        background: linear-gradient(rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.94)), url("{bg_img_url}") no-repeat center center fixed;
+        background: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.95)), url("{bg_img_url}") no-repeat center center fixed;
         background-size: cover !important;
         font-family: 'Tajawal', sans-serif;
     }}
@@ -30,8 +31,11 @@ st.markdown(
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
-        padding: 28px 20px;
+        padding: 30px 25px;
         margin-top: 10px;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
         color: #ffffff;
     }}
@@ -40,7 +44,7 @@ st.markdown(
     .hero-title {{
         text-align: center;
         font-family: 'Montserrat', sans-serif;
-        font-size: 28px;
+        font-size: 32px;
         font-weight: 900;
         letter-spacing: 2px;
         white-space: nowrap;
@@ -55,7 +59,7 @@ st.markdown(
     .hero-subtitle {{
         text-align: center;
         font-family: 'Tajawal', sans-serif;
-        font-size: 14px;
+        font-size: 15px;
         color: #A0A0A0;
         margin-bottom: 20px;
         font-weight: 500;
@@ -68,40 +72,45 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* ==================== إعادة تصميم أزرار الملاحة الرئيسية بالكامل (Cards UI) ==================== */
+    /* ==================== تنسيق القائمة الجانبية لتنسحب وتفتح من اليمين ==================== */
+    [data-testid="stSidebar"] {{
+        background-color: rgba(12, 12, 16, 0.97) !important;
+        backdrop-filter: blur(25px);
+        border-left: 2px solid rgba(212, 175, 55, 0.4) !important;
+    }}
+
+    /* ==================== أزرار القائمة العلوية الأفقية بالكامل (بالعرض) ==================== */
+    div[data-testid="stHorizontalBlock"] {{
+        gap: 12px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }}
+
     .stButton > button {{
         width: 100% !important;
-        background: linear-gradient(145deg, rgba(30, 30, 38, 0.9), rgba(18, 18, 24, 0.95)) !important;
+        height: 52px !important;
+        background: linear-gradient(145deg, rgba(32, 32, 40, 0.9), rgba(18, 18, 24, 0.95)) !important;
         border: 1px solid rgba(212, 175, 55, 0.3) !important;
-        border-radius: 16px !important;
-        padding: 14px 6px !important;
+        border-radius: 14px !important;
         color: #E0E0E0 !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 15px !important;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6) !important;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        font-size: 16px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+        transition: all 0.25s ease-in-out !important;
     }}
 
     .stButton > button:hover {{
         border-color: #D4AF37 !important;
         color: #FFFFFF !important;
-        background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(30, 30, 38, 0.95) 100%) !important;
-        box-shadow: 0 8px 22px rgba(212, 175, 55, 0.3) !important;
-        transform: translateY(-3px) !important;
-    }}
-
-    /* زر القائمة المنبثقة العلوي */
-    div[data-testid="stPopover"] > button {{
-        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(30, 30, 30, 0.9) 100%) !important;
-        border: 1px solid rgba(212, 175, 55, 0.6) !important;
-        border-radius: 12px !important;
-        color: #D4AF37 !important;
-        font-family: 'Tajawal', sans-serif !important;
-        font-weight: 800 !important;
-        font-size: 14px !important;
-        padding: 8px 16px !important;
-        box-shadow: 0 0 12px rgba(212, 175, 55, 0.2) !important;
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(35, 35, 45, 0.95) 100%) !important;
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35) !important;
+        transform: translateY(-2px) !important;
     }}
 
     /* تصميم بطاقات التمارين */
@@ -150,31 +159,48 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ==================== الشريط العلوي وزر الخيارات ====================
-top_col1, top_col2 = st.columns([4, 1.2])
+# ==================== القائمة الجانبية التي تنجر وتفتح من اليمين ====================
+with st.sidebar:
+    st.markdown("<h2 style='color: #D4AF37; text-align: center; margin-bottom: 0;'>⚙️ لوحة التحكم</h2>", unsafe_allow_html=True)
+    st.caption("<p style='text-align:center; color:#A0A0A0;'>الخيارات والأدوات المتقدمة</p>", unsafe_allow_html=True)
+    st.markdown("---")
+    
+    # 1. هدف التدريب
+    st.markdown("### 🎯 تحديد الهدف")
+    user_goal = st.radio("حدد هدفك الرياضي:", ["🔥 حرق دهون وتنشيف", "💪 بناء ضخامة وقوة", "⚡ زيادة لياقة وتحمل"], index=0)
+    
+    st.markdown("---")
+    
+    # 2. مؤقت التاباتا
+    st.markdown("### ⏱️ مؤقت التاباتا (Tabata)")
+    if st.button("بدء مؤقت التاباتا 🚀", key="side_tabata"):
+        with st.empty():
+            st.warning("🔥 **WORK! (تمرين 20 ثانية)**")
+            time.sleep(2)
+            st.success("💧 **REST! (راحة 10 ثواني)**")
+            time.sleep(1)
+            st.balloons()
 
-with top_col1:
-    st.markdown('<div class="hero-title">CROSSFIT & FITNESS</div>', unsafe_allow_html=True)
+    st.markdown("---")
 
-with top_col2:
-    with st.popover("⚡ الخيارات", help="نافذة الأدوات والتحكم الذكي"):
-        st.markdown("<h3 style='color:#D4AF37; text-align:center;'>🎛️ لوحة الأوامر</h3>", unsafe_allow_html=True)
-        st.markdown("---")
-        
-        st.markdown("#### 🎯 هدفك اليومي")
-        user_goal = st.selectbox("حدد نمط التدريب:", ["🔥 حرق دهون وتنشيف", "💪 بناء ضخامة وقوة", "⚡ زيادة لياقة وتحمل"], index=0)
-        
-        st.markdown("---")
-        
-        st.markdown("#### ⏱️ مؤقت التاباتا (Tabata)")
-        if st.button("بدء جولة تفجيرية 🚀", key="pop_tabata"):
-            with st.empty():
-                st.warning("🔥 **WORK! (تمرين 20 ثانية)**")
-                time.sleep(2)
-                st.success("💧 **REST! (راحة 10 ثواني)**")
-                time.sleep(1)
-                st.balloons()
+    # 3. جدول الماكروز
+    st.markdown("### 🍽️ حاسبة الماكروز")
+    target_cals = st.number_input("السعرات اليومية:", value=2000, step=100)
+    prot = int((target_cals * 0.3) / 4)
+    carbs = int((target_cals * 0.4) / 4)
+    fats = int((target_cals * 0.3) / 9)
+    st.info(f"🥩 بروتين: **{prot}g**\n\n🍞 كربوهيدرات: **{carbs}g**\n\n🥑 دهون: **{fats}g**")
 
+    st.markdown("---")
+
+    # 4. قائمة الالتزام
+    st.markdown("### 📋 قائمة الانضباط")
+    st.checkbox("تمرين الكروس فيت")
+    st.checkbox("شرب 3 لتر ماء")
+    st.checkbox("أخذ كفايتك من النوم")
+
+# ==================== الهيدر والعنوان الرئيسي ====================
+st.markdown('<div class="hero-title">CROSSFIT & FITNESS</div>', unsafe_allow_html=True)
 st.markdown('<div class="hero-subtitle">دليلك اليومي لبناء القوة، اللياقة، والالتزام</div>', unsafe_allow_html=True)
 st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
@@ -182,26 +208,26 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "workouts"
 
-# ==================== الشريط التفاعلي الجديد كلياً (بديل السطر القديم) ====================
+# ==================== الخيارات الأفقية العلوية بالكامل (بالعرض جنب بعض) ====================
 nav_col1, nav_col2, nav_col3, nav_col4 = st.columns(4)
 
 with nav_col1:
-    if st.button("🔥\nالتمارين", key="btn_workouts"):
+    if st.button("🔥 التمارين", key="btn_workouts"):
         st.session_state.active_page = "workouts"
         st.rerun()
 
 with nav_col2:
-    if st.button("⚖️\nالوزن", key="btn_weight"):
+    if st.button("⚖️ الوزن", key="btn_weight"):
         st.session_state.active_page = "weight"
         st.rerun()
 
 with nav_col3:
-    if st.button("📊\nالسعرات", key="btn_calories"):
+    if st.button("📊 السعرات", key="btn_calories"):
         st.session_state.active_page = "calories"
         st.rerun()
 
 with nav_col4:
-    if st.button("💧\nالماء", key="btn_water"):
+    if st.button("💧 الماء", key="btn_water"):
         st.session_state.active_page = "water"
         st.rerun()
 
