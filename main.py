@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التصميم الشامل (ضبط مستطيلات الأزرار العلوية لتكون متطابقة 100%) ====================
+# ==================== CSS التصميم الشامل ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -71,7 +71,6 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* ==================== تعديل الأزرار العلوية لضمان تساؤها المباشر 100% ==================== */
     [data-testid="stHorizontalBlock"] {{
         display: flex !important;
         flex-direction: row !important;
@@ -88,7 +87,6 @@ st.markdown(
         min-width: 0 !important;
     }}
 
-    /* تصميم وحجم جميع الأزرار (الماء، السعرات، القياس، التمارين) بنفس العرض والارتفاع */
     .stButton > button {{
         width: 100% !important;
         height: 65px !important;
@@ -138,7 +136,6 @@ st.markdown(
         margin-bottom: 8px;
     }}
 
-    /* تصميم البطاقات الداخلية */
     .exercise-card, .diet-card, .info-card, .water-main-card {{
         background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.8)) !important;
         border: 1px solid rgba(255, 255, 255, 0.05) !important;
@@ -237,11 +234,11 @@ st.markdown('<div class="hero-title">CROSSFIT & FITNESS 🇸🇦</div>', unsafe_
 st.markdown('<div class="hero-subtitle">تطبيقك الشخصي الذكي للياقة البدنية والتغذية</div>', unsafe_allow_html=True)
 st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
-# ==================== حالة التنقل بين الأقسام ====================
+# ==================== حالة التنقل بين الأقسام (الافتراضي الآن: التمارين workouts) ====================
 if "active_page" not in st.session_state:
-    st.session_state.active_page = "water"
+    st.session_state.active_page = "workouts"
 
-# ==================== الأزرار الأربعة الرئيسية (تم توحيد النص للماء لإعطاء توازن بصرى ممتاز) ====================
+# ==================== الأزرار الأربعة الرئيسية ====================
 cols = st.columns(4)
 
 with cols[0]:
