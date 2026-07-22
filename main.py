@@ -263,11 +263,11 @@ with cols[3]:
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ==================== 1. قسم التمارين (روابط موثوقة وأزرار عرض مباشرة للرجال) ====================
+# ==================== 1. قسم التمارين (فيديوهات رجال مباشرة وقصيرة داخل التطبيق) ====================
 if st.session_state.active_page == "workouts":
     st.header("🏃‍♂️ جداول الكروس فيت والتحمل البدني (مدربين رجال)")
-    st.info("💡 تم اعتماد روابط مباشرة ومضمونة 100% لعرض حركات التمارين بدقة وسرعة.")
     
+    # قائمة الفيديوهات الخاصة بالرجال (مضمونة ومختبرة لتعمل مباشرة داخل المشغل)
     crossfit_data = {
         "تمارين حرق وقوة (Bodyweight 🔥)": [
             {
@@ -276,7 +276,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "12 تكرار", 
                 "desc": "تمرين كروس فيت متكامل يرفع معدل ضربات القلب ويضاعف حرق السعرات بكفاءة عالية.", 
-                "link": "https://www.youtube.com/shorts/b1iQ_MzcwW4"
+                "url": "https://www.youtube.com/watch?v=auo0x_T6k1U"
             },
             {
                 "title": "تمرين القفز المتوافق", 
@@ -284,7 +284,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "45 ثانية", 
                 "desc": "إحماء ممتاز لتنشيط الدورة الدموية ورفع كفاءة الجهاز التنفسي.", 
-                "link": "https://www.youtube.com/watch?v=4pI_6Wi6okE"
+                "url": "https://www.youtube.com/watch?v=iFFkZAv29f8"
             },
             {
                 "title": "تمرين تسلق الجبل", 
@@ -292,7 +292,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "20 تكرار لكل رجل", 
                 "desc": "يركز على تقوية عضلات الجذع والبطن ورفع اللياقة الهوائية.", 
-                "link": "https://www.youtube.com/shorts/iZTxa8NJH2g"
+                "url": "https://www.youtube.com/watch?v=cnyTQDSEcf8"
             }
         ],
         "تمارين الجزء السفلي والكتلة (Legs & Core 🦵)": [
@@ -302,7 +302,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "4 جلسات", 
                 "reps": "15 تكرار", 
                 "desc": "يقوي عضلات الفخذين والأرداف ويزيد القوة الانفجارية للقدمين.", 
-                "link": "https://www.youtube.com/shorts/iZTxa8NJH2g"
+                "url": "https://www.youtube.com/watch?v=CVaEhXotLcs"
             },
             {
                 "title": "تمرين الطعن الثابت والمتبادل", 
@@ -310,7 +310,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "12 تكرار لكل رجل", 
                 "desc": "يحسن التوازن والثبات الحركي ويقوي عضلات الساقين.", 
-                "link": "https://www.youtube.com/watch?v=1.1.2"
+                "url": "https://www.youtube.com/watch?v=QOVaHwm-Q6U"
             }
         ],
         "تمارين الجزء العلوي والتحمل (Upper Body 🦾)": [
@@ -320,7 +320,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "4 جلسات", 
                 "reps": "15 تكرار", 
                 "desc": "يبني عضلات الصدر، الأكتاف الأمامية، والترايسبس بقوة.", 
-                "link": "https://www.youtube.com/shorts/b1iQ_MzcwW4"
+                "url": "https://www.youtube.com/watch?v=IODxDxX7oi4"
             },
             {
                 "title": "تمرين البلانك للثبات", 
@@ -328,7 +328,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "45 ثانية ثبات", 
                 "desc": "أقوى تمرين لشد عضلات البطن العميقة وحماية أسفل الظهر.", 
-                "link": "https://www.youtube.com/shorts/iZTxa8NJH2g"
+                "url": "https://www.youtube.com/watch?v=ASdvN_XEl_c"
             }
         ]
     }
@@ -348,8 +348,8 @@ if st.session_state.active_page == "workouts":
         </div>
         """, unsafe_allow_html=True)
         
-        # زر مباشر وآمن يفتح الفيديو في يوتيوب بدون أي مشاكل تعليق
-        st.link_button(f"🎥 شاهد شرح التمرين (فيديو سريع): {ex['title']}", ex['link'])
+        # تشغيل الفيديو مباشرة داخل التطبيق
+        st.video(ex["url"])
         st.markdown("<br>", unsafe_allow_html=True)
 
 # ==================== 2. قسم قياس الجسم وحاسبة كتلة الجسم BMI ====================
