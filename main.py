@@ -3,67 +3,105 @@ import pandas as pd
 import time
 
 # إعدادات الصفحة
-st.set_page_config(page_title="تطبيق MB للتمارين", page_icon="⚡", layout="centered")
+st.set_page_config(page_title="MB CROSSFIT", page_icon="⚡", layout="centered")
 
-# ==================== خلفية مظلمة جداً (Dark Aesthetics - Abs/Six Pack) ====================
+# ==================== خلفية داكنة فخمة وتنسيق الخطوط والعناوين ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
     f"""
     <style>
-    /* خلفية التطبيق بالكامل مع صورة السيكس باك المظلمة */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Tajawal:wght@400;700;900&display=swap');
+
+    /* خلفية التطبيق */
     .stApp {{
-        background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url("{bg_img_url}") no-repeat center center fixed;
+        background: linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.88)), url("{bg_img_url}") no-repeat center center fixed;
         background-size: cover !important;
+        font-family: 'Tajawal', sans-serif;
     }}
     
-    /* حاوية المحتوى شاشتها متناسقة وشفافة لإبراز الخلفية المظلمة */
+    /* حاوية المحتوى الرئيسية */
     .main .block-container {{
-        background-color: rgba(10, 10, 10, 0.80) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 18px;
-        padding: 25px;
-        margin-top: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
-        color: white;
-    }}
-
-    /* هيدر عريض وفخم لعبارة NO EXCUSES */
-    .no-excuses-banner {{
-        text-align: center;
-        font-family: 'Impact', 'Arial Black', sans-serif;
-        font-size: 42px;
-        letter-spacing: 8px;
+        background-color: rgba(15, 15, 15, 0.75) !important;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 30px 25px;
+        margin-top: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
         color: #ffffff;
-        text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3), 3px 3px 10px rgba(0,0,0,0.9);
-        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-        padding-bottom: 10px;
-        margin-bottom: 25px;
     }}
 
-    /* تحسين ألوان التبويبات لتناسب المود الداكن */
-    .stTabs [data-baseweb="tab-list"] button {{
-        color: #e0e0e0 !important;
-        font-weight: bold;
+    /* الشعار التحفيزي العلوي - رايق وأنيق */
+    .motto-tag {{
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 6px;
+        color: #D4AF37; /* لون ذهبي راقي */
+        text-transform: uppercase;
+        margin-bottom: 5px;
+    }}
+
+    /* العنوان الرئيسي الفخم */
+    .hero-title {{
+        text-align: center;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 34px;
+        font-weight: 900;
+        letter-spacing: 3px;
+        background: linear-gradient(135deg, #FFFFFF 0%, #B0B0B0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 8px;
+    }}
+
+    /* الوصف الفرعي تحت العنوان */
+    .hero-subtitle {{
+        text-align: center;
+        font-family: 'Tajawal', sans-serif;
         font-size: 16px;
+        color: #B0B0B0;
+        margin-bottom: 30px;
+        font-weight: 400;
+    }}
+
+    /* خط الفاصل الأنيق */
+    .custom-divider {{
+        height: 1px;
+        background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(212,175,55,0.5) 50%, rgba(255,255,255,0) 100%);
+        margin: 20px 0 30px 0;
+    }}
+
+    /* تحسين ألوان التبويبات */
+    .stTabs [data-baseweb="tab-list"] button {{
+        color: #CCCCCC !important;
+        font-family: 'Tajawal', sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+    }}
+    
+    .stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {{
+        color: #D4AF37 !important; /* تحديد التبويب المفعّل بالذهبي */
     }}
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# عرض العبارة التحفيزية الفخمة
-st.markdown('<div class="no-excuses-banner">NO EXCUSES ⚡</div>', unsafe_allow_html=True)
-
-st.title("⚡ MB CROSSFIT & FITNESS")
-st.write("تمارين كروس فيت وفيديوهات توضيحية مباشرة تحت كل تمرين")
+# ==================== الواجهة العلوية الجميلة والرايقة ====================
+st.markdown('<div class="motto-tag">⚡ NO EXCUSES ⚡</div>', unsafe_allow_html=True)
+st.markdown('<div class="hero-title">MB CROSSFIT & FITNESS</div>', unsafe_allow_html=True)
+st.markdown('<div class="hero-subtitle">منصتك الشخصية للتمارين الاحترافية ومتابعة الأداء</div>', unsafe_allow_html=True)
+st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
 # إنشاء التبويبات
 tab_workouts, tab_weight, tab_calories, tab_water = st.tabs([
-    "🔥 تمارين الكروس فيت", 
-    "⚖️ سجل الوزن", 
+    "🔥 التمارين", 
+    "⚖️ الوزن", 
     "📊 السعرات", 
-    "💧 شرب الماء"
+    "💧 الماء"
 ])
 
 # ==================== 1. تبويب تمارين الكروس فيت ====================
@@ -92,7 +130,7 @@ with tab_workouts:
             {
                 "name": "1. سكوات قفز (Jump Squats) - 4 جلسات × 15 تكرار",
                 "desc": "تمرين تفجيري للأرجل لزيادة اللياقة والقوة.",
-                "url": "https://www.youtube.com/watch?v=72BSZupb-1I"  # رابط مضمون وشغال للتضمين 100%
+                "url": "https://www.youtube.com/watch?v=72BSZupb-1I"
             },
             {
                 "name": "2. الطعن (Lunges) - 3 جلسات × 12 تكرار لكل رجل",
