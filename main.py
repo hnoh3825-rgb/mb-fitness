@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التصميم الشامل (توزيع علمي ومتساوی 100% للأزرار الأربعة) ====================
+# ==================== CSS التصميم الشامل (توزيع CSS Grid المتساوي والدقيق 100%) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -71,32 +71,29 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* ==================== التوزيع الهندسي والعلمي المتساوي للأزرار الأربعة ==================== */
-    div.row-widget.stHorizontal, [data-testid="stHorizontalBlock"] {{
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        align-items: stretch !important;
-        justify-content: space-between !important;
+    /* ==================== توزيع CSS Grid العلمي للأزرار الأربعة بنفس المقاس والفراغات ==================== */
+    [data-testid="stHorizontalBlock"] {{
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 12px !important;
         width: 100% !important;
-        gap: 12px !important; /* مسافات وفراغات علمية متساوية ودقيقة */
         margin-bottom: 15px !important;
     }}
 
     [data-testid="stHorizontalBlock"] > div {{
-        flex: 1 1 0% !important;
-        max-width: 25% !important; /* ضمان تقسيم المساحة بالتساوي 25% لكل زر هندسياً */
-        min-width: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: none !important;
     }}
 
-    /* تصميم الأزرار مع ضمان احتواء النص بالكامل داخله بوضوح */
+    /* تصميم الأزرار الموحدة تماماً وبدون أي تفاوت */
     .stButton > button {{
         width: 100% !important;
         height: 65px !important;
         background: linear-gradient(145deg, rgba(28, 28, 36, 0.95), rgba(16, 16, 22, 0.98)) !important;
         border: 1.5px solid rgba(212, 175, 55, 0.4) !important;
         border-radius: 16px !important;
-        padding: 4px 6px !important;
+        padding: 4px 2px !important;
         color: #FFFFFF !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
@@ -107,7 +104,7 @@ st.markdown(
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        white-space: normal !important; /* السماح بالتفاف النص الذكي لكي لا يخرج عن المربع أبدأً */
+        white-space: normal !important;
         word-break: break-word !important;
     }}
 
@@ -241,7 +238,7 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "water"
 
-# ==================== الأزرار الأربعة (موزعة علمياً بمسافات متساوية 100%) ====================
+# ==================== الأزرار الأربعة (مقاسات متساوية وفراغات منضبطة 100%) ====================
 cols = st.columns(4)
 
 with cols[0]:
