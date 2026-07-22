@@ -4,7 +4,7 @@ import time
 
 # إعدادات الصفحة
 st.set_page_config(
-    page_title="CROSSFIT & FITNESS - نظام موثوق", 
+    page_title="CROSSFIT & FITNESS - نظام شخصي", 
     page_icon="🇸🇦", 
     layout="centered",
     initial_sidebar_state="expanded"
@@ -240,14 +240,14 @@ with st.sidebar:
 
 # ==================== العنوان الرئيسي ====================
 st.markdown('<div class="hero-title">CROSSFIT & FITNESS 🇸🇦</div>', unsafe_allow_html=True)
-st.markdown('<div class="hero-subtitle">نظام ذكي دقيق مستوحى من المعايير الصحية الرسمية</div>', unsafe_allow_html=True)
+st.markdown('<div class="hero-subtitle">تطبيقك الشخصي الذكي للياقة البدنية والتغذية</div>', unsafe_allow_html=True)
 st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
 # ==================== حالة التنقل بين الأقسام ====================
 if "active_page" not in st.session_state:
     st.session_state.active_page = "water"
 
-# ==================== الأزرار العلوية الأربعة (الترتيب الجديد: الماء -> السعرات -> قياس الجسم -> التمارين) ====================
+# ==================== الأزرار العلوية الأربعة (الترتيب: الماء -> السعرات -> قياس الجسم -> التمارين) ====================
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
@@ -362,7 +362,7 @@ if st.session_state.active_page == "workouts":
 # ==================== 2. قسم قياس الجسم وحاسبة كتلة الجسم BMI ====================
 elif st.session_state.active_page == "weight":
     st.header("📊 حاسبة مؤشر كتلة الجسم (BMI) والوزن المثالي")
-    st.write("أدخل بياناتك الحالية لمعرفة مؤشر كتلة الجسم وتقييمه الصحي بناءً على المعايير الرسمية:")
+    st.write("أدخل بياناتك الحالية لمعرفة مؤشر كتلة الجسم وتقييمه بشكل شخصي:")
 
     c1, c2 = st.columns(2)
     with c1:
@@ -383,34 +383,34 @@ elif st.session_state.active_page == "weight":
             advice = "ممتاز جداً! حافظ على نمط حياتك المتوازن وممارسة التمارين بانتظام."
             color_badge = "#2ecc71"
         elif 25.0 <= bmi <= 29.9:
-            status = "وزن زائد (مرحلة ما قبل السمنة)"
+            status = "وزن زائد"
             advice = "يُفضل تقليل السعرات الحرارية المستهلكة وزيادة النشاط البدني والمشي اليومي."
             color_badge = "#f1c40f"
         elif 30.0 <= bmi <= 34.9:
             status = "سمنة درجة أولى"
-            advice = "من المهم اتباع حمية غذائية منخفضة السعرات والانتظام على الرياضة لتفادي المضاعفات الصحية."
+            advice = "من المهم اتباع حمية غذائية منخفضة السعرات والانتظام على الرياضة."
             color_badge = "#e67e22"
         elif 35.0 <= bmi <= 39.9:
             status = "سمنة درجة ثانية"
-            advice = "تتطلب حالتك خطة غذائية صارمة ومراجعة أخصائي تغذية للوصول لوزن آمن."
+            advice = "تتطلب حالتك خطة غذائية صارمة ومتابعة مستمرة للوصول لوزن آمن."
             color_badge = "#e74c3c"
         else:
-            status = "سمنة مفرطة (درجة ثالثة)"
-            advice = "يوصى بشدة استشارة مختص أو طبيب لتحديد الخيارات الطبية والغذائية المناسبة."
+            status = "سمنة مفرطة"
+            advice = "يوصى بشدة تنظيم الوجبات والالتزام بالتمارين بجدية للوصول لنتائج أفضل."
             color_badge = "#8e44ad"
 
         st.markdown(f"""
         <div class="info-card" style="border-right: 5px solid {color_badge};">
             <h3>نتيجة مؤشر كتلة الجسم: <span style="color: {color_badge};">{bmi}</span></h3>
-            <p><b>التصنيف الصحي:</b> {status}</p>
+            <p><b>التصنيف:</b> {status}</p>
             <p><b>التوجيه الإرشادي:</b> {advice}</p>
         </div>
         """, unsafe_allow_html=True)
 
-# ==================== 3. قسم السعرات الدقيقة والماكروز الرسمية ====================
+# ==================== 3. قسم السعرات الدقيقة والماكروز ====================
 elif st.session_state.active_page == "calories":
     st.header("⚡ حاسبة السعرات الحرارية والاحتياج اليومي")
-    st.write("تعتمد هذه الحاسبة على معادلات الأيض الدقيقة (Mifflin-St Jeor) المستخدمة رسمياً في المراكز الطبية لحساب الطاقة بدقة.")
+    st.write("تعتمد هذه الحاسبة على معادلات الأيض الدقيقة لحساب الطاقة بدقة.")
 
     col_a, col_b, col_c = st.columns(3)
     with col_a:
@@ -433,7 +433,7 @@ elif st.session_state.active_page == "calories":
         ]
     )
 
-    if st.button("احسب السعرات والماكروز بدقة علمية 🧮", key="calc_exact_cals"):
+    if st.button("احسب السعرات والماكروز بدقة 🧮", key="calc_exact_cals"):
         if c_gender == "ذكر":
             bmr = (10 * c_weight) + (6.25 * c_height) - (5 * c_age) + 5
         else:
@@ -466,7 +466,7 @@ elif st.session_state.active_page == "calories":
         c_grams = int((target_calories * 0.45) / 4)
         f_grams = int((target_calories * 0.25) / 9)
 
-        st.success("✅ تم حساب احتياجك بنجاح بناءً على المعايير المعتمدة!")
+        st.success("✅ تم حساب احتياجك بنجاح في تطبيقك الشخصي!")
         
         st.markdown(f"""
         <div class="info-card">
@@ -506,7 +506,7 @@ elif st.session_state.active_page == "calories":
 # ==================== 4. قسم الماء ====================
 elif st.session_state.active_page == "water":
     st.header("💧 متابعة استهلاك الماء اليومي")
-    st.write("يوصى بشرب كميات كافية من الماء يومياً لدعم الأداء الرياضي الحارق للدهون.")
+    st.write("سجل كميات الماء التي تشربها يومياً لدعم أدائك الرياضي وطاقتك.")
 
     if "water_cups" not in st.session_state:
         st.session_state.water_cups = 0
