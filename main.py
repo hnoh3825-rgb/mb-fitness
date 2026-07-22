@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التصميم الشامل (تكبير مربع قسم الماء ليطابق مقاس قسم التمارين) ====================
+# ==================== CSS التصميم الشامل (ضبط أبعاد ومقاسات المستطيلات والبطاقات) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -71,7 +71,7 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* توزيع الأزرار العلوية */
+    /* توزيع الأزرار العلوية الأربعة */
     [data-testid="stHorizontalBlock"] {{
         display: grid !important;
         grid-template-columns: repeat(4, 1fr) !important;
@@ -138,16 +138,17 @@ st.markdown(
         margin-bottom: 8px;
     }}
 
-    /* تصميم موحد لكل المربعات والبطاقات الكبيرة (التمارين، الماء، السعرات) لضمان نفس المقاس والحجم */
+    /* البطاقات الموحدة (التمارين، الماء، السعرات) بنفس الحجم والارتفاع بالتمام والكمال */
     .exercise-card, .diet-card, .info-card, .water-main-card {{
-        background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.8));
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-right: 4px solid #D4AF37;
-        border-radius: 16px;
-        padding: 24px;
-        margin-top: 15px;
-        margin-bottom: 12px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.8)) !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        border-right: 4px solid #D4AF37 !important;
+        border-radius: 16px !important;
+        padding: 24px !important;
+        margin-top: 15px !important;
+        margin-bottom: 15px !important;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4) !important;
+        width: 100% !important;
     }}
 
     .exercise-title, .diet-title {{
@@ -168,9 +169,9 @@ st.markdown(
         background: rgba(212, 175, 55, 0.12);
         color: #E2C055;
         border: 1px solid rgba(212, 175, 55, 0.3);
-        padding: 4px 12px;
+        padding: 6px 14px;
         border-radius: 8px;
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 700;
     }}
 
@@ -389,7 +390,7 @@ elif st.session_state.active_page == "weight":
             color_badge = "#e74c3c"
         else:
             status = "سمنة مفرطة"
-            advice = "يوصى بشدة تنظيم الوجبات والالتزام بالتمارين بجدية للوصول لنتائج أفضل."
+            advice = "يوصى بشدة تنظيم الوجبات والالنزام بالتمارين بجدية للوصول لنتائج أفضل."
             color_badge = "#8e44ad"
 
         st.markdown(f"""
@@ -496,7 +497,7 @@ elif st.session_state.active_page == "calories":
             </div>
             """, unsafe_allow_html=True)
 
-# ==================== 4. قسم الماء (بالمربع الكبير المطابق لمقاس التمارين) ====================
+# ==================== 4. قسم الماء (بالمستطيل العريض المطابق تماماً لبطاقات التمارين) ====================
 elif st.session_state.active_page == "water":
     st.header("💧 متابعة استهلاك الماء اليومي")
     st.write("سجل كميات الماء التي تشربها يومياً لدعم أدائك الرياضي وطاقتك.")
@@ -504,10 +505,10 @@ elif st.session_state.active_page == "water":
     if "water_cups" not in st.session_state:
         st.session_state.water_cups = 0
 
-    # تم وضع المحتوى داخل الـ water-main-card ليصبح المربع بنفس حجم ومقاس بطاقات التمارين تماماً
+    # استخدام الكلاس الموحد water-main-card ليأخذ نفس شكل وعرض وارتفاع مربعات التمارين بالمللي
     water_content = f"""
     <div class="water-main-card">
-        <div class="exercise-title" style="margin-bottom: 15px;">📊 سجل الترطيب اليومي</div>
+        <div class="exercise-title" style="margin-bottom: 15px;">📊 سجل الترطيب اليومي للماء</div>
         <div class="badge-container" style="margin-bottom: 15px;">
             <span class="badge-item">💧 إجمالي الكاسات: {st.session_state.water_cups} كاسات</span>
             <span class="badge-item">⚡ إجمالي الكمية: {round(st.session_state.water_cups * 0.25, 2)} لتر</span>
