@@ -1,43 +1,47 @@
 import streamlit as st
 import pandas as pd
 import time
+import base64
+import os
 
 # إعدادات الصفحة
 st.set_page_config(page_title="تطبيق MB للتمارين", page_icon="⚡", layout="centered")
 
-# ==================== إضافة الخلفية عبر CSS ====================
-bg_url = "https://i.imgur.com/8QG4A3g.jpeg"  # رابط خلفية NO EXCUSES
+# دالة تحويل الصورة المحلية إلى Base64 لدمجها كخلفية
+def set_bg_hack(main_bg):
+    if os.path.exists(main_bg):
+        with open(main_bg, "rb") as f:
+            data = f.read()
+        b64_bg = base64.b64encode(data).decode()
+        st.markdown(
+            f"""
+            <style>
+            .stApp {{
+                background-image: url("data:image/jpeg;base64,{b64_bg}");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }}
+            /* طبقة حماية شفافة داكنة لضمان وضوح النصوص والقوائم */
+            .main .block-container {{
+                background-color: rgba(0, 0, 0, 0.82);
+                border-radius: 15px;
+                padding: 25px;
+                margin-top: 15px;
+                color: white;
+            }}
+            .stTabs [data-baseweb="tab-list"] button {{
+                color: white !important;
+                font-weight: bold;
+            }}
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
 
-st.markdown(
-    f"""
-    <style>
-    /* خلفية التطبيق بالكامل */
-    .stApp {{
-        background-image: url("{bg_url}");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }}
-    
-    /* إضافة طبقة شفافة دافكنة لضمان وضوح النصوص والقوائم */
-    .main .block-container {{
-        background-color: rgba(0, 0, 0, 0.75);
-        border-radius: 15px;
-        padding: 25px;
-        margin-top: 15px;
-        color: white;
-    }}
-
-    /* تحسين شكل التبويبات فوق */
-    .stTabs [data-baseweb="tab-list"] button {{
-        color: white !important;
-        font-weight: bold;
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# تطبيق الخلفية
+set_bg_hack('background.jpg')
 
 st.title("⚡ MB CROSSFIT & FITNESS")
 st.write("تمارين كروس فيت وفيديوهات توضيحية مباشرة تحت كل تمرين")
