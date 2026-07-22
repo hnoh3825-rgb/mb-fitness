@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التجميل الشامل ====================
+# ==================== CSS التجميل الشامل (منع التمرير العرضي وضبط المربعات) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -18,10 +18,17 @@ st.markdown(
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Tajawal:wght@400;700;900&display=swap');
 
+    /* منع التمرير العرضي يمين ويسار نهائياً وثبات الشاشة كأنه تطبيق جوال */
+    html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {{
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }}
+
     .stApp {{
         background: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.95)), url("{bg_img_url}") no-repeat center center fixed;
         background-size: cover !important;
         font-family: 'Tajawal', sans-serif;
+        overflow-x: hidden !important;
     }}
     
     .main .block-container {{
@@ -29,19 +36,20 @@ st.markdown(
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
-        padding: 30px 20px;
+        padding: 25px 15px;
         margin-top: 10px;
+        max-width: 100% !important;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
         color: #ffffff;
+        overflow-x: hidden !important;
     }}
 
     .hero-title {{
         text-align: center;
         font-family: 'Montserrat', sans-serif;
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 900;
         letter-spacing: 2px;
-        white-space: nowrap;
         background: linear-gradient(135deg, #FFFFFF 0%, #D4AF37 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -52,7 +60,7 @@ st.markdown(
     .hero-subtitle {{
         text-align: center;
         font-family: 'Tajawal', sans-serif;
-        font-size: 14px;
+        font-size: 13px;
         color: #A0A0A0;
         margin-bottom: 20px;
         font-weight: 500;
@@ -64,12 +72,14 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
+    /* تنسيق الحاويات والأزرار العلوية لجعلها متجاورة وكاملة بدون قص */
     [data-testid="stHorizontalBlock"] {{
         display: flex !important;
         flex-direction: row !important;
-        gap: 6px !important;
+        gap: 4px !important;
         align-items: center !important;
         justify-content: space-between !important;
+        width: 100% !important;
     }}
 
     [data-testid="stHorizontalBlock"] > div {{
@@ -77,21 +87,27 @@ st.markdown(
         min-width: 0 !important;
     }}
 
+    /* تكبير وتعديل مظهر المربعات العلوية لتظهر الكلمات كاملة على الجوال */
     .stButton > button {{
         width: 100% !important;
         background: linear-gradient(145deg, rgba(30, 30, 38, 0.9), rgba(18, 18, 24, 0.95)) !important;
-        border: 1px solid rgba(212, 175, 55, 0.3) !important;
+        border: 1px solid rgba(212, 175, 55, 0.35) !important;
         border-radius: 12px !important;
-        padding: 10px 2px !important;
+        padding: 10px 4px !important;
         color: #E0E0E0 !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 12px !important;
+        font-size: 11px !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
         transition: all 0.3s ease-in-out !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        height: auto !important;
+        min-height: 45px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }}
 
     .stButton > button:hover {{
@@ -137,7 +153,7 @@ st.markdown(
     }}
 
     .exercise-title, .diet-title {{
-        font-size: 19px;
+        font-size: 18px;
         font-weight: 800;
         color: #FFFFFF;
         margin-bottom: 10px;
@@ -230,7 +246,7 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "workouts"
 
-# ==================== الأزرار العلوية ====================
+# ==================== الأزرار العلوية الرئيسية (مضبوطة بالكامل للشاشات والجوالات) ====================
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
