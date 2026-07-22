@@ -4,8 +4,8 @@ import time
 
 # إعدادات الصفحة
 st.set_page_config(
-    page_title="CROSSFIT & FITNESS", 
-    page_icon="🦾", 
+    page_title="CROSSFIT & FITNESS - نظام موثوق", 
+    page_icon="🇸🇦", 
     layout="centered",
     initial_sidebar_state="expanded"
 )
@@ -108,7 +108,7 @@ st.markdown(
         border-left: 2px solid rgba(212, 175, 55, 0.4) !important;
     }}
 
-    .exercise-card, .diet-card {{
+    .exercise-card, .diet-card, .info-card {{
         background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.8));
         border: 1px solid rgba(255, 255, 255, 0.05);
         border-right: 4px solid #D4AF37;
@@ -155,51 +155,29 @@ st.markdown(
 
 # ==================== القائمة الجانبية (Sidebar) ====================
 with st.sidebar:
-    st.markdown("<h2 style='color: #D4AF37; text-align: center; margin-bottom: 0;'>⚙️ لوحة التحكم PRO</h2>", unsafe_allow_html=True)
-    st.caption("<p style='text-align:center; color:#A0A0A0;'>الإضافات والأدوات المتقدمة</p>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color: #D4AF37; text-align: center; margin-bottom: 0;'>⚙️ لوحة القيادة</h2>", unsafe_allow_html=True)
+    st.caption("<p style='text-align:center; color:#A0A0A0;'>وفق المعايير الصحية المعتمدة</p>", unsafe_allow_html=True)
     st.markdown("---")
     
-    st.markdown("### 🎯 تحديد الهدف")
-    user_goal = st.radio("هدف التدريب:", ["🔥 حرق دهون وتنشيف", "💪 بناء ضخامة وقوة", "⚡ زيادة لياقة وتحمل"], index=0)
+    st.markdown("### 🎯 الهدف الأساسي")
+    user_goal = st.radio("اختر هدفك:", ["🔥 حرق الدهون والتنشيف", "💪 بناء الكتلة العضلية (ضخامة)", "⚖️ المحافظة على الوزن والثبات"], index=0)
     
     st.markdown("---")
-    
-    st.markdown("### ⏱️ غرفة المؤقتات المتقدمة")
-    timer_mode = st.selectbox("اختر نوع المؤقت:", ["Tabata (20ث/10ث)", "EMOM (دقيقة لكل جولة)", "AMRAP (أقصى جولات)"])
-    if st.button("بدء المؤقت المختار 🚀", key="side_timer_pro"):
-        with st.empty():
-            st.warning(f"⚡ تشغيل: {timer_mode}")
-            time.sleep(2)
-            st.success("🔥 انطلق بقوة! GO!")
-            st.balloons()
-
-    st.markdown("---")
-
-    st.markdown("### 🍽️ حاسبة الماكروز الشاملة")
-    target_cals = st.number_input("السعرات اليومية:", value=2000, step=100)
-    prot = int((target_cals * 0.3) / 4)
-    carbs = int((target_cals * 0.4) / 4)
-    fats = int((target_cals * 0.3) / 9)
-    st.info(f"🥩 بروتين: **{prot}g**\n\n🍞 كربوهيدرات: **{carbs}g**\n\n🥑 دهون: **{fats}g**")
-
-    st.markdown("---")
-
-    st.markdown("### 📋 قائمة الانضباط والعادات")
-    st.checkbox("تمرين الكروس فيت اليومي")
-    st.checkbox("شرب 3 لتر ماء")
-    st.checkbox("أخذ كفايتك من النوم")
-    st.checkbox("الالتزام بالوجبات الصحية")
+    st.markdown("### 📋 قائمة الانضباط")
+    st.checkbox("تمرين الكروس فيت / اللياقة اليومي")
+    st.checkbox("شرب الاحتياج الكامل من الماء")
+    st.checkbox("الالتزام بالوجبات الصحية المدروسة")
 
 # ==================== العنوان الرئيسي ====================
-st.markdown('<div class="hero-title">CROSSFIT & FITNESS</div>', unsafe_allow_html=True)
-st.markdown('<div class="hero-subtitle">دليلك اليومي لبناء القوة، اللياقة، والالتزام</div>', unsafe_allow_html=True)
+st.markdown('<div class="hero-title">CROSSFIT & FITNESS 🇸🇦</div>', unsafe_allow_html=True)
+st.markdown('<div class="hero-subtitle">نظام ذكي دقيق مستوحى من المعايير الصحية الرسمية</div>', unsafe_allow_html=True)
 st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
 # ==================== حالة التنقل بين الأقسام ====================
 if "active_page" not in st.session_state:
     st.session_state.active_page = "workouts"
 
-# ==================== الأزرار العلوية المنسقة بالكامل ====================
+# ==================== الأزرار العلوية ====================
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
@@ -208,12 +186,12 @@ with col1:
         st.rerun()
 
 with col2:
-    if st.button("📊 الأرقام", key="btn_weight"):
+    if st.button("📊 قياس الجسم", key="btn_weight"):
         st.session_state.active_page = "weight"
         st.rerun()
 
 with col3:
-    if st.button("⚡ السعرات", key="btn_calories"):
+    if st.button("⚡ السعرات الدقيقة", key="btn_calories"):
         st.session_state.active_page = "calories"
         st.rerun()
 
@@ -226,7 +204,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 # ==================== 1. قسم التمارين ====================
 if st.session_state.active_page == "workouts":
-    st.header("🏃‍♂️ جداول الكروس فيت (جسم كامل)")
+    st.header("🏃‍♂️ جداول الكروس فيت والتحمل البدني")
     
     crossfit_data = {
         "تمارين حرق وقوة (Bodyweight 🔥)": [
@@ -235,15 +213,15 @@ if st.session_state.active_page == "workouts":
                 "english_name": "Burpees",
                 "sets": "3 جلسات",
                 "reps": "12 تكرار",
-                "desc": "تمرين كروس فيت متكامل يشارك فيه كامل الجسم، يرفع معدل ضربات القلب ويضاعف حرق الدهون.",
+                "desc": "تمرين كروس فيت متكامل يرفع معدل ضربات القلب ويضاعف حرق السعرات بكفاءة عالية.",
                 "url": "https://www.youtube.com/watch?v=dZgVxmf6jkA"
             },
             {
-                "title": "تمرين نط الحبل والقفز",
+                "title": "تمرين القفز المتوافق",
                 "english_name": "Jumping Jacks",
                 "sets": "3 جلسات",
                 "reps": "45 ثانية",
-                "desc": "تمرين إحماء وتوافق حركي ممتاز لضخ الأكسجين وتحفيز الدورة الدموية.",
+                "desc": "إحماء ممتاز لتنشيط الدورة الدموية ورفع كفاءة الجهاز التنفسي.",
                 "url": "https://www.youtube.com/watch?v=c4DAnQ6DtF8"
             },
             {
@@ -251,25 +229,25 @@ if st.session_state.active_page == "workouts":
                 "english_name": "Mountain Climbers",
                 "sets": "3 جلسات",
                 "reps": "20 تكرار لكل رجل",
-                "desc": "يقوي عضلات البطن والجذع والأكتاف مع رفع اللياقة البدنية والتحمل.",
+                "desc": "يركز على تقوية عضلات الجذع والبطن ورفع اللياقة الهوائية.",
                 "url": "https://www.youtube.com/watch?v=nmwgirgXLYM"
             }
         ],
         "تمارين الجزء السفلي والكتلة (Legs & Core 🦵)": [
             {
-                "title": "تمرين سكوات القفز التفجيري",
+                "title": "تمرين السكوات التفجيري",
                 "english_name": "Jump Squats",
                 "sets": "4 جلسات",
                 "reps": "15 تكرار",
-                "desc": "تمرين تفجيري قوي يستهدف عضلات الفخذين والمقعدة لزيادة القوة والسرعة.",
+                "desc": "يقوي عضلات الفخذين والأرداف ويزيد القوة الانفجارية للقدمين.",
                 "url": "https://www.youtube.com/watch?v=72BSZupb-1I"
             },
             {
-                "title": "تمرين الطعن المتبادل",
+                "title": "تمرين الطعن الثابت والمتبادل",
                 "english_name": "Lunges",
                 "sets": "3 جلسات",
                 "reps": "12 تكرار لكل رجل",
-                "desc": "ممتاز جداً لتقوية عضلات الأرجل وتحسين التوازن وثبات الركبتين.",
+                "desc": "يحسن التوازن والثبات الحركي ويقوي عضلات الساقين.",
                 "url": "https://www.youtube.com/watch?v=QOVaHwm-Q6U"
             }
         ],
@@ -279,7 +257,7 @@ if st.session_state.active_page == "workouts":
                 "english_name": "Push-ups",
                 "sets": "4 جلسات",
                 "reps": "15 تكرار",
-                "desc": "التمرين الأساسي لتقوية عضلات الصدر، الأكتاف الأمامية، والترايسبس.",
+                "desc": "يبني عضلات الصدر، الأكتاف الأمامية، والترايسبس بقوة.",
                 "url": "https://www.youtube.com/watch?v=IODxDxX7oi4"
             },
             {
@@ -287,13 +265,13 @@ if st.session_state.active_page == "workouts":
                 "english_name": "Plank Hold",
                 "sets": "3 جلسات",
                 "reps": "45 ثانية ثبات",
-                "desc": "تمرين ثبات هائل يقوي الجذع والبطن بالكامل ويحمي أسفل الظهر من الإصابات.",
+                "desc": "أقوى تمرين لشد عضلات البطن العميقة وحماية أسفل الظهر.",
                 "url": "https://www.youtube.com/watch?v=pSHjTRCQxIw"
             }
         ]
     }
 
-    category = st.selectbox("اختر نوع الجلسة:", list(crossfit_data.keys()))
+    category = st.selectbox("اختر تصنيف التمارين:", list(crossfit_data.keys()))
     st.markdown("---")
     
     for ex in crossfit_data[category]:
@@ -311,154 +289,173 @@ if st.session_state.active_page == "workouts":
         st.video(ex["url"])
         st.markdown("<br>", unsafe_allow_html=True)
 
-    st.subheader("⏱️ مؤقت راحة الجولات")
-    seconds = st.number_input("وقت الراحة بين الجولات (ثانية):", min_value=10, max_value=120, value=45, step=5)
-    if st.button("تفعيل مؤقت الجولة 🔔", key="btn_timer"):
-        with st.empty():
-            for i in range(seconds, 0, -1):
-                st.write(f"⏳ المتبقي للجولة القادمة: **{i}** ثانية")
-                time.sleep(1)
-            st.success("🔥 انطلقت الجولة التالية! GO!")
-
-# ==================== 2. قسم الأرقام والوزن الأسبوعي ====================
+# ==================== 2. قسم قياس الجسم وحاسبة كتلة الجسم BMI ====================
 elif st.session_state.active_page == "weight":
-    st.header("⚖️ متابعة الوزن الأسبوعي وفارق الفقدان")
-    
-    if "weight_data" not in st.session_state:
-        st.session_state.weight_data = []
+    st.header("📊 حاسبة مؤشر كتلة الجسم (BMI) والوزن المثالي")
+    st.write("أدخل بياناتك الحالية لمعرفة مؤشر كتلة الجسم وتقييمه الصحي بناءً على المعايير الرسمية:")
 
-    c1, c2, c3 = st.columns(3)
+    c1, c2 = st.columns(2)
     with c1:
-        week_number = st.selectbox("اختر الأسبوع:", ["الأسبوع 1", "الأسبوع 2", "الأسبوع 3", "الأسبوع 4", "الأسبوع 5", "الأسبوع 6", "الأسبوع 7", "الأسبوع 8"])
+        weight_val = st.number_input("الوزن الحالي (كجم):", min_value=30.0, max_value=250.0, value=75.0, step=0.5)
     with c2:
-        new_weight = st.number_input("أدخل وزنك هذا الأسبوع (كجم):", min_value=30.0, max_value=200.0, value=75.0, step=0.1)
-    with c3:
-        pr_lift = st.number_input("أقصى وزن رفعته (PR كجم):", min_value=0.0, max_value=300.0, value=100.0, step=2.5)
+        height_val = st.number_input("الطول الحالي (سم):", min_value=100.0, max_value=230.0, value=170.0, step=1.0)
 
-    if st.button("حفظ الوزن والسجل الأسبوعي 💾", key="save_w"):
-        diff_text = "الوزن الأولي (بداية المتابعة)"
-        if st.session_state.weight_data:
-            last_weight = st.session_state.weight_data[-1]["الوزن الفعلي (كجم)"]
-            diff = round(new_weight - last_weight, 2)
-            if diff < 0:
-                diff_text = f"📉 نزلت {abs(diff)} كجم عن الأسبوع الماضي"
-            elif diff > 0:
-                diff_text = f"📈 زدت {diff} كجم عن الأسبوع الماضي"
-            else:
-                diff_text = "⚖️ الوزن ثابت مقارنة بالأسبوع الماضي"
-
-        st.session_state.weight_data.append({
-            "الفترة": week_number, 
-            "الوزن الفعلي (كجم)": new_weight, 
-            "التغير عن السابق": diff_text,
-            "الرقم القياسي PR": pr_lift
-        })
-        st.success("تم حفظ سجل الأسبوع بنجاح!")
-
-    if st.session_state.weight_data:
-        df = pd.DataFrame(st.session_state.weight_data)
+    if st.button("حساب وتقييم مؤشر كتلة الجسم 🔍", key="calc_bmi"):
+        height_m = height_val / 100.0
+        bmi = round(weight_val / (height_m ** 2), 1)
         
-        if len(df) > 1:
-            first_w = df.iloc[0]["الوزن الفعلي (كجم)"]
-            current_w = df.iloc[-1]["الوزن الفعلي (كجم)"]
-            total_diff = round(current_w - first_w, 2)
-            if total_diff < 0:
-                st.metric("إجمالي الوزن المفقود منذ البداية", f"{abs(total_diff)} كجم 📉", delta_color="inverse")
-            elif total_diff > 0:
-                st.metric("إجمالي الوزن المكتسب منذ البداية", f"{total_diff} كجم 📈", delta_color="inverse")
-            else:
-                st.metric("إجمالي التغير في الوزن", "0 كجم")
-
-        st.dataframe(df, use_container_width=True)
-        st.line_chart(df.set_index("الفترة")[["الوزن الفعلي (كجم)"]])
-
-# ==================== 3. قسم السعرات والنظام الغذائي الذكي والدقيق ====================
-elif st.session_state.active_page == "calories":
-    st.header("🔥 حاسبة الطاقة والنظام الغذائي الذكي")
-    
-    height = st.number_input("الطول (سم):", value=170)
-    weight_c = st.number_input("الوزن (كجم):", value=70)
-    age = st.number_input("العمر:", value=25)
-    gender = st.radio("النوع:", ["ذكر", "أنثى"], horizontal=True)
-
-    tdee = 0
-    if st.button("حساب الاحتياج اليومي 🧮", key="calc_c"):
-        if gender == "ذكر":
-            bmr = 10 * weight_c + 6.25 * height - 5 * age + 5
+        # تحديد الفئة بناءً على معايير وزارة الصحة ومنظمة الصحة العالمية
+        if bmi < 18.5:
+            status = "أقل من الوزن الطبيعي (نحافة)"
+            advice = "تحتاج لزيادة السعرات الحرارية بشكل صحي والتركيز على تمارين القوة لبناء الكتلة العضلية."
+            color_badge = "#3498db"
+        elif 18.5 <= bmi <= 24.9:
+            status = "وزن طبيعي وصحي ومثالي"
+            advice = "ممتاز جداً! حافظ على نمط حياتك المتوازن وممارسة التمارين بانتظام."
+            color_badge = "#2ecc71"
+        elif 25.0 <= bmi <= 29.9:
+            status = "وزن زائد (مرحلة ما قبل السمنة)"
+            advice = "يُفضل تقليل السعرات الحرارية المستهلكة وزيادة النشاط البدني والمشي اليومي."
+            color_badge = "#f1c40f"
+        elif 30.0 <= bmi <= 34.9:
+            status = "سمنة درجة أولى"
+            advice = "من المهم اتباع حمية غذائية منخفضة السعرات والانتظام على الرياضة لتفادي المضاعفات الصحية."
+            color_badge = "#e67e22"
+        elif 35.0 <= bmi <= 39.9:
+            status = "سمنة درجة ثانية"
+            advice = "تتطلب حالتك خطة غذائية صارمة ومراجعة أخصائي تغذية للوصول لوزن آمن."
+            color_badge = "#e74c3c"
         else:
-            bmr = 10 * weight_c + 6.25 * height - 5 * age - 161
+            status = "سمنة مفرطة (درجة ثالثة)"
+            advice = "يوصى بشدة استشارة مختص أو طبيب لتحديد الخيارات الطبية والغذائية المناسبة."
+            color_badge = "#8e44ad"
 
-        tdee = int(bmr * 1.6)
+        st.markdown(f"""
+        <div class="info-card" style="border-right: 5px solid {color_badge};">
+            <h3>نتيجة مؤشر كتلة الجسم: <span style="color: {color_badge};">{bmi}</span></h3>
+            <p><b>التصنيف الصحي:</b> {status}</p>
+            <p><b>التوجيه الإرشادي:</b> {advice}</p>
+        </div>
+        """, unsafe_allow_html=True)
 
-        st.metric("احتياجك اليومي للمحافظة على الوزن", f"{tdee} سعرة")
-        st.write(f"📉 للتنشيف ونزول الوزن: **{tdee - 400}** سعرة")
-        st.write(f"📈 للضخامة وزيادة الكتلة: **{tdee + 350}** سعرة")
+# ==================== 3. قسم السعرات الدقيقة والماكروز الرسمية ====================
+elif st.session_state.active_page == "calories":
+    st.header("⚡ حاسبة السعرات الحرارية والاحتياج اليومي")
+    st.write("تعتمد هذه الحاسبة على معادلات الأيض الدقيقة (Mifflin-St Jeor) المستخدمة رسمياً في المراكز الطبية لحساب الطاقة بدقة.")
 
-    st.markdown("---")
-    st.subheader("🍽️ محرك الذكاء الغذائي لتوزيع السعرات")
-    st.write("أدخل السعرات المستهدفة، وسيقوم النظام الذكي بحساب حصصك وتوزيعها بناءً على التغذية الرياضية المعتمدة:")
+    col_a, col_b, col_c = st.columns(3)
+    with col_a:
+        c_weight = st.number_input("الوزن (كجم):", min_value=30.0, max_value=250.0, value=75.0)
+    with col_b:
+        c_height = st.number_input("الطول (سم):", min_value=100.0, max_value=230.0, value=170.0)
+    with col_c:
+        c_age = st.number_input("العمر (سنة):", min_value=10, max_value=100, value=25)
+
+    c_gender = st.radio("الجنس:", ["ذكر", "أنثى"], horizontal=True)
     
-    custom_input_cals = st.number_input("أدخل السعرات المستهدفة:", min_value=1200, max_value=4500, value=2200, step=50)
-    
-    if st.button("توليد النظام الغذائي المدروس 🧠", key="gen_diet_ai"):
-        # خوارزمية ذكية حسابية لتوزيع السعرات الدقيقة لكل وجبة
-        p_gms = int((custom_input_cals * 0.30) / 4)
-        c_gms = int((custom_input_cals * 0.45) / 4)
-        f_gms = int((custom_input_cals * 0.25) / 9)
-        
-        # توزيع حصص الوجبات بدقة علمية (إفطار 25%، غداء 35%، سناك 15%، عشاء 25%)
-        c_bf = int(custom_input_cals * 0.25)
-        c_lunch = int(custom_input_cals * 0.35)
-        c_snack = int(custom_input_cals * 0.15)
-        c_dinner = int(custom_input_cals * 0.25)
-        
-        st.success(f"✅ تم هندسة جدول غذائي علمي لـ **{custom_input_cals}** سعرة حرارية يومياً بنجاح:")
-        st.info(f"📊 **إجمالي الماكروز اليومي المستهدف:** بروتين: **{p_gms}g** | كاربوهيدرات: **{c_gms}g** | دهون: **{f_gms}g**")
-        
-        smart_meals = [
-            {
-                "meal": f"🍳 وجبة الإفطار (~{c_bf} سعرة)",
-                "details": f"• عدد (3) بيضات كاملة مطبوخة بملعقة صغيرة زيت زيتون (بروتين ودهون صحية)\n• (50 غرام) شوفان نقي مطبوخ في (200 مل) حليب قليل الدسم (طاقة بطيئة الهضم)\n• ثمرة فاكهة طازجة (موزة متوسطة أو تفاحة)"
-            },
-            {
-                "meal": f"🥩 وجبة الغداء الرياضية (~{c_lunch} سعرة)",
-                "details": f"• (180 غرام) صدر دجاج مشوي أو لحم بقري هزيل (بدون دهون مرئية)\n• (200 غرام) أرز بني مطبوخ أو بطاطس مسلوقة بالفرن\n• طبق سلطة خضراء كبير (خيار، طماطم، جرجير) مع ملعقة زيت زيتون وعصير ليمون\n• خضروات مسلوقة (بروكلي أو كوسة)"
-            },
-            {
-                "meal": f"⚡ وجبة ما قبل/بعد التمرين (~{c_snack} سعرة)",
-                "details": f"• سكوب (30 غرام) واي بروتين أو كوب حليب مكثف قليل الدسم\n• (3 حبات) تمر خلاص لطاقة فورية وسريعة الامتصاص\n• (10 حبات) لوز أو جوز نقي لتعزيز الأداء العضلي"
-            },
-            {
-                "meal": f"🥗 وجبة العشاء المشبعة (~{c_dinner} سعرة)",
-                "details": f"• علبة تونة خفيفة مصفاة بالماء (150غ) أو (150غ) جبن قريش / لبنة قليلة الدسم\n• عدد (2) شريحة خبز أسمر (توست بر)\n• صحن خضار ورقية طازجة (خس، جرجير، فجل)"
-            }
+    activity_level = st.selectbox(
+        "مستوى النشاط البدني الأسبوعي:",
+        [
+            "خامل (بدون تمارينات / عمل مكتبي)",
+            "نشاط خفيف (تمارين خفيفة 1-3 أيام أسبوعياً)",
+            "نشاط متوسط (تمارين معتدلة 3-5 أيام أسبوعياً)",
+            "جهد مرتفع (تمارين شاقة 6-7 أيام أسبوعياً)",
+            "جهد مرتفع جداً (تدريب رياضي مكثف يومياً)"
         ]
+    )
+
+    if st.button("احسب السعرات والماكروز بدقة علمية 🧮", key="calc_exact_cals"):
+        # حساب معدل الأيض الأساسي BMR بدقة معادلة وزارة الصحة الرياضية
+        if c_gender == "ذكر":
+            bmr = (10 * c_weight) + (6.25 * c_height) - (5 * c_age) + 5
+        else:
+            bmr = (10 * c_weight) + (6.25 * c_height) - (5 * c_age) - 161
+
+        # تحديد معامل النشاط
+        if "خامل" in activity_level:
+            tdee = bmr * 1.2
+        elif "خفيف" in activity_level:
+            tdee = bmr * 1.375
+        elif "متوسط" in activity_level:
+            tdee = bmr * 1.55
+        elif "جهد مرتفع" in activity_level and "جداً" not in activity_level:
+            tdee = bmr * 1.725
+        else:
+            tdee = bmr * 1.9
+
+        tdee = int(tdee)
+
+        # تعديل السعرات بناءً على هدف المستخدم من القائمة الجانبية
+        if "حرق" in user_goal:
+            target_calories = tdee - 500  # عجز صحي بمقدار 500 سعرة لنزول نصف كيلو أسبوعياً
+            goal_label = "التنشيف وحرق الدهون (عجز 500 سعرة)"
+        elif "ضخامة" in user_goal:
+            target_calories = tdee + 300  # فائض نظيف لبناء العضلات
+            goal_label = "الضخامة وبناء العضلات (فائض نظيف)"
+        else:
+            target_calories = tdee
+            goal_label = "المحافظة على ثبات الوزن الحالي"
+
+        # حساب الماكروز الدقيقة (بروتين، كارب، دهون) بناءً على السعرات المستهدفة
+        p_grams = int((target_calories * 0.30) / 4)
+        c_grams = int((target_calories * 0.45) / 4)
+        f_grams = int((target_calories * 0.25) / 9)
+
+        st.success(✅ تم حساب احتياجك بنجاح بناءً على المعايير المعتمدة!)
         
-        for m in smart_meals:
-            card_html = f"""
+        st.markdown(f"""
+        <div class="info-card">
+            <h3>📊 ملخص النتائج لهدفك ({goal_label}):</h3>
+            <p><b>معدل الأيض الأساسي (BMR):</b> {int(bmr)} سعرة (طاقة الجسم في الراحة التامة)</p>
+            <p><b>إجمالي الاحتياج للثبات (TDEE):</b> {tdee} سعرة حرارية يومياً</p>
+            <hr style="border-color: rgba(255,255,255,0.1);">
+            <h4 style="color: #D4AF37;">🎯 السعرات المستهدفة للهدف المحدد: <span style="color:#FFF;">{target_calories} سعرة حرارية</span></h4>
+            <p><b>🥩 البروتينات المطلوبة:</b> {p_grams} جرام ({int(p_grams*4)} سعرة)</p>
+            <p><b>🍞 الكربوهيدرات المطلوبة:</b> {c_grams} جرام ({int(c_grams*4)} سعرة)</p>
+            <p><b>🥑 الدهون الصحية المطلوبة:</b> {f_grams} جرام ({int(f_grams*9)} سعرة)</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # جدول وجبات غذائية صحية متوازنة ومدروسة بناءً على السعرات المحسوبة
+        st.subheader("🍽️ نموذج جدول وجبات غذائية صحية متكاملة")
+        
+        bf_cals = int(target_calories * 0.25)
+        lunch_cals = int(target_calories * 0.35)
+        snack_cals = int(target_calories * 0.15)
+        dinner_cals = int(target_calories * 0.25)
+
+        meals_plan = [
+            ("🍳 وجبة الإفطار المتوازنة", f"حوالي {bf_cals} سعرة", "• 3 بيضات كاملة + شريحة توست أسمر\n• كوب حليب قليل الدسم أو لبن\n• ثمرة فاكهة (تفاح أو موز) + حبات تمر"),
+            ("🥩 وجبة الغداء الرياضية", f"حوالي {lunch_cals} سعرة", "• 180 جرام صدر دجاج مشوي أو لحم بقري هزيل\n• 200 جرام أرز بني أو بطاطس مسلوقة بالفرن\n• طبق سلطة خضراء غني بالخضروات الورقية وملعقة زيت زيتون"),
+            ("⚡ وجبة ما قبل/بعد التمرين", f"حوالي {snack_cals} سعرة", "• سكوب واي بروتين أو زبادي يوناني قليل الدسم\قبضة يد من المكسرات غير المروحة (لوز أو جوز)"),
+            ("🥗 وجبة العشاء المشبعة", f"حوالي {dinner_cals} سعرة", "• علبة تونة خفيفة بالماء مصفاة أو جبن قريش / لبنة قليلة الدسم\n• خبز أسمر بر (شريحتين)\n• طبق خس وخيار طازج")
+        ]
+
+        for m_title, m_cals_text, m_desc in meals_plan:
+            st.markdown(f"""
             <div class="diet-card">
-                <div class="diet-title">{m['meal']}</div>
-                <div class="diet-desc" style="white-space: pre-line;">{m['details']}</div>
+                <div class="diet-title">{m_title} <span style="font-size:13px; color:#D4AF37;">({m_cals_text})</span></div>
+                <div class="diet-desc" style="white-space: pre-line;">{m_desc}</div>
             </div>
-            """
-            st.markdown(card_html, unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
 
 # ==================== 4. قسم الماء ====================
 elif st.session_state.active_page == "water":
-    st.header("💧 متابعة استهلاك الماء")
-    
+    st.header("💧 متابعة استهلاك الماء اليومي")
+    st.write("يوصى بشرب كميات كافية من الماء يومياً لدعم الأداء الرياضي الحارق للدهون.")
+
     if "water_cups" not in st.session_state:
         st.session_state.water_cups = 0
 
-    st.subheader(f"شربت اليوم: {st.session_state.water_cups} كاسات 🥤")
+    st.subheader(f"إجمالي ما شربته اليوم: {st.session_state.water_cups} كاسات (تقريباً {round(st.session_state.water_cups * 0.25, 2)} لتر)")
     st.progress(min(st.session_state.water_cups / 12.0, 1.0))
     
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("إضافة كاس ماء ➕", key="add_w"):
+        if st.button("إضافة كاس ماء (+250 مل) ➕", key="add_w"):
             st.session_state.water_cups += 1
             st.rerun()
     with col2:
-        if st.button("تصفير 🔄", key="rst_w"):
+        if st.button("تصفير العداد 🔄", key="rst_w"):
             st.session_state.water_cups = 0
             st.rerun()
