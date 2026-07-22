@@ -5,52 +5,56 @@ import time
 # إعدادات الصفحة
 st.set_page_config(page_title="تطبيق MB للتمارين", page_icon="⚡", layout="centered")
 
-# ==================== خلفية دكنة وفخمة بتصميم NO EXCUSES عبر CSS ====================
+# ==================== دمج خلفية NO EXCUSES عبر كود صورة مباشر ====================
+# رابط صورة NO EXCUSES المباشر عبر سيرفر صور سريع ومتوافق مع Streamlit
+bg_img_url = "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1000&auto=format&fit=crop"
+
 st.markdown(
-    """
+    f"""
     <style>
-    /* خلفية متدرجة سوداء رياضية فخمة جداً متوافقة مع جميع الأجهزة */
-    .stApp {
-        background: linear-gradient(135deg, #0b0c10 0%, #1f2833 50%, #000000 100%);
-        background-attachment: fixed;
-    }
+    /* خلفية التطبيق بالكامل بالصورة الرياضية */
+    .stApp {{
+        background: url("{bg_img_url}") no-repeat center center fixed;
+        background-size: cover !important;
+    }}
     
-    /* تصميم حاوية المحتوى الرئيسي */
-    .main .block-container {
-        background-color: rgba(15, 15, 15, 0.85);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+    /* جعل الحاوية الرئيسية شفافة جزئياً لكي تظهر الصورة خلف النصوص بوضوح */
+    .main .block-container {{
+        background-color: rgba(0, 0, 0, 0.78) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 18px;
         padding: 25px;
         margin-top: 15px;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
         color: white;
-    }
+    }}
 
-    /* شعار تحفيزي في أعلى التطبيق */
-    .motivation-banner {
+    /* نص تحفيزي بارز باللون الأبيض والرمادي */
+    .no-excuses-header {{
         text-align: center;
-        font-family: 'Impact', sans-serif;
-        font-size: 28px;
-        letter-spacing: 4px;
-        color: #e5e5e5;
-        border-bottom: 2px solid #66fcf1;
-        padding-bottom: 10px;
+        font-family: 'Impact', 'Arial Black', sans-serif;
+        font-size: 38px;
+        letter-spacing: 6px;
+        color: #FFFFFF;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        border-bottom: 2px solid #ffffff;
+        padding-bottom: 8px;
         margin-bottom: 20px;
-        text-transform: uppercase;
-    }
+    }}
 
-    /* تحسين شكل التبويبات */
-    .stTabs [data-baseweb="tab-list"] button {
-        color: white !important;
+    /* تحسين لون التبويبات بالحرص على الوضوح */
+    .stTabs [data-baseweb="tab-list"] button {{
+        color: #FFFFFF !important;
         font-weight: bold;
-    }
+        font-size: 16px;
+    }}
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# هيدر تحفيزي للتطبيق
-st.markdown('<div class="motivation-banner">NO EXCUSES ⚡</div>', unsafe_allow_html=True)
+# عرض الشعار التحفيزي
+st.markdown('<div class="no-excuses-header">NO EXCUSES 🏋️‍♂️</div>', unsafe_allow_html=True)
 
 st.title("⚡ MB CROSSFIT & FITNESS")
 st.write("تمارين كروس فيت وفيديوهات توضيحية مباشرة تحت كل تمرين")
