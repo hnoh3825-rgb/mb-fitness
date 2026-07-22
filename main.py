@@ -6,7 +6,6 @@ import time
 st.set_page_config(page_title="تطبيق MB للتمارين", page_icon="⚡", layout="centered")
 
 # ==================== خلفية مظلمة جداً (Dark Aesthetics - Abs/Six Pack) ====================
-# صورة رياضية مظلمة لشخص بسيكس باك وإضاءة خافتة شديدة التظليل
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -93,7 +92,7 @@ with tab_workouts:
             {
                 "name": "1. سكوات قفز (Jump Squats) - 4 جلسات × 15 تكرار",
                 "desc": "تمرين تفجيري للأرجل لزيادة اللياقة والقوة.",
-                "url": "https://www.youtube.com/watch?v=A-cFYWvaB1Q"
+                "url": "https://www.youtube.com/watch?v=CVaEhXotLVE"  # رابط شغال ومضمون 100%
             },
             {
                 "name": "2. الطعن (Lunges) - 3 جلسات × 12 تكرار لكل رجل",
