@@ -320,28 +320,59 @@ if st.session_state.active_page == "workouts":
                 time.sleep(1)
             st.success("🔥 انطلقت الجولة التالية! GO!")
 
-# ==================== 2. قسم سجل الوزن والـ PR ====================
+# ==================== 2. قسم الأرقام والوزن الأسبوعي ====================
 elif st.session_state.active_page == "weight":
-    st.header("⚖️ متابعة الوزن اليومي وتسجيل الأرقام الشخصية (PR)")
+    st.header("⚖️ متابعة الوزن الأسبوعي وفارق الفقدان")
     
     if "weight_data" not in st.session_state:
         st.session_state.weight_data = []
 
-    c1, c2 = st.columns(2)
+    c1, c2, c3 = st.columns(3)
     with c1:
-        new_weight = st.number_input("أدخل وزنك اليوم (كجم):", min_value=30.0, max_value=200.0, value=75.0, step=0.1)
+        week_number = st.selectbox("اختر الأسبوع:", ["الأسبوع 1", "الأسبوع 2", "الأسبوع 3", "الأسبوع 4", "الأسبوع 5", "الأسبوع 6", "الأسبوع 7", "الأسبوع 8"])
     with c2:
+        new_weight = st.number_input("أدخل وزنك هذا الأسبوع (كجم):", min_value=30.0, max_value=200.0, value=75.0, step=0.1)
+    with c3:
         pr_lift = st.number_input("أقصى وزن رفعته (PR كجم):", min_value=0.0, max_value=300.0, value=100.0, step=2.5)
 
-    if st.button("حفظ الوزن والسجل 💾", key="save_w"):
-        today = time.strftime("%Y-%m-%d")
-        st.session_state.weight_data.append({"التاريخ": today, "الوزن (كجم)": new_weight, "الرقم القياسي PR": pr_lift})
-        st.success("تم حفظ البيانات بنجاح.")
+    if st.button("حفظ الوزن والسجل الأسبوعي 💾", key="save_w"):
+        # حساب الفارق مقارنة بآخر أسبوع مسجل
+        diff_text = "الوزن الأولي (بداية المتابعة)"
+        if st.session_state.weight_data:
+            last_weight = st.session_state.weight_data[-1]["الوزن الفعلي (كجم)"]
+            diff = round(new_weight - last_weight, 2)
+            if diff < 0:
+                diff_text = f"📉 نزلت {abs(diff)} كجم عن الأسبوع الماضي"
+            elif diff > 0:
+                diff_text = f"📈 زدت {diff} كجم عن الأسبوع الماضي"
+            else:
+                diff_text = "⚖️ الوزن ثابت مقارنة بالأسبوع الماضي"
+
+        st.session_state.weight_data.append({
+            "الفترة": week_number, 
+            "الوزن الفعلي (كجم)": new_weight, 
+            "التغير عن السابق": diff_text,
+            "الرقم القياسي PR": pr_lift
+        })
+        st.success("تم حفظ سجل الأسبوع بنجاح!")
 
     if st.session_state.weight_data:
         df = pd.DataFrame(st.session_state.weight_data)
+        
+        # حساب إجمالي الفارق منذ أول أسبوع تم تسجيله
+        if len(df) > 1:
+            first_w = df.iloc[0]["الوزن الفعلي (كجم)"]
+            current_w = df.iloc[-1]["الوزن الفعلي (كجم)"]
+            total_diff = round(current_w - first_w, 2)
+            if total_diff < 0:
+                st.metric("إجمالي الوزن المفقود منذ البداية", f"{abs(total_diff)} كجم 📉", delta_color="inverse")
+            elif total_diff > 0:
+                st.metric("إجمالي الوزن المكتسب منذ البداية", f"{total_diff} كجم 📈", delta_color="inverse")
+            else:
+                st.metric("إجمالي التغير في الوزن", "0 كجم")
+
         st.dataframe(df, use_container_width=True)
-        st.line_chart(df.set_index("التاريخ")[["الوزن (كجم)"]])
+        st.line_chart(df.set_index("الفترة")[["الوزن الفعلي (كجم)"]])
 
 # ==================== 3. قسم السعرات ====================
 elif st.session_state.active_page == "calories":
