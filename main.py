@@ -177,6 +177,17 @@ st.markdown(
         color: #C0C0C0;
         line-height: 1.6;
     }}
+
+    .dev-note {{
+        font-size: 11px;
+        color: #E2C055;
+        background: rgba(212, 175, 55, 0.1);
+        border: 1px dashed rgba(212, 175, 55, 0.4);
+        padding: 4px 10px;
+        border-radius: 6px;
+        display: inline-block;
+        margin-top: 6px;
+    }}
     </style>
     """,
     unsafe_allow_html=True
@@ -263,9 +274,9 @@ with cols[3]:
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ==================== 1. قسم التمارين (فيديوهات يوتيوب مدمجة تعمل داخلياً 100%) ====================
+# ==================== 1. قسم التمارين (الروابط الأصلية الأولى لجميع الفيديوهات رجال ونساء) ====================
 if st.session_state.active_page == "workouts":
-    st.header("🏃‍♂️ جداول الكروس فيت والتحمل البدني (مدربين رجال)")
+    st.header("🏃‍♂️ جداول الكروس فيت والتحمل البدني (رجال ونساء)")
     
     crossfit_data = {
         "تمارين حرق وقوة (Bodyweight 🔥)": [
@@ -275,7 +286,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "12 تكرار", 
                 "desc": "تمرين كروس فيت متكامل يرفع معدل ضربات القلب ويضاعف حرق السعرات بكفاءة عالية.", 
-                "video_url": "https://www.youtube.com/watch?v=au8f2n0rqD8"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-woman-doing-push-ups-in-a-gym-41555-large.mp4"
             },
             {
                 "title": "تمرين القفز المتوافق", 
@@ -283,7 +294,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "45 ثانية", 
                 "desc": "إحماء ممتاز لتنشيط الدورة الدموية ورفع كفاءة الجهاز التنفسي.", 
-                "video_url": "https://www.youtube.com/watch?v=c4DAnQ6DtF8"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-athlete-stretching-in-a-gym-41553-large.mp4"
             },
             {
                 "title": "تمرين تسلق الجبل", 
@@ -291,7 +302,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "20 تكرار لكل رجل", 
                 "desc": "يركز على تقوية عضلات الجذع والبطن ورفع اللياقة الهوائية.", 
-                "video_url": "https://www.youtube.com/watch?v=nmwgirgXLYM"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-doing-push-ups-in-a-gym-41557-large.mp4"
             }
         ],
         "تمارين الجزء السفلي والكتلة (Legs & Core 🦵)": [
@@ -301,7 +312,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "4 جلسات", 
                 "reps": "15 تكرار", 
                 "desc": "يقوي عضلات الفخذين والأرداف ويزيد القوة الانفجارية للقدمين.", 
-                "video_url": "https://www.youtube.com/watch?v=CVaEhXotL7M"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-woman-doing-squats-with-weights-in-a-gym-41554-large.mp4"
             },
             {
                 "title": "تمرين الطعن الثابت والمتبادل", 
@@ -309,7 +320,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "12 تكرار لكل رجل", 
                 "desc": "يحسن التوازن والثبات الحركي ويقوي عضلات الساقين.", 
-                "video_url": "https://www.youtube.com/watch?v=D7KaRcUTQeE"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-exercising-with-ropes-in-a-gym-41556-large.mp4"
             }
         ],
         "تمارين الجزء العلوي والتحمل (Upper Body 🦾)": [
@@ -319,7 +330,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "4 جلسات", 
                 "reps": "15 تكرار", 
                 "desc": "يبني عضلات الصدر، الأكتاف الأمامية، والترايسبس بقوة.", 
-                "video_url": "https://www.youtube.com/watch?v=IODxDxX7oi4"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-doing-push-ups-in-a-gym-41557-large.mp4"
             },
             {
                 "title": "تمرين البلانك للثبات", 
@@ -327,7 +338,7 @@ if st.session_state.active_page == "workouts":
                 "sets": "3 جلسات", 
                 "reps": "45 ثانية ثبات", 
                 "desc": "أقوى تمرين لشد عضلات البطن العميقة وحماية أسفل الظهر.", 
-                "video_url": "https://www.youtube.com/watch?v=pSHjTRCQxIw"
+                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-athlete-stretching-in-a-gym-41553-large.mp4"
             }
         ]
     }
@@ -344,10 +355,10 @@ if st.session_state.active_page == "workouts":
                 <span class="badge-item">🎯 {ex['reps']}</span>
             </div>
             <div class="exercise-desc">📌 {ex['desc']}</div>
+            <div class="dev-note">رجال / نساء - يتم التطوير</div>
         </div>
         """, unsafe_allow_html=True)
         
-        # مشغل يوتيوب مدمج داخلياً يعمل مباشرة داخل التطبيق
         st.video(ex["video_url"])
         st.markdown("<br>", unsafe_allow_html=True)
 
@@ -368,7 +379,7 @@ elif st.session_state.active_page == "weight":
         
         if bmi < 18.5:
             status = "أقل من الوزن الطبيعي (نحافة)"
-            advice = "تحتاج لزيادة السعرات الحرارية بشكل صحي والتركيز على تمارين القوة لبناء الكتلة العضلية."
+            advice = "تحتاج لزيادة السعرات الحرارية بشكل صحي والتركيز على تمارين القوة بناء الكتلة العضلية."
             color_badge = "#3498db"
         elif 18.5 <= bmi <= 24.9:
             status = "وزن طبيعي وصحي ومثالي"
