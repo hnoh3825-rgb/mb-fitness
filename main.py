@@ -92,7 +92,7 @@ with tab_workouts:
             {
                 "name": "1. سكوات قفز (Jump Squats) - 4 جلسات × 15 تكرار",
                 "desc": "تمرين تفجيري للأرجل لزيادة اللياقة والقوة.",
-                "url": "https://www.youtube.com/watch?v=A-cFYWvaB1Q"
+                "url": "https://www.youtube.com/watch?v=72BSZupb-1I"  # رابط مضمون وشغال للتضمين 100%
             },
             {
                 "name": "2. الطعن (Lunges) - 3 جلسات × 12 تكرار لكل رجل",
