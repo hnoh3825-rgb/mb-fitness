@@ -3,7 +3,7 @@ import pandas as pd
 import time
 
 # إعدادات الصفحة
-st.set_page_config(page_title="MB CROSSFIT", page_icon="⚡", layout="centered")
+st.set_page_config(page_title="CROSSFIT & FITNESS", page_icon="🏋️‍♂️", layout="centered")
 
 # ==================== خلفية داكنة فخمة وتنسيق الخطوط والعناوين ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
@@ -32,39 +32,29 @@ st.markdown(
         color: #ffffff;
     }}
 
-    /* الشعار التحفيزي العلوي - رايق وأنيق */
-    .motto-tag {{
-        text-align: center;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 6px;
-        color: #D4AF37; /* لون ذهبي راقي */
-        text-transform: uppercase;
-        margin-bottom: 5px;
-    }}
-
-    /* العنوان الرئيسي الفخم */
+    /* العنوان الرئيسي - سطر واحد متناسق بدون كسور */
     .hero-title {{
         text-align: center;
         font-family: 'Montserrat', sans-serif;
-        font-size: 34px;
+        font-size: 28px;
         font-weight: 900;
-        letter-spacing: 3px;
-        background: linear-gradient(135deg, #FFFFFF 0%, #B0B0B0 100%);
+        letter-spacing: 2px;
+        white-space: nowrap; /* إجبار النص على سطر واحد */
+        background: linear-gradient(135deg, #FFFFFF 0%, #D4AF37 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 8px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }}
 
-    /* الوصف الفرعي تحت العنوان */
+    /* الوصف الفرعي الجديد */
     .hero-subtitle {{
         text-align: center;
         font-family: 'Tajawal', sans-serif;
         font-size: 16px;
-        color: #B0B0B0;
-        margin-bottom: 30px;
-        font-weight: 400;
+        color: #CCCCCC;
+        margin-bottom: 25px;
+        font-weight: 500;
     }}
 
     /* خط الفاصل الأنيق */
@@ -83,17 +73,16 @@ st.markdown(
     }}
     
     .stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {{
-        color: #D4AF37 !important; /* تحديد التبويب المفعّل بالذهبي */
+        color: #D4AF37 !important;
     }}
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# ==================== الواجهة العلوية الجميلة والرايقة ====================
-st.markdown('<div class="motto-tag">⚡ NO EXCUSES ⚡</div>', unsafe_allow_html=True)
-st.markdown('<div class="hero-title">MB CROSSFIT & FITNESS</div>', unsafe_allow_html=True)
-st.markdown('<div class="hero-subtitle">منصتك الشخصية للتمارين الاحترافية ومتابعة الأداء</div>', unsafe_allow_html=True)
+# ==================== الواجهة العلوية المعدلة ====================
+st.markdown('<div class="hero-title">CROSSFIT & FITNESS</div>', unsafe_allow_html=True)
+st.markdown('<div class="hero-subtitle">دليلك اليومي لبناء القوة، اللياقة، والالتزام</div>', unsafe_allow_html=True)
 st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
 # إنشاء التبويبات
