@@ -108,6 +108,23 @@ st.markdown(
         border-left: 2px solid rgba(212, 175, 55, 0.4) !important;
     }}
 
+    /* تصميم مستطيلات وبطاقات لوحة التحكم الجانبية */
+    .sidebar-card {{
+        background: linear-gradient(145deg, rgba(25, 25, 32, 0.85), rgba(15, 15, 20, 0.9));
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: 14px;
+        padding: 14px;
+        margin-bottom: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }}
+
+    .sidebar-card-title {{
+        font-size: 14px;
+        font-weight: 800;
+        color: #D4AF37;
+        margin-bottom: 8px;
+    }}
+
     .exercise-card, .diet-card, .info-card {{
         background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.8));
         border: 1px solid rgba(255, 255, 255, 0.05);
@@ -153,20 +170,56 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ==================== القائمة الجانبية (Sidebar) ====================
+# ==================== لوحة التحكم الذكية PRO (القائمة الجانبية) ====================
 with st.sidebar:
-    st.markdown("<h2 style='color: #D4AF37; text-align: center; margin-bottom: 0;'>⚙️ لوحة القيادة</h2>", unsafe_allow_html=True)
-    st.caption("<p style='text-align:center; color:#A0A0A0;'>وفق المعايير الصحية المعتمدة</p>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color: #D4AF37; text-align: center; margin-bottom: 0;'>⚙️ لوحة التحكم الذكية PRO</h2>", unsafe_allow_html=True)
+    st.caption("<p style='text-align:center; color:#A0A0A0;'>الإضافات والأدوات الاحترافية المتقدمة</p>", unsafe_allow_html=True)
     st.markdown("---")
     
-    st.markdown("### 🎯 الهدف الأساسي")
-    user_goal = st.radio("اختر هدفك:", ["🔥 حرق الدهون والتنشيف", "💪 بناء الكتلة العضلية (ضخامة)", "⚖️ المحافظة على الوزن والثبات"], index=0)
+    # بطاقة 1: الهدف الأساسي
+    st.markdown("""
+    <div class="sidebar-card">
+        <div class="sidebar-card-title">🎯 تحديد الهدف الرياضي</div>
+    """, unsafe_allow_html=True)
+    user_goal = st.radio("اختر هدفك:", ["🔥 حرق الدهون والتنشيف", "💪 بناء الكتلة العضلية (ضخامة)", "⚖️ المحافظة على الوزن والثبات"], index=0, label_visibility="collapsed")
+    st.markdown("</div>", unsafe_allow_html=True)
     
-    st.markdown("---")
-    st.markdown("### 📋 قائمة الانضباط")
-    st.checkbox("تمرين الكروس فيت / اللياقة اليومي")
-    st.checkbox("شرب الاحتياج الكامل من الماء")
-    st.checkbox("الالتزام بالوجبات الصحية المدروسة")
+    # بطاقة 2: غرفة المؤقتات المتقدمة
+    st.markdown("""
+    <div class="sidebar-card">
+        <div class="sidebar-card-title">⏱️ غرفة المؤقتات الرياضية</div>
+    """, unsafe_allow_html=True)
+    timer_mode = st.selectbox("اختر نوع المؤقت:", ["Tabata (20ث عمل / 10ث راحة)", "EMOM (دقيقة لكل جولة)", "AMRAP (أقصى جولات ممكنة)"], label_visibility="collapsed")
+    if st.button("بدء المؤقت المختار 🚀", key="side_timer_pro"):
+        with st.empty():
+            st.warning(f"⚡ تشغيل: {timer_mode}")
+            time.sleep(2)
+            st.success("🔥 انطلق بقوة! GO!")
+            st.balloons()
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    # بطاقة 3: حاسبة الماكروز السريعة
+    st.markdown("""
+    <div class="sidebar-card">
+        <div class="sidebar-card-title">🍽️ حاسبة الماكروز السريعة</div>
+    """, unsafe_allow_html=True)
+    target_cals = st.number_input("السعرات اليومية:", value=2000, step=100)
+    prot = int((target_cals * 0.3) / 4)
+    carbs = int((target_cals * 0.45) / 4)
+    fats = int((target_cals * 0.25) / 9)
+    st.info(f"🥩 بروتين: **{prot}g** | 🍞 كارب: **{carbs}g** | 🥑 دهون: **{fats}g**")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    # بطاقة 4: قائمة الانضباط والعادات اليومية
+    st.markdown("""
+    <div class="sidebar-card">
+        <div class="sidebar-card-title">📋 قائمة الانضباط اليومي</div>
+    """, unsafe_allow_html=True)
+    st.checkbox("تمرين الكروس فيت اليومي 🦾")
+    st.checkbox("شرب الاحتياج الكامل من الماء 💧")
+    st.checkbox("أخذ كفايتك من النوم (7-8 ساعات) 🛌")
+    st.checkbox("الالتزام بالوجبات الصحية المدروسة 🥗")
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # ==================== العنوان الرئيسي ====================
 st.markdown('<div class="hero-title">CROSSFIT & FITNESS 🇸🇦</div>', unsafe_allow_html=True)
