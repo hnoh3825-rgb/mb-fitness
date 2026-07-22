@@ -177,17 +177,6 @@ st.markdown(
         color: #C0C0C0;
         line-height: 1.6;
     }}
-
-    .dev-note {{
-        font-size: 11px;
-        color: #E2C055;
-        background: rgba(212, 175, 55, 0.1);
-        border: 1px dashed rgba(212, 175, 55, 0.4);
-        padding: 4px 10px;
-        border-radius: 6px;
-        display: inline-block;
-        margin-top: 6px;
-    }}
     </style>
     """,
     unsafe_allow_html=True
@@ -245,7 +234,7 @@ st.markdown('<div class="hero-title">CROSSFIT & FITNESS 🇸🇦</div>', unsafe_
 st.markdown('<div class="hero-subtitle">تطبيقك الشخصي الذكي للياقة البدنية والتغذية</div>', unsafe_allow_html=True)
 st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
-# ==================== حالة التنقل بين الأقسام ====================
+# ==================== حالة التنقل بين الأقسام (الافتراضي الآن: التمارين workouts) ====================
 if "active_page" not in st.session_state:
     st.session_state.active_page = "workouts"
 
@@ -274,71 +263,71 @@ with cols[3]:
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ==================== 1. قسم التمارين (الروابط الأصلية الأولى لجميع الفيديوهات رجال ونساء) ====================
+# ==================== 1. قسم التمارين ====================
 if st.session_state.active_page == "workouts":
-    st.header("🏃‍♂️ جداول الكروس فيت والتحمل البدني (رجال ونساء)")
+    st.header("🏃‍♂️ جداول الكروس فيت والتحمل البدني")
     
     crossfit_data = {
         "تمارين حرق وقوة (Bodyweight 🔥)": [
             {
-                "title": "تمرين البيربيز الشامل", 
-                "english_name": "Burpees", 
-                "sets": "3 جلسات", 
-                "reps": "12 تكرار", 
-                "desc": "تمرين كروس فيت متكامل يرفع معدل ضربات القلب ويضاعف حرق السعرات بكفاءة عالية.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-woman-doing-push-ups-in-a-gym-41555-large.mp4"
+                "title": "تمرين البيربيز الشامل",
+                "english_name": "Burpees",
+                "sets": "3 جلسات",
+                "reps": "12 تكرار",
+                "desc": "تمرين كروس فيت متكامل يرفع معدل ضربات القلب ويضاعف حرق السعرات بكفاءة عالية.",
+                "url": "https://www.youtube.com/watch?v=dZgVxmf6jkA"
             },
             {
-                "title": "تمرين القفز المتوافق", 
-                "english_name": "Jumping Jacks", 
-                "sets": "3 جلسات", 
-                "reps": "45 ثانية", 
-                "desc": "إحماء ممتاز لتنشيط الدورة الدموية ورفع كفاءة الجهاز التنفسي.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-athlete-stretching-in-a-gym-41553-large.mp4"
+                "title": "تمرين القفز المتوافق",
+                "english_name": "Jumping Jacks",
+                "sets": "3 جلسات",
+                "reps": "45 ثانية",
+                "desc": "إحماء ممتاز لتنشيط الدورة الدموية ورفع كفاءة الجهاز التنفسي.",
+                "url": "https://www.youtube.com/watch?v=c4DAnQ6DtF8"
             },
             {
-                "title": "تمرين تسلق الجبل", 
-                "english_name": "Mountain Climbers", 
-                "sets": "3 جلسات", 
-                "reps": "20 تكرار لكل رجل", 
-                "desc": "يركز على تقوية عضلات الجذع والبطن ورفع اللياقة الهوائية.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-doing-push-ups-in-a-gym-41557-large.mp4"
+                "title": "تمرين تسلق الجبل",
+                "english_name": "Mountain Climbers",
+                "sets": "3 جلسات",
+                "reps": "20 تكرار لكل رجل",
+                "desc": "يركز على تقوية عضلات الجذع والبطن ورفع اللياقة الهوائية.",
+                "url": "https://www.youtube.com/watch?v=nmwgirgXLYM"
             }
         ],
         "تمارين الجزء السفلي والكتلة (Legs & Core 🦵)": [
             {
-                "title": "تمرين السكوات التفجيري", 
-                "english_name": "Jump Squats", 
-                "sets": "4 جلسات", 
-                "reps": "15 تكرار", 
-                "desc": "يقوي عضلات الفخذين والأرداف ويزيد القوة الانفجارية للقدمين.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-woman-doing-squats-with-weights-in-a-gym-41554-large.mp4"
+                "title": "تمرين السكوات التفجيري",
+                "english_name": "Jump Squats",
+                "sets": "4 جلسات",
+                "reps": "15 تكرار",
+                "desc": "يقوي عضلات الفخذين والأرداف ويزيد القوة الانفجارية للقدمين.",
+                "url": "https://www.youtube.com/watch?v=72BSZupb-1I"
             },
             {
-                "title": "تمرين الطعن الثابت والمتبادل", 
-                "english_name": "Lunges", 
-                "sets": "3 جلسات", 
-                "reps": "12 تكرار لكل رجل", 
-                "desc": "يحسن التوازن والثبات الحركي ويقوي عضلات الساقين.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-exercising-with-ropes-in-a-gym-41556-large.mp4"
+                "title": "تمرين الطعن الثابت والمتبادل",
+                "english_name": "Lunges",
+                "sets": "3 جلسات",
+                "reps": "12 تكرار لكل رجل",
+                "desc": "يحسن التوازن والثبات الحركي ويقوي عضلات الساقين.",
+                "url": "https://www.youtube.com/watch?v=QOVaHwm-Q6U"
             }
         ],
         "تمارين الجزء العلوي والتحمل (Upper Body 🦾)": [
             {
-                "title": "تمرين الضغط الكلاسيكي", 
-                "english_name": "Push-ups", 
-                "sets": "4 جلسات", 
-                "reps": "15 تكرار", 
-                "desc": "يبني عضلات الصدر، الأكتاف الأمامية، والترايسبس بقوة.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-man-doing-push-ups-in-a-gym-41557-large.mp4"
+                "title": "تمرين الضغط الكلاسيكي",
+                "english_name": "Push-ups",
+                "sets": "4 جلسات",
+                "reps": "15 تكرار",
+                "desc": "يبني عضلات الصدر، الأكتاف الأمامية، والترايسبس بقوة.",
+                "url": "https://www.youtube.com/watch?v=IODxDxX7oi4"
             },
             {
-                "title": "تمرين البلانك للثبات", 
-                "english_name": "Plank Hold", 
-                "sets": "3 جلسات", 
-                "reps": "45 ثانية ثبات", 
-                "desc": "أقوى تمرين لشد عضلات البطن العميقة وحماية أسفل الظهر.", 
-                "video_url": "https://assets.mixkit.co/videos/preview/mixkit-athlete-stretching-in-a-gym-41553-large.mp4"
+                "title": "تمرين البلانك للثبات",
+                "english_name": "Plank Hold",
+                "sets": "3 جلسات",
+                "reps": "45 ثانية ثبات",
+                "desc": "أقوى تمرين لشد عضلات البطن العميقة وحماية أسفل الظهر.",
+                "url": "https://www.youtube.com/watch?v=pSHjTRCQxIw"
             }
         ]
     }
@@ -347,7 +336,7 @@ if st.session_state.active_page == "workouts":
     st.markdown("---")
     
     for ex in crossfit_data[category]:
-        st.markdown(f"""
+        card_html = f"""
         <div class="exercise-card">
             <div class="exercise-title">{ex['title']} ({ex['english_name']})</div>
             <div class="badge-container">
@@ -355,11 +344,10 @@ if st.session_state.active_page == "workouts":
                 <span class="badge-item">🎯 {ex['reps']}</span>
             </div>
             <div class="exercise-desc">📌 {ex['desc']}</div>
-            <div class="dev-note">رجال / نساء - يتم التطوير</div>
         </div>
-        """, unsafe_allow_html=True)
-        
-        st.video(ex["video_url"])
+        """
+        st.markdown(card_html, unsafe_allow_html=True)
+        st.video(ex["url"])
         st.markdown("<br>", unsafe_allow_html=True)
 
 # ==================== 2. قسم قياس الجسم وحاسبة كتلة الجسم BMI ====================
@@ -379,7 +367,7 @@ elif st.session_state.active_page == "weight":
         
         if bmi < 18.5:
             status = "أقل من الوزن الطبيعي (نحافة)"
-            advice = "تحتاج لزيادة السعرات الحرارية بشكل صحي والتركيز على تمارين القوة بناء الكتلة العضلية."
+            advice = "تحتاج لزيادة السعرات الحرارية بشكل صحي والتركيز على تمارين القوة لبناء الكتلة العضلية."
             color_badge = "#3498db"
         elif 18.5 <= bmi <= 24.9:
             status = "وزن طبيعي وصحي ومثالي"
