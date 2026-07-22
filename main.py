@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التصميم الشامل (تعديل دقيق لأحجام ومواقع المربعات) ====================
+# ==================== CSS التصميم الشامل (توسيع مربع الماء يميناً بدقة) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -71,10 +71,10 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* ==================== تخصيص Grid للأزرار مع التعديلات الفردية المطلوبة ==================== */
+    /* ==================== تخصيص Grid مع توسيع إضافي لمربع الماء يميناً ==================== */
     [data-testid="stHorizontalBlock"] {{
         display: grid !important;
-        grid-template-columns: 1.15fr 0.95fr 1fr 1.1fr !important; /* تعديل النسب الدقيقة لعرض كل خانة بناءً على طلبك */
+        grid-template-columns: 1.35fr 0.9fr 0.95fr 1.05fr !important; /* توسيع حجم عمود الماء الأول ليتمدد يميناً */
         gap: 12px !important;
         width: 100% !important;
         margin-bottom: 15px !important;
@@ -87,17 +87,22 @@ st.markdown(
         flex: none !important;
     }}
 
-    /* تعديل إزاحة وتوسيع مربع السعرات والثاني ليسار الراد */
+    /* سحب إضافي لمربع الماء جهة اليمين لتأكيد التمدد المطلوب */
+    [data-testid="stHorizontalBlock"] > div:nth-child(1) {{
+        transform: translateX(4px); 
+    }}
+
+    /* سحب مربع السعرات يساراً */
     [data-testid="stHorizontalBlock"] > div:nth-child(2) {{
-        transform: translateX(-3px); /* سحب مربع السعرات يساراً قليلاً */
+        transform: translateX(-3px); 
     }}
 
-    /* تعديل وسحب مربع التمارين من الزاوية اليمنى وتكبريه */
+    /* سحب وتوسيع مربع التمارين من الزاوية اليمنى */
     [data-testid="stHorizontalBlock"] > div:nth-child(4) {{
-        transform: translateX(3px); /* توسيع وتمديد من الجهة اليمنى */
+        transform: translateX(3px); 
     }}
 
-    /* تصميم الأزرار الموحدة مع الحفاظ على وضوح النص الداخلي */
+    /* تصميم الأزرار الموحدة */
     .stButton > button {{
         width: 100% !important;
         height: 65px !important;
@@ -249,7 +254,7 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "water"
 
-# ==================== الأزرار الأربعة بالتعديلات الجديدة ====================
+# ==================== الأزرار الأربعة بالتعديل الجديد ====================
 cols = st.columns(4)
 
 with cols[0]:
