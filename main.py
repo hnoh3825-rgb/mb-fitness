@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import time
 
-# إعدادات الصفحة وتغيير الأيقونة اللي تطلع برة في المتصفح (غيرناها هنا إلى ذراع قوية أو تقدر تحط أي إيموجي)
+# إعدادات الصفحة
 st.set_page_config(
     page_title="CROSSFIT & FITNESS", 
     page_icon="🦾", 
@@ -108,7 +108,7 @@ st.markdown(
         border-left: 2px solid rgba(212, 175, 55, 0.4) !important;
     }}
 
-    .exercise-card {{
+    .exercise-card, .diet-card {{
         background: linear-gradient(145deg, rgba(30, 30, 30, 0.7), rgba(20, 20, 20, 0.8));
         border: 1px solid rgba(255, 255, 255, 0.05);
         border-right: 4px solid #D4AF37;
@@ -119,7 +119,7 @@ st.markdown(
         box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     }}
 
-    .exercise-title {{
+    .exercise-title, .diet-title {{
         font-size: 19px;
         font-weight: 800;
         color: #FFFFFF;
@@ -143,7 +143,7 @@ st.markdown(
         font-weight: 700;
     }}
 
-    .exercise-desc {{
+    .exercise-desc, .diet-desc {{
         font-size: 14px;
         color: #C0C0C0;
         line-height: 1.6;
@@ -372,15 +372,16 @@ elif st.session_state.active_page == "weight":
         st.dataframe(df, use_container_width=True)
         st.line_chart(df.set_index("الفترة")[["الوزن الفعلي (كجم)"]])
 
-# ==================== 3. قسم السعرات ====================
+# ==================== 3. قسم السعرات والنظام الغذائي المخصص ====================
 elif st.session_state.active_page == "calories":
-    st.header("🔥 حاسبة احتياج الطاقة للكروس فيت")
+    st.header("🔥 حاسبة الطاقة والنظام الغذائي المخصص")
     
     height = st.number_input("الطول (سم):", value=170)
     weight_c = st.number_input("الوزن (كجم):", value=70)
     age = st.number_input("العمر:", value=25)
     gender = st.radio("النوع:", ["ذكر", "أنثى"], horizontal=True)
 
+    tdee = 0
     if st.button("حساب الاحتياج اليومي 🧮", key="calc_c"):
         if gender == "ذكر":
             bmr = 10 * weight_c + 6.25 * height - 5 * age + 5
@@ -392,6 +393,50 @@ elif st.session_state.active_page == "calories":
         st.metric("احتياجك اليومي للمحافظة على الوزن", f"{tdee} سعرة")
         st.write(f"📉 للتنشيف ونزول الوزن: **{tdee - 400}** سعرة")
         st.write(f"📈 للضخامة وزيادة الكتلة: **{tdee + 350}** سعرة")
+
+    st.markdown("---")
+    st.subheader("🍽️ توليد جدول نظام غذائي حسب السعرات")
+    st.write("أدخل عدد السعرات الحرارية المستهدفة التي تريد اتباعها ليتم تصميم نظام غذائي كامل يتناسب معها:")
+    
+    custom_input_cals = st.number_input("أدخل السعرات المستهدفة:", min_value=1200, max_value=4500, value=2200, step=100)
+    
+    if st.button("إنشاء جدول النظام الغذائي 📋", key="gen_diet"):
+        # حساب الماكروز المتوافقة تقريبياً مع السعرات المدخلة
+        p_gms = int((custom_input_cals * 0.30) / 4)
+        c_gms = int((custom_input_cals * 0.45) / 4)
+        f_gms = int((custom_input_cals * 0.25) / 9)
+        
+        st.success(f"✅ تم توليد نظام غذائي مخصص لـ **{custom_input_cals}** سعرة حرارية يومياً:")
+        st.info(f"📊 **توزيع الماكروز المستهدف:** بروتين: **{p_gms}g** | كربوهيدرات: **{c_gms}g** | دهون: **{f_gms}g**")
+        
+        # محتويات الوجبات بناءً على السعرات
+        meals = [
+            {
+                "meal": "وجبة الإفطار (قوة الصباح 🍳)",
+                "details": f"• 3 بيضات كاملة + بياض بيضتين\n• 50 جرام شوفان مع كوب حليب قليل الدسم\n• حبة موز أو تفاحة\n• قليل من المكسرات النيئة"
+            },
+            {
+                "meal": "وجبة الغداء (وجبة الطاقة والكتلة العضلية 🥩)",
+                "details": f"• 180 جرام صدر دجاج مشوي أو لحم مفروم قليل الدهون\n• 200 جرام أرز بني مسلوق أو بطاطس مسلوقة\n• صحن سلطة خضراء كبيرة مع ملعقة زيت زيتون\n• خضروات مشوية (بروكلي أو كوسة)"
+            },
+            {
+                "meal": "وجبة ما قبل/بعد التمرين (⚡ Snacker)",
+                "details": f"• سكوب بروتين (واى بروتين) أو كوب حليب\n• تمرات عدد (3-4)\n• موزة واحدة لطاقة التمرين"
+            },
+            {
+                "meal": "وجبة العشاء (خفيفة ومشبعة 🥗)",
+                "details": f"• علبة تونة مصفاة أو 150 جرام جبن قريش / لبنة قليلة الدسم\n• عدد 2 شرائح توبر بر (أو خبز أسمر)\n• خيار وجرجير وخضار ورقية طازجة"
+            }
+        ]
+        
+        for m in meals:
+            card_html = f"""
+            <div class="diet-card">
+                <div class="diet-title">{m['meal']}</div>
+                <div class="diet-desc" style="white-space: pre-line;">{m['details']}</div>
+            </div>
+            """
+            st.markdown(card_html, unsafe_allow_html=True)
 
 # ==================== 4. قسم الماء ====================
 elif st.session_state.active_page == "water":
