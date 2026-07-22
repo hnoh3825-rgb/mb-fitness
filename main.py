@@ -304,7 +304,6 @@ elif st.session_state.active_page == "weight":
         height_m = height_val / 100.0
         bmi = round(weight_val / (height_m ** 2), 1)
         
-        # تحديد الفئة بناءً على معايير وزارة الصحة ومنظمة الصحة العالمية
         if bmi < 18.5:
             status = "أقل من الوزن الطبيعي (نحافة)"
             advice = "تحتاج لزيادة السعرات الحرارية بشكل صحي والتركيز على تمارين القوة لبناء الكتلة العضلية."
@@ -365,13 +364,11 @@ elif st.session_state.active_page == "calories":
     )
 
     if st.button("احسب السعرات والماكروز بدقة علمية 🧮", key="calc_exact_cals"):
-        # حساب معدل الأيض الأساسي BMR بدقة معادلة وزارة الصحة الرياضية
         if c_gender == "ذكر":
             bmr = (10 * c_weight) + (6.25 * c_height) - (5 * c_age) + 5
         else:
             bmr = (10 * c_weight) + (6.25 * c_height) - (5 * c_age) - 161
 
-        # تحديد معامل النشاط
         if "خامل" in activity_level:
             tdee = bmr * 1.2
         elif "خفيف" in activity_level:
@@ -385,23 +382,21 @@ elif st.session_state.active_page == "calories":
 
         tdee = int(tdee)
 
-        # تعديل السعرات بناءً على هدف المستخدم من القائمة الجانبية
         if "حرق" in user_goal:
-            target_calories = tdee - 500  # عجز صحي بمقدار 500 سعرة لنزول نصف كيلو أسبوعياً
+            target_calories = tdee - 500
             goal_label = "التنشيف وحرق الدهون (عجز 500 سعرة)"
         elif "ضخامة" in user_goal:
-            target_calories = tdee + 300  # فائض نظيف لبناء العضلات
+            target_calories = tdee + 300
             goal_label = "الضخامة وبناء العضلات (فائض نظيف)"
         else:
             target_calories = tdee
             goal_label = "المحافظة على ثبات الوزن الحالي"
 
-        # حساب الماكروز الدقيقة (بروتين، كارب، دهون) بناءً على السعرات المستهدفة
         p_grams = int((target_calories * 0.30) / 4)
         c_grams = int((target_calories * 0.45) / 4)
         f_grams = int((target_calories * 0.25) / 9)
 
-        st.success(✅ تم حساب احتياجك بنجاح بناءً على المعايير المعتمدة!)
+        st.success("✅ تم حساب احتياجك بنجاح بناءً على المعايير المعتمدة!")
         
         st.markdown(f"""
         <div class="info-card">
@@ -416,7 +411,6 @@ elif st.session_state.active_page == "calories":
         </div>
         """, unsafe_allow_html=True)
 
-        # جدول وجبات غذائية صحية متوازنة ومدروسة بناءً على السعرات المحسوبة
         st.subheader("🍽️ نموذج جدول وجبات غذائية صحية متكاملة")
         
         bf_cals = int(target_calories * 0.25)
@@ -427,7 +421,7 @@ elif st.session_state.active_page == "calories":
         meals_plan = [
             ("🍳 وجبة الإفطار المتوازنة", f"حوالي {bf_cals} سعرة", "• 3 بيضات كاملة + شريحة توست أسمر\n• كوب حليب قليل الدسم أو لبن\n• ثمرة فاكهة (تفاح أو موز) + حبات تمر"),
             ("🥩 وجبة الغداء الرياضية", f"حوالي {lunch_cals} سعرة", "• 180 جرام صدر دجاج مشوي أو لحم بقري هزيل\n• 200 جرام أرز بني أو بطاطس مسلوقة بالفرن\n• طبق سلطة خضراء غني بالخضروات الورقية وملعقة زيت زيتون"),
-            ("⚡ وجبة ما قبل/بعد التمرين", f"حوالي {snack_cals} سعرة", "• سكوب واي بروتين أو زبادي يوناني قليل الدسم\قبضة يد من المكسرات غير المروحة (لوز أو جوز)"),
+            ("⚡ وجبة ما قبل/بعد التمرين", f"حوالي {snack_cals} سعرة", "• سكوب واي بروتين أو زبادي يوناني قليل الدسم\n• قبضة يد من المكسرات (لوز أو جوز)"),
             ("🥗 وجبة العشاء المشبعة", f"حوالي {dinner_cals} سعرة", "• علبة تونة خفيفة بالماء مصفاة أو جبن قريش / لبنة قليلة الدسم\n• خبز أسمر بر (شريحتين)\n• طبق خس وخيار طازج")
         ]
 
