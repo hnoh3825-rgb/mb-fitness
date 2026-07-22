@@ -6,10 +6,10 @@ import time
 st.set_page_config(page_title="تطبيق MB للتمارين", page_icon="⚡", layout="centered")
 
 st.title("⚡ MB CROSSFIT & FITNESS")
-st.write("تمارين كروس فيت وفيديوهات توضيحية مباشرة لكل تمرين")
+st.write("تمارين كروس فيت وفيديوهات توضيحية مباشرة تحت كل تمرين")
 
 # إنشاء التبويبات
-tab_workouts, tab_weight, tab_calories, tab_water = tab_workouts, tab_weight, tab_calories, tab_water = st.tabs([
+tab_workouts, tab_weight, tab_calories, tab_water = st.tabs([
     "🔥 تمارين الكروس فيت", 
     "⚖️ سجل الوزن", 
     "📊 السعرات", 
@@ -20,7 +20,7 @@ tab_workouts, tab_weight, tab_calories, tab_water = tab_workouts, tab_weight, ta
 with tab_workouts:
     st.header("🏃‍♂️ جداول الكروس فيت (جسم كامل)")
     
-    # تمارين الكروس فيت مع روابط فيديوهات شغال 100%
+    # تمارين الكروس فيت مع فيديوهات مدمجة داخل التطبيق
     crossfit_data = {
         "تمارين حرق وقوة (Bodyweight 🔥)": [
             {
@@ -72,8 +72,8 @@ with tab_workouts:
         st.subheader(ex["name"])
         st.caption(ex["desc"])
         
-        # زر يفتح فيديو شرح التمرين فوراً عند الضغط عليه
-        st.link_button("▶️ مشاهدة فيديو التمرين على YouTube", ex["url"])
+        # عرض الفيديو مدمجاً داخل التطبيق بدلاً من فتح رابط خارجي
+        st.video(ex["url"])
         st.markdown("---")
 
     # مؤقت راحة الجولات
