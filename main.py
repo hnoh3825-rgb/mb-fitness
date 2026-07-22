@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==================== CSS التجميل الشامل (تصميم مربعات أصلية متساوية، واسعة، ومنحنية الزوايا) ====================
+# ==================== CSS التصميم الشامل (بطاقات أفقية عريضة بنفس شكل المربع المنحني) ====================
 bg_img_url = "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop"
 
 st.markdown(
@@ -18,7 +18,6 @@ st.markdown(
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Tajawal:wght@400;700;900&display=swap');
 
-    /* منع التمرير العرضي وثبات الشاشة كأنه تطبيق جوال حقيقي */
     html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {{
         max-width: 100% !important;
         overflow-x: hidden !important;
@@ -36,7 +35,7 @@ st.markdown(
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
-        padding: 25px 12px;
+        padding: 25px 15px;
         margin-top: 10px;
         max-width: 100% !important;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
@@ -72,49 +71,32 @@ st.markdown(
         margin: 15px 0 25px 0;
     }}
 
-    /* تحويل حاوية الأزرار إلى نظام شبكي (Grid) بمسافات وفراغات واسعة ومتوازنة تماماً */
-    [data-testid="stHorizontalBlock"] {{
-        display: grid !important;
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 12px !important;
-        width: 100% !important;
-        margin-bottom: 15px !important;
-    }}
-
-    [data-testid="stHorizontalBlock"] > div {{
-        width: 100% !important;
-        max-width: 100% !important;
-    }}
-
-    /* تصميم الأزرار على شكل مربعات كبيرة، زوايا منحنية واضحة، ومساحات مريحة */
+    /* تصميم أزرار التطبيق لتطابق تماماً شكل المربع المنحني العريض المرفق بالعرض كامل */
     .stButton > button {{
         width: 100% !important;
-        aspect-ratio: 1 / 1 !important; /* ضمان أن يكون الزر مربعاً متساوي الأبعاد تماماً */
+        height: 75px !important; /* ارتفاع مريح جداً لتغطية الكلمات بشكل كامل وواضح */
         background: linear-gradient(145deg, rgba(28, 28, 36, 0.95), rgba(16, 16, 22, 0.98)) !important;
         border: 1.5px solid rgba(212, 175, 55, 0.4) !important;
-        border-radius: 18px !important; /* انحناء زوايا أنيق ومميز */
-        padding: 8px !important;
+        border-radius: 22px !important; /* انحناء زوايا مطابق للصورة تماماً */
+        padding: 10px 20px !important;
         color: #FFFFFF !important;
         font-family: 'Tajawal', sans-serif !important;
         font-weight: 800 !important;
-        font-size: 12px !important;
+        font-size: 15px !important;
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6) !important;
         transition: all 0.3s ease-in-out !important;
-        white-space: pre-line !important;
-        word-break: break-word !important;
         display: flex !important;
-        flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        line-height: 1.4 !important;
+        gap: 12px !important;
     }}
 
     .stButton > button:hover {{
         border-color: #D4AF37 !important;
         background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(28, 28, 36, 0.98) 100%) !important;
         box-shadow: 0 8px 22px rgba(212, 175, 55, 0.4) !important;
-        transform: translateY(-3px) !important;
+        transform: translateY(-2px) !important;
     }}
 
     [data-testid="stSidebar"] {{
@@ -244,26 +226,28 @@ st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 if "active_page" not in st.session_state:
     st.session_state.active_page = "water"
 
-# ==================== المربعات الأربعة الرئيسية (موزعة بمساحات واسعة وبشكل مربع وبزوايا منحنية) ====================
-col1, col2, col3, col4 = st.columns(4)
+# ==================== الأزرار الرئيسية (بطاقات عريضة بتصميم المربع المنحني بكامل العرض) ====================
+row1_col1, row1_col2 = st.columns(2)
 
-with col1:
-    if st.button("💧\nالماء", key="btn_water"):
+with row1_col1:
+    if st.button("💧 متابعة الماء", key="btn_water"):
         st.session_state.active_page = "water"
         st.rerun()
 
-with col2:
-    if st.button("⚡\nالسعرات\nالدقيقة", key="btn_calories"):
+with row1_col2:
+    if st.button("⚡ السعرات الدقيقة", key="btn_calories"):
         st.session_state.active_page = "calories"
         st.rerun()
 
-with col3:
-    if st.button("📊\nقياس\nالجسم", key="btn_weight"):
+row2_col1, row2_col2 = st.columns(2)
+
+with row2_col1:
+    if st.button("📊 قياس الجسم", key="btn_weight"):
         st.session_state.active_page = "weight"
         st.rerun()
 
-with col4:
-    if st.button("🔥\nالتمارين", key="btn_workouts"):
+with row2_col2:
+    if st.button("🔥 جدول التمارين", key="btn_workouts"):
         st.session_state.active_page = "workouts"
         st.rerun()
 
