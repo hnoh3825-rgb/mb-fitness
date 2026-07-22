@@ -5,6 +5,40 @@ import time
 # إعدادات الصفحة
 st.set_page_config(page_title="تطبيق MB للتمارين", page_icon="⚡", layout="centered")
 
+# ==================== إضافة الخلفية عبر CSS ====================
+bg_url = "https://i.imgur.com/8QG4A3g.jpeg"  # رابط خلفية NO EXCUSES
+
+st.markdown(
+    f"""
+    <style>
+    /* خلفية التطبيق بالكامل */
+    .stApp {{
+        background-image: url("{bg_url}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }}
+    
+    /* إضافة طبقة شفافة دافكنة لضمان وضوح النصوص والقوائم */
+    .main .block-container {{
+        background-color: rgba(0, 0, 0, 0.75);
+        border-radius: 15px;
+        padding: 25px;
+        margin-top: 15px;
+        color: white;
+    }}
+
+    /* تحسين شكل التبويبات فوق */
+    .stTabs [data-baseweb="tab-list"] button {{
+        color: white !important;
+        font-weight: bold;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.title("⚡ MB CROSSFIT & FITNESS")
 st.write("تمارين كروس فيت وفيديوهات توضيحية مباشرة تحت كل تمرين")
 
@@ -20,7 +54,6 @@ tab_workouts, tab_weight, tab_calories, tab_water = st.tabs([
 with tab_workouts:
     st.header("🏃‍♂️ جداول الكروس فيت (جسم كامل)")
     
-    # تمارين الكروس فيت مع فيديوهات مدمجة داخل التطبيق
     crossfit_data = {
         "تمارين حرق وقوة (Bodyweight 🔥)": [
             {
@@ -71,8 +104,6 @@ with tab_workouts:
     for ex in crossfit_data[category]:
         st.subheader(ex["name"])
         st.caption(ex["desc"])
-        
-        # عرض الفيديو مدمجاً داخل التطبيق بدلاً من فتح رابط خارجي
         st.video(ex["url"])
         st.markdown("---")
 
